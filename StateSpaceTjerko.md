@@ -20,7 +20,7 @@ n = 3
 
 r = 25
 
-verschillende ladingen = (25+3-1)!/(25!(3-1)!) = 351
+verschillende ladingen = 3^25 = 8.47288609×10^11
 
 ### Opdracht 4
 n = 110
@@ -47,7 +47,17 @@ mogelijkheden = 26!/(26-7)! = 4.90584303×10^43
 kans van winnen = 1/mogelijkheden = 1.95434865×10^−4
 
 ### Opdracht 6
+eerst 30 dozen:
+r = 30
+n = 3
+verschillende ladingen = 3^30 = 2.05891132×10^14
 
+dan 15 dozen met 2 mogelijkheden:
+r = 15
+n = 2
+verschillende ladingen = 2^15 = 32768
+
+totale mogelijkheden= 3^30 * 2^15 = 6.74664062×1018
 
 ### Opdracht 7
 
