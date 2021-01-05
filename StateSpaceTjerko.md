@@ -57,7 +57,7 @@ r = 15
 n = 2
 verschillende ladingen = 2^15 = 32768
 
-totale mogelijkheden= 3^30 * 2^15 = 6.74664062×1018
+totale mogelijkheden= 3^30 * 2^15 = 6.74664062×10^18
 
 ### Opdracht 7
 
