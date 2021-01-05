@@ -48,14 +48,22 @@ kans van winnen = 1/mogelijkheden = 1.95434865×10^−4
 
 ### Opdracht 6
 eerst 30 dozen:
+
 r = 30
+
 n = 3
+
 verschillende ladingen = 3^30 = 2.05891132×10^14
 
+
 dan 15 dozen met 2 mogelijkheden:
+
 r = 15
+
 n = 2
+
 verschillende ladingen = 2^15 = 32768
+
 
 totale mogelijkheden= 3^30 * 2^15 = 6.74664062×10^18
 
