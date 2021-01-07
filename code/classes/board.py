@@ -3,44 +3,56 @@ import numpy as np
 class Board(object):
     def __init__(self, vehicles, boardsize):
         self.vehicles = vehicles
-        self.carname = carname
         self.boardsize = boardsize
         self.board = []
-        self.possible_moves = self.possible_moves(self)
+        self.possible_moves = {}
 
     def load_board(self):
         cols = []
         for row in range(self.boardsize):
-            cols.append(' ')
+            cols.append('_')
         for row in range(self.boardsize):
             self.board.append(cols)
         self.board = np.array(self.board)
         
-        for vehicle in self.vehicles:
+        for vehicle in self.vehicles.values():
             x, y = vehicle.coordinates[0], vehicle.coordinates[1]
             if vehicle.orientation == "H":
                 for i in range(vehicle.length):
-                    self.board[y, x + 1] = vehicle.name
+                    self.board[y, x + i] = vehicle.name
             else:
                 for i in range(vehicle.length):
-                    self.board[y + 1, x] = vehicle.name
+                    self.board[y + i, x] = vehicle.name
         return self.board
 
     # 0 is also a possible move
-    def possible_moves(self):
-        self.possible_moves = {}
-        for vehicle in self.vehicles:
+    def pos_moves(self):
+        for vehicle in self.vehicles.values():
             self.possible_moves[vehicle.name] = []
             if vehicle.orientation == "H":
-                left, right = -vehicle.coordinates[0], self.boardsize - (vehicle.coordinates[0] + vehicle.length)
-                for i in range(left, right + 1):
-                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + i] == '_':
+                left, right = vehicle.coordinates[0], self.boardsize - (vehicle.coordinates[0] + vehicle.length)
+                for i in range(1, left + 1):
+                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '_':
+                        self.possible_moves[vehicle.name].append(-i)
+                    else:
+                        break
+                for i in range(1, right + 1):
+                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '_':
                         self.possible_moves[vehicle.name].append(i)
+                    else:
+                        break
             elif vehicle.orientation == "V":
-                up, down = -vehicle.coordinates[1], self.boardsize - (vehicle.coordinates[1] + vehicle.length)
-                for i in range(down, up + 1):
-                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + i] == '_':
+                up, down = vehicle.coordinates[1], self.boardsize - (vehicle.coordinates[1] + vehicle.length)
+                for i in range(1, up + 1):
+                    if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
                         self.possible_moves[vehicle.name].append(i)
+                    else:
+                        break
+                for i in range(1, down + 1):
+                    if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
+                        self.possible_moves[vehicle.name].append(-i)
+                    else:
+                        break
         return self.possible_moves
 
     # load_board() instead of alternating part of board
