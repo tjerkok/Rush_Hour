@@ -1,34 +1,54 @@
 import csv
 from code.classes.board import Board
 from code.classes.vehicle import Vehicle
-from sys import argv
+from code.algorithms import randomise, play_yourself, shortest_winning_testboard
+import sys
+import re
 
 if __name__ == '__main__':
 
+    # --------------------------- Load in game --------------------------
+
+    filename = sys.argv[1]
     vehicles = {}
-    with open('gameboards/Rushhour9x9_4.csv', newline='') as csvfile:
+    with open(filename, newline='') as csvfile:
+        match = re.search(r'\dx\d', filename)
+        board_size = int(match[0][0])
         r = csv.reader(csvfile, delimiter=',')
         next(r, None)
         for row in r:
             vehicle_name = row[0]
             orientation = row[1]
-            vehicle_row = int(row[3])
             vehicle_col = int(row[2])
+            vehicle_row = int(row[3])
             vehicle_length = int(row[4])
             new_vehicle = Vehicle(vehicle_name, orientation, vehicle_row, vehicle_col, vehicle_length)
             vehicles[vehicle_name] = new_vehicle
 
-    board = Board(vehicles, 9)     #hardcoded
-    print(board.load_board())
+    board = Board(vehicles, board_size)
 
-print(board.pos_moves())
+    # --------------------------- Random choice --------------------------
 
-moves = {'A': -1,
-         'B': 1,
-         'C': 2}
+    moves = randomise.random_moves_algorithm(board)
 
-with open('output/output.csv', 'w', newline='') as csvfile:
-    w = csv.writer(csvfile, delimiter=',')
-    w.writerow(['car', 'move'])
-    for key in moves:
-        w.writerow([key, moves[key]])
+    moves_needed = len(moves)
+    print(moves_needed)
+
+    # --------------------------- Play yourself --------------------------
+
+    #moves = play_yourself.play(board)
+
+    # --------------------------- Shortest Winning game testboard (hardcoded) --------------------------
+
+    #moves = shortest_winning_testboard.winning_moves(board)
+
+    #moves_needed = len(moves)
+    #print(moves_needed)
+
+    # --------------------------- Output --------------------------
+
+    with open('output/output.csv', 'w', newline='') as csvfile:
+        w = csv.writer(csvfile, delimiter=',')
+        w.writerow(['car', 'move'])
+        for move in moves:
+            w.writerow(move)
