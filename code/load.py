@@ -1,1 +1,0 @@
-# function to load csv to dict/straight into the classes?
