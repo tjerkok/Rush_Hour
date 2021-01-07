@@ -1,1 +1,1 @@
-# functions to read the csv file and to create the game 
+# function to play the game 
