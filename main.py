@@ -1,12 +1,17 @@
 import csv
 from code.classes.board import Board
 from code.classes.vehicle import Vehicle
+from code.visualization.visualization import visualize
 from sys import argv
+import re
 
 if __name__ == '__main__':
 
+    filename = 'gameboards/Rushhour9x9_4.csv' # needs to be the commandline argument
     vehicles = {}
-    with open('gameboards/Rushhour9x9_4.csv', newline='') as csvfile:
+    with open(filename, newline='') as csvfile:
+        match = re.search(r"\dx\d", filename)
+        board_size = int(match[0][0])
         r = csv.reader(csvfile, delimiter=',')
         next(r, None)
         for row in r:
@@ -18,10 +23,11 @@ if __name__ == '__main__':
             new_vehicle = Vehicle(vehicle_name, orientation, vehicle_row, vehicle_col, vehicle_length)
             vehicles[vehicle_name] = new_vehicle
 
-    board = Board(vehicles, 9)     #hardcoded
-    print(board.load_board())
+    board = Board(vehicles, board_size)     # hardcoded
+    visualize(board.load_board())   # result in code/visualization/test.png
 
-print(board.pos_moves())
+
+# print(board.pos_moves())
 
 moves = {'A': -1,
          'B': 1,
