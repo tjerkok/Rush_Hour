@@ -2,14 +2,19 @@ import csv
 from code.classes.board import Board
 from code.classes.vehicle import Vehicle
 from code.algorithms import randomise, play_yourself, shortest_winning_testboard
-import sys
+from sys import argv
 import re
 
 if __name__ == '__main__':
 
     # --------------------------- Load in game --------------------------
 
-    filename = sys.argv[1]
+    if len(argv) == 2:
+        filename = argv[1]
+    else: 
+        print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv]")
+        exit(1)
+
     vehicles = {}
     with open(filename, newline='') as csvfile:
         match = re.search(r'\dx\d', filename)
