@@ -7,7 +7,14 @@ import re
 
 if __name__ == '__main__':
 
-    filename = 'gameboards/Rushhour9x9_4.csv' # needs to be the commandline argument
+    # Check command line arguments and load requested board
+    if len(argv) == 2:
+        filename = argv[1]
+    else: 
+        print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv]")
+        exit(1)
+
+    #filename = 'gameboards/Rushhour9x9_4.csv' # needs to be the commandline argument
     vehicles = {}
     with open(filename, newline='') as csvfile:
         match = re.search(r"\dx\d", filename)
