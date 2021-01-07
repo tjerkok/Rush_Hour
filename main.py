@@ -1,9 +1,12 @@
+import re
 import csv
+
 from code.classes.board import Board
 from code.classes.vehicle import Vehicle
 from code.algorithms import randomise, play_yourself, shortest_winning_testboard
+from code.visualization.visualization import visualize
 from sys import argv
-import re
+
 
 if __name__ == '__main__':
 
@@ -31,6 +34,7 @@ if __name__ == '__main__':
             vehicles[vehicle_name] = new_vehicle
 
     board = Board(vehicles, board_size)
+    visualize(board.load_board())   # result in code/visualization/test.png
 
     # --------------------------- Random choice --------------------------
 
