@@ -11,6 +11,7 @@ from string import ascii_uppercase
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def visualize(board, state):
     """Creates a visualisation of the gameboard using matplotlib"""
 

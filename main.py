@@ -13,6 +13,7 @@ from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
 from sys import argv
 
+
 if __name__ == '__main__':
 
     # ------------------------------ Input ------------------------------
