@@ -6,6 +6,7 @@
 
 import numpy as np
 
+
 class Board(object):
     """
     A class that initializes the gameboard, moves vehicles and checks for win.
@@ -37,23 +38,46 @@ class Board(object):
         self.board.clear()
         cols = []
 
-        for col in range(self.boardsize):
-            cols.append('_')
+        if self.boardsize < 10:
+            for col in range(self.boardsize):
+                cols.append('_')
+        else:
+            for col in range(self.boardsize):
+                cols.append('__')
 
         for row in range(self.boardsize):
             self.board.append(cols)
 
-        self.board = np.array(self.board)
+        self.board = np.array(self.board, dtype='U25')
+        
+        if self.boardsize < 10:
+            for vehicle in self.vehicles.values():
+                x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-        for vehicle in self.vehicles.values():
-            x, y = vehicle.coordinates[0], vehicle.coordinates[1]
+                if vehicle.orientation == 'H':
+                    for i in range(vehicle.length):
+                        self.board[y, x + i] = vehicle.name
+                else:
+                    for i in range(vehicle.length):
+                        self.board[y + i, x] = vehicle.name
+        else:
+            for vehicle in self.vehicles.values():
+                x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-            if vehicle.orientation == "H":
-                for i in range(vehicle.length):
-                    self.board[y, x + i] = vehicle.name
-            else:
-                for i in range(vehicle.length):
-                    self.board[y + i, x] = vehicle.name
+                if len(vehicle.name) < 2:
+                    if vehicle.orientation == 'H':
+                        for i in range(vehicle.length):
+                            self.board[y, x + i] = f'{vehicle.name} '
+                    else:
+                        for i in range(vehicle.length):
+                            self.board[y + i, x] = f'{vehicle.name} '
+                else:
+                    if vehicle.orientation == 'H':
+                        for i in range(vehicle.length):
+                            self.board[y, x + i] = vehicle.name
+                    else:
+                        for i in range(vehicle.length):
+                            self.board[y + i, x] = vehicle.name
 
         return self.board
 
@@ -63,32 +87,58 @@ class Board(object):
         for vehicle in self.vehicles.values():
             self.possible_moves[vehicle.name] = []
 
-            if vehicle.orientation == "H":
+            if vehicle.orientation == 'H':
                 left, right = vehicle.coordinates[0], self.boardsize - (vehicle.coordinates[0] + vehicle.length)
+                
+                if self.boardsize < 10:
+                    for i in range(1, left + 1):
+                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '_':
+                            self.possible_moves[vehicle.name].append(-i)
+                        else:
+                            break
 
-                for i in range(1, left + 1):
-                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '_':
-                        self.possible_moves[vehicle.name].append(-i)
-                    else:
-                        break
+                    for i in range(1, right + 1):
+                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '_':
+                            self.possible_moves[vehicle.name].append(i)
+                        else:
+                            break
+                else:
+                    for i in range(1, left + 1):
+                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '__':
+                            self.possible_moves[vehicle.name].append(-i)
+                        else:
+                            break
 
-                for i in range(1, right + 1):
-                    if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '_':
-                        self.possible_moves[vehicle.name].append(i)
-                    else:
-                        break
+                    for i in range(1, right + 1):
+                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '__':
+                            self.possible_moves[vehicle.name].append(i)
+                        else:
+                            break
 
             else:
                 up, down = vehicle.coordinates[1], self.boardsize - (vehicle.coordinates[1] + vehicle.length)
 
-                for i in range(1, up + 1):
-                    if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
-                        self.possible_moves[vehicle.name].append(i)
-                    else:
-                        break
+                if self.boardsize < 10:
+                    for i in range(1, up + 1):
+                        if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
+                            self.possible_moves[vehicle.name].append(i)
+                        else:
+                            break
+
+                    for i in range(1, down + 1):
+                        if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
+                            self.possible_moves[vehicle.name].append(-i)
+                        else:
+                            break
+                else:
+                    for i in range(1, up + 1):
+                        if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '__':
+                            self.possible_moves[vehicle.name].append(i)
+                        else:
+                            break
 
                 for i in range(1, down + 1):
-                    if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
+                    if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '__':
                         self.possible_moves[vehicle.name].append(-i)
                     else:
                         break
@@ -101,7 +151,7 @@ class Board(object):
         if shift in self.possible_moves[vehicle_name]:
             vehicle = self.vehicles[vehicle_name]
 
-            if vehicle.orientation == "H":
+            if vehicle.orientation == 'H':
                 vehicle.coordinates = (vehicle.coordinates[0] + shift, vehicle.coordinates[1])
 
             else:
