@@ -9,6 +9,7 @@
 
 import numpy as np
 
+
 class Board(object):
     """
     A class that initializes the gameboard, moves vehicles and checks for win.
