@@ -1,11 +1,13 @@
-################
+#########################################################
+# board.py
 #
-#
-#
-################
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Creates the board, moves vehicles and checks for win. 
+#########################################################
 
 import numpy as np
-
 
 class Board(object):
     """
@@ -18,10 +20,10 @@ class Board(object):
     possible_moves: dict with all possible moves per vehicle.
 
     Methods: 
-    load_board:
-    pos_moves:
-    move:
-    win: 
+    load_board: loads the boards and applies the vehicles.
+    pos_moves: creates the possible_moves dict.
+    move: moves a vehicle, if possible. 
+    win: checks for win, using vehicle 'X'. 
 
     """ 
 
@@ -38,6 +40,7 @@ class Board(object):
         self.board.clear()
         cols = []
 
+        # Uses the boardsize from the filename 
         if self.boardsize < 10:
             for col in range(self.boardsize):
                 cols.append('_')
@@ -162,7 +165,7 @@ class Board(object):
         return False
 
     def win(self):
-        """Checks for win, using vehicle X."""
+        """Checks for win, using vehicle 'X'."""
         if self.vehicles['X'].coordinates[0] == self.boardsize - 2:
             return True
         else:

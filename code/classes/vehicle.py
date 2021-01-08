@@ -1,3 +1,12 @@
+#########################################################
+# vehicle.py
+#
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Creates a vehicle that is placed on the board. 
+#########################################################
+
 class Vehicle(object):
     """
     Class with all information about a vehicle. 

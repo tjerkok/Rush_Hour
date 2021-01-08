@@ -1,14 +1,23 @@
-# function to create a visualization and save the images
+#############################################################
+# visualization.py
+#
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Creates a visualization of the board and saves the images. 
+#############################################################
+
 from string import ascii_uppercase
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def visualize(board):
+    """Creates a visualisation of the gameboard using matplot."""
     legend = {}
     i = 0
     image = []
 
+    # Vehicle names
     for letter in ascii_uppercase:
         legend[letter] = i
         i += 1
@@ -19,6 +28,7 @@ def visualize(board):
 
     image = np.array(image)
 
+    # Sets layout for image 
     plt.imshow(image, cmap='hot_r', interpolation='nearest')
     ax = plt.gca()
     ax.set_xticks([], minor=False)
@@ -28,6 +38,7 @@ def visualize(board):
     ax.tick_params(axis=u'both', which=u'both',length=0)
     ax.set_xticklabels([])
     
+    # Defines colours for vehicles
     for i in range(len(board[0])):
         for j in range(len(board[1])):
             if board[i, j] =='X':
@@ -36,4 +47,6 @@ def visualize(board):
                 ax.text(j, i, board[i, j], ha='center', va='center', color='black')
 
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
+
+    # Saves visualization
     plt.savefig('code/visualization/test.png', dpi=400)

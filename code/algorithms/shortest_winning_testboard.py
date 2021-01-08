@@ -1,3 +1,12 @@
+#########################################################
+# shortest_winning_testboard.py
+#
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Testfunction.
+#########################################################
+
 def winning_moves(board):
 
     print(board.load_board())

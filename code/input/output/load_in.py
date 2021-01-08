@@ -1,16 +1,27 @@
+#########################################################
+# load_in.py
+#
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Loads the csv file with the information of a gameboard.
+#########################################################
+
 import csv
 import re
 
 from ...classes.board import Board
 from ...classes.vehicle import Vehicle
 
-
 def load_problem(filename):
-
+    """Loads the vehicles and the boardsize from the csv input file."""
     vehicles = {}
     with open(filename, newline='') as csvfile:
+        # Reads the boardsize from the name of the csvfile
         match = re.search(r'\d+x', filename)
         board_size = int(str((match[0]))[:-1])
+
+        # Reads the csv input file into vehicles dict
         r = csv.reader(csvfile, delimiter=',')
         next(r, None)
         for row in r:

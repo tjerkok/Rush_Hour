@@ -1,9 +1,17 @@
+#########################################################
+# main.py
+#
+# Programmeertheorie, Rush Hour
+# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
+# 
+# Plays the Rush Hour game, using different algorithms. 
+#########################################################
+
 from code.algorithms import randomise, play_yourself, shortest_winning_testboard
 from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
 from sys import argv
-
 
 if __name__ == '__main__':
 
