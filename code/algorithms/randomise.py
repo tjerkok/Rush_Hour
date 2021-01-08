@@ -1,5 +1,6 @@
 import random
 
+
 def random_moves_algorithm(board):
 
     print(board.load_board())
