@@ -11,7 +11,7 @@ from string import ascii_uppercase
 import matplotlib.pyplot as plt
 import numpy as np
 
-def visualize(board):
+def visualize(board, state):
     """Creates a visualisation of the gameboard using matplotlib"""
 
     # checks if the board is a numpy array
@@ -19,6 +19,7 @@ def visualize(board):
         print("board is not a numpy array")
         return False
 
+    plt.close()
     legend = {}
     i = 0
     image = []
@@ -56,8 +57,8 @@ def visualize(board):
     ax.set_xticklabels([])
 
     # Defines colours for vehicles
-    for i in range(len(board[0])):
-        for j in range(len(board[1])):
+    for i in range(np.size(board, 0)):
+        for j in range(np.size(board, 1)):
             if board[i, j] =='X' or board[i, j] == 'X ':
                 ax.text(j, i, board[i, j], ha='center', va='center', color='blue')
             elif image[i, j] <= np.amax(image)/2:
@@ -70,5 +71,6 @@ def visualize(board):
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
 
     # Saves visualization
-    plt.savefig('code/visualization/startboard.png', dpi=400)
+    plt.savefig(f'code/visualization/{state}board.png', dpi=400)
+
     return True
