@@ -7,11 +7,12 @@ import re
 
 if __name__ == '__main__':
 
-    filename = 'gameboards/Rushhour9x9_4.csv' # needs to be the commandline argument
+    filename = 'gameboards/Rushhour12x12_7.csv' # needs to be the commandline argument
     vehicles = {}
     with open(filename, newline='') as csvfile:
-        match = re.search(r"\dx\d", filename)
-        board_size = int(match[0][0])
+        match = re.search(r"\d+x", filename)
+        board_size = int(str((match[0]))[:-1])
+        print(board_size)
         r = csv.reader(csvfile, delimiter=',')
         next(r, None)
         for row in r:
