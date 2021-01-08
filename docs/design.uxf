@@ -1,10 +1,21 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>220</y><w>210</w><h>150</h></coordinates><panel_attributes>_object: Class_board
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>350</x><y>216</y><w>190</w><h>90</h></coordinates><panel_attributes>_object: Class_Vehicle
 --
-id: Long="36548"
-[waiting for message]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>220</y><w>210</w><h>140</h></coordinates><panel_attributes>_object: Class_vehicle
+name: str
+orientation: str (V/H)
+coordinates: tuple (row,col)
+length: int
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>216</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>216</y><w>310</w><h>170</h></coordinates><panel_attributes>_object: Class_Board
 --
-id: Long="36548"
-orientation: 
-name: 
-length: 
-[waiting for message]</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+name: str
+boardsize: int
+vehicles: vehicles
+board: []
+possible_moves: {}
+--
+load_board(self): return self.board
+pos_moves(self): return self.possible_moves
+move(self, vehicle_name, shift): return bool 
+win(self): return bool
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
