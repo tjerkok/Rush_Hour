@@ -24,6 +24,7 @@ if __name__ == '__main__':
         exit(1)
 
     board = load_problem(filename)
+
     if not visualize(board.load_board(), 'start'):   # result in code/visualization/test.png
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
