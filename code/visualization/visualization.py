@@ -3,6 +3,7 @@ from string import ascii_uppercase
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def visualize(board):
     legend = {}
     i = 0
@@ -30,9 +31,9 @@ def visualize(board):
     for i in range(len(board[0])):
         for j in range(len(board[1])):
             if board[i, j] =='X':
-                ax.text(j, i, board[i, j], ha="center", va="center", color="white")
+                ax.text(j, i, board[i, j], ha='center', va='center', color='white')
             elif board[i, j] != '_':
-                ax.text(j, i, board[i, j], ha="center", va="center", color="black")
+                ax.text(j, i, board[i, j], ha='center', va='center', color='black')
 
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
     plt.savefig('code/visualization/test.png', dpi=400)
