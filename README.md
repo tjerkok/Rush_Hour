@@ -1,7 +1,18 @@
 # Rush Hour
+
+### Submission requirements README
+* Introduction to case
+* Description of approach to the algorithms 
+* After reading this it is clear how...
+    * the results can be reproducted 
+    * what cmd line arguments are possible for multiple functionalities/algorithms
+    * to obtain a certain result via a certain file
+
+## Rush Hour case explanation
 Rush Hour seems to be an easy puzzle, altough it has a surprising challenging character. In a square field with varying dimensions is a black car named 'X', your car. This car must go to the exit, which is placed right in front of the car. However, other vehicles, cars of two units and trucs of three units, that may only be moved in their direction of travel, block the way to the exit. The vehicles are not aloud to turn around. The assignment is simple: clear the way to the exit by moving other vehicles and move your black car to the exit. 
 
 ## Requirements
+Add dependencies to a file named 'requirements.txt'.
 
 ## Usage
 python3 main.py [gameboards/"gamename".csv]
@@ -19,5 +30,5 @@ python3 main.py [gameboards/"gamename".csv]
 
 ## Authors
 * Tjerko Kieft
-* Bob Nieuwehuizen
-* Kika Banning 
+* Bob Nieuwenhuize
+* Kika Banning

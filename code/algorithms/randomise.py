@@ -2,15 +2,17 @@
 # randomise.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
 # Function with randomise algorithm to play the Rush Hour game.
 ###############################################################
 
 import random
 
+
 def random_moves_algorithm(board):
     """Function that plays the Rush Hour game with a randomise algorithm."""
+
     print(board.load_board())
     moves = []
     counter = 0

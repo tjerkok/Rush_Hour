@@ -2,9 +2,9 @@
 # main.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
-# Plays the Rush Hour game, using different algorithms. 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
+# Plays the Rush Hour game, using different algorithms.
 #########################################################
 
 from code.algorithms import randomise, play_yourself, shortest_winning_testboard
@@ -31,6 +31,7 @@ if __name__ == '__main__':
 
     moves_needed = len(moves)
     print(moves_needed)
+    visualize(board.load_board())
 
     # -------------------------- Play yourself --------------------------
 

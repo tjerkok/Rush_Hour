@@ -2,9 +2,9 @@
 # visualization.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
-# Creates a visualization of the board and saves the images. 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
+# Creates a visualization of the board and saves the images.
 #############################################################
 
 from string import ascii_uppercase
@@ -44,7 +44,7 @@ def visualize(board):
 
     image = np.array(image)
 
-    # Sets layout for image 
+    # Sets layout for image
     plt.imshow(image, cmap='hot_r', interpolation='nearest')
     ax = plt.gca()
     ax.set_xticks([], minor=False)
