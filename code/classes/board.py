@@ -1,13 +1,38 @@
+################
+#
+#
+#
+################
+
 import numpy as np
 
 class Board(object):
+    """
+    A class that initializes the gameboard, moves vehicles and checks for win.
+    
+    Attributes: 
+    vehicles: dict with all information about a vehicle.
+    boardsize: int with size of the board as stated in the name of the file.
+    board: list with...
+    possible_moves: dict with all possible moves per vehicle.
+
+    Methods: 
+    load_board:
+    pos_moves:
+    move:
+    win: 
+
+    """ 
+
     def __init__(self, vehicles, boardsize):
+        """ """ 
         self.vehicles = vehicles
         self.boardsize = boardsize
         self.board = []
         self.possible_moves = {}
 
     def load_board(self):
+        """Loads the board and applies the vehicles."""
         self.board = list(self.board)
         self.board.clear()
         cols = []
@@ -34,6 +59,7 @@ class Board(object):
 
     # 0 is also a possible move
     def pos_moves(self):
+        """Creates a dict with a list of all possible moves per vehicle.""" 
         for vehicle in self.vehicles.values():
             self.possible_moves[vehicle.name] = []
 
@@ -71,6 +97,7 @@ class Board(object):
 
     # load_board() instead of alternating part of board
     def move(self, vehicle_name, shift):
+        """Moves a vehicle, if possible.""" 
         if shift in self.possible_moves[vehicle_name]:
             vehicle = self.vehicles[vehicle_name]
 
@@ -85,6 +112,7 @@ class Board(object):
         return False
 
     def win(self):
+        """Checks for win, using vehicle X."""
         if self.vehicles['X'].coordinates[0] == self.boardsize - 2:
             return True
         else:
