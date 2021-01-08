@@ -2,9 +2,9 @@
 # visualization.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
-# Creates a visualization of the board and saves the images. 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
+# Creates a visualization of the board and saves the images.
 #############################################################
 
 from string import ascii_uppercase
@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def visualize(board):
-    """Creates a visualisation of the gameboard using matplot."""
+    """Creates a visualisation of the gameboard using matplotlib"""
+
     legend = {}
     i = 0
     image = []
@@ -28,7 +29,7 @@ def visualize(board):
 
     image = np.array(image)
 
-    # Sets layout for image 
+    # Sets layout for image
     plt.imshow(image, cmap='hot_r', interpolation='nearest')
     ax = plt.gca()
     ax.set_xticks([], minor=False)
@@ -37,7 +38,7 @@ def visualize(board):
     ax.set_yticks(np.arange(-.5, len(board[0]), 1), minor=True)
     ax.tick_params(axis=u'both', which=u'both',length=0)
     ax.set_xticklabels([])
-    
+
     # Defines colours for vehicles
     for i in range(len(board[0])):
         for j in range(len(board[1])):

@@ -2,25 +2,25 @@
 # vehicle.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
-# Creates a vehicle that is placed on the board. 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
+# Creates a vehicle that is placed on the board.
 #########################################################
 
 class Vehicle(object):
     """
-    Class with all information about a vehicle. 
+    Class with all information about a vehicle
 
-    Attributes: 
+    Attributes:
     Orientation: str (V(vertical)/H(horizontal))
     Coordinates: tuple(col, row)
     Name: str with name of vehicle (A t/m Z)
     Length: int with size of vehicle (car/truc)
-
     """
 
     def __init__(self, name, orientation, row, col, length):
-        """Loads all information of the vehicle in the class""" 
+        """Loads all information of the vehicle in the class"""
+
         self.orientation = orientation
         self.coordinates = (col - 1, row - 1)
         self.name = name

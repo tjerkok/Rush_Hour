@@ -2,12 +2,13 @@
 # shortest_winning_testboard.py
 #
 # Programmeertheorie, Rush Hour
-# Tjerko Kieft, Bob Nieuwehuizen, Kika Banning 
-# 
+# Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
+#
 # Testfunction.
 #########################################################
 
 def winning_moves(board):
+    """Function which executes the shortest amount of moves for the testboard"""
 
     print(board.load_board())
     moves = []
