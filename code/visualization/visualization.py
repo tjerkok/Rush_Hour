@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def visualize(board):
-    """Creates a visualisation of the gameboard using matplot."""
+    """Creates a visualisation of the gameboard using matplotlib"""
+
     # checks if the board is a numpy array
     if not isinstance(board, np.ndarray):
         print("board is not a numpy array")
