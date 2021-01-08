@@ -6,7 +6,7 @@ This folder contains all the code that is used by the main.py
     * play_yourself.py
     * randomise.py
     * shortest_winning_testboard.py
-* /classes: contains two classes. 
+* /classes: contains two classes for the objects Board and Vehicle. 
     * board.py: Class Board
     * vehicle.py: Class Vehicle
 * /input/output: contains functions for loading input and generating output. 
