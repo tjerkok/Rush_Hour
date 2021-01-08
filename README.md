@@ -1,23 +1,23 @@
-# Rush_Hour
+# Rush Hour
+Rush Hour seems to be an easy puzzle, altough it has a surprising challenging character. In a square field with varying dimensions is a black car named 'X', your car. This cars must go to the exit, which is placed right in front of the car. However, other vehicles, cars of two units and trucs of three units, that may only be moved in their direction of travel, block the way to the exit. The vehicles are not aloud to turn around. The assignment is simple: clear the way to the exit by moving other vehicles and move your black car to the exit. 
 
-Rush Hour is een ogenschijnlijk eenvoudig puzzeltje met een verrassend uitdagend karakter. In een veld van 6 hoog en 6 breed staat een rode auto, de jouwe, en die moet naar de uitgang. die recht voor je ligt. Maar andere voertuigen versperren de weg; auto’s van twee eenheden lang en trucks van drie eenheden lang, die alleen in hun rijrichting bewogen mogen worden. Ze mogen niet draaien. De opdracht is simpel: beweeg je auto X naar buiten.
+## Requirements
 
-## Vereisten
-
-## Gebruik
+## Usage
 python3 main.py [gameboards/"gamename".csv]
 
-## Structuur
+## Structure
 * /code
-    * /algorithms: bevat verschillende algoritmes om het spel te spelen.
-    * /classes: bevat de twee benodigde classes voor deze case.
-    * /visualization: bevat de code voor de matplotvisualisatie van het bord.
-* /gameboards: bevat csv input met verschillende gameboards.
-* /output: bevat csv output met de stappen om tot een win te komen.
-* /docs: bevat het design.
-* /statespace: bevat de berekeningen van de statespace opdracht.
+    * /algorithms: multiple algorithms to play the game.
+    * /classes: two classes for this game: Board and Vehicle.
+    * /visualization: code for matplot visualization of the gameboard. 
+    * /input/output: two functions for loading input and generating output. 
+* /gameboards: csv input with multiple gameboards. 
+* /output: csf output with the moves per vehicle to come to a win.
+* /docs: contains the design document. 
+* /statespace: contains calculations of the state space assignment. 
 
-## Auteurs
+## Authors
 * Tjerko Kieft
 * Bob Nieuwehuizen
 * Kika Banning 
