@@ -13,13 +13,29 @@ import numpy as np
 
 def visualize(board):
     """Creates a visualisation of the gameboard using matplot."""
+    # checks if the board is a numpy array
+    if not isinstance(board, np.ndarray):
+        print("board is not a numpy array")
+        return False
+
     legend = {}
     i = 0
     image = []
 
     # Vehicle names
     for letter in ascii_uppercase:
-        legend[letter] = i
+        if len(board[0]) >= 10:
+            letter = letter + ' '
+
+        if letter == 'X' or letter == 'X ':
+            legend['X'] = -1
+
+        else:
+            legend[letter] = i
+            i += 1
+
+    for letter in ascii_uppercase:
+        legend['A'+letter] = i
         i += 1
 
     for element in board:
@@ -37,16 +53,21 @@ def visualize(board):
     ax.set_yticks(np.arange(-.5, len(board[0]), 1), minor=True)
     ax.tick_params(axis=u'both', which=u'both',length=0)
     ax.set_xticklabels([])
-    
+
     # Defines colours for vehicles
     for i in range(len(board[0])):
         for j in range(len(board[1])):
-            if board[i, j] =='X':
+            if board[i, j] =='X' or board[i, j] == 'X ':
+                ax.text(j, i, board[i, j], ha='center', va='center', color='blue')
+            elif image[i, j] <= np.amax(image)/2:
+                ax.text(j, i, board[i, j], ha='center', va='center', color='black')
+            elif image[i, j] > np.amax(image)/2:
                 ax.text(j, i, board[i, j], ha='center', va='center', color='white')
-            elif board[i, j] != '_':
+            else:
                 ax.text(j, i, board[i, j], ha='center', va='center', color='black')
 
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
 
     # Saves visualization
-    plt.savefig('code/visualization/test.png', dpi=400)
+    plt.savefig('code/visualization/startboard.png', dpi=400)
+    return True
