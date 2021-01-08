@@ -30,5 +30,5 @@ python3 main.py [gameboards/"gamename".csv]
 
 ## Authors
 * Tjerko Kieft
-* Bob Nieuwehuizen
-* Kika Banning 
+* Bob Nieuwenhuize
+* Kika Banning
