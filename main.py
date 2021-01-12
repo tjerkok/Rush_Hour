@@ -5,23 +5,31 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Plays the Rush Hour game, using different algorithms.
+# Algorithms to choose: Random or BFS.
+# If no algorithm chosen then you can play the game yourself.
 #########################################################
 
-from code.algorithms import randomise, play_yourself, shortest_winning_testboard
+from code.algorithms import randomise, play_yourself, BFS
 from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
+from code.input.output.summary import summary
 from sys import argv
+import time
 
 
 if __name__ == '__main__':
 
     # ------------------------------ Input ------------------------------
 
-    if len(argv) == 2:
+    if len(argv) == 3:
         filename = argv[1]
+        algorithm = argv[2]
+    elif len(argv) == 2:
+        filename = argv[1]
+        algorithm = 'None'
     else:
-        print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv]')
+        print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]')
         exit(1)
 
     board = load_problem(filename)
@@ -30,28 +38,37 @@ if __name__ == '__main__':
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
 
+    time0 = time.time()
+
     # -------------------------- Random choice --------------------------
 
-    moves = randomise.random_moves_algorithm(board)
+    if algorithm == 'Random':
+        winning_board = randomise.random_moves_algorithm(board)
 
-    if not visualize(board.load_board(), 'end'):   # result in code/visualization/test.png
-        print("Could not visualize board as board is not of type numpy.ndarry")
-        exit()
-
-    moves_needed = len(moves)
-    print(moves_needed)
+        if not visualize(board.load_board(), 'end'):   # result in code/visualization/test.png
+            print("Could not visualize board as board is not of type numpy.ndarry")
+            exit()
+            
+        states = 'None'
 
     # -------------------------- Play yourself --------------------------
 
-    #moves = play_yourself.play(board)
+    elif algorithm == 'None':
+        winning_board = play_yourself.play(board)
 
-    # ----------- Shortest Winning game testboard (hardcoded) -----------
+    # ----------------------- Breadth First Search ----------------------
 
-    #moves = shortest_winning_testboard.winning_moves(board)
+    elif algorithm == 'BFS':
+        winning_board, states = BFS.BFS(board)
 
-    #moves_needed = len(moves)
-    #print(moves_needed)
 
     # ----------------------------- Output ------------------------------
 
-    output = output(moves)
+    #output = output(moves)
+    time1 = time.time() - time0
+    print("winning")
+    print(winning_board.load_board())
+    print(f"states: {states}")
+    print(f"moves: {winning_board.moves}")
+    print(f"amount of moves: {len(winning_board.moves)}")
+    summary(filename, algorithm, len(winning_board.moves), states, round(time1, 4))

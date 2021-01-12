@@ -34,6 +34,7 @@ class Board(object):
         self.boardsize = boardsize
         self.board = []
         self.possible_moves = {}
+        self.moves = []
 
     def load_board(self):
         """Loads the boards with the vehicles"""
@@ -163,6 +164,7 @@ class Board(object):
             else:
                 vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
 
+            self.moves.append([vehicle_name, shift])
             return True
 
         return False
