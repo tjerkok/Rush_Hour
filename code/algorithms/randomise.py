@@ -14,8 +14,6 @@ def random_moves_algorithm(board):
     """Function that plays the Rush Hour game with a randomise algorithm."""
 
     print(board.load_board())
-    moves = []
-    counter = 0
 
     while not board.win():
         # Lists all possible moves and picks one random
@@ -31,10 +29,7 @@ def random_moves_algorithm(board):
             board.move(vehicle_name, int(shift))
             print(board.load_board())
 
-            moves.append([vehicle_name, int(shift)])
-            counter += 1
-
     if board.win():
-        print('game won')
+        winning_board = board
 
-    return moves
+    return winning_board
