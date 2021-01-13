@@ -3,3 +3,6 @@ gameboards/Rushhour6x6_1.csv,BFS,21,88,0.8205380439758301
 gameboards/Rushhour6x6_1.csv,Random,4852,None,1.834897756576538
 gameboards/Rushhour6x6_1.csv,Random,2118,None,0.8618955612182617
 gameboards/Rushhour6x6_1.csv,Random,3948,None,1.3465
+gameboards/testboard4x4.csv,BFS,3,0,0.0073
+gameboards/testboard4x4.csv,BFS,3,0,0.514
+gameboards/testboard4x4.csv,BFS,3,0,0.5128
