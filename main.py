@@ -44,9 +44,6 @@ if __name__ == '__main__':
     if algorithm == 'Random':
         winning_board = randomise.random_moves_algorithm(board)
 
-        if not visualize(board.load_board(), 'end'):   # result in code/visualization/test.png
-            print("Could not visualize board as board is not of type numpy.ndarry")
-            exit()
             
         states = 'None'
 
@@ -62,6 +59,10 @@ if __name__ == '__main__':
 
 
     # ----------------------------- Output ------------------------------
+
+    if not visualize(winning_board.load_board(), 'end'):   # result in code/visualization/test.png
+        print("Could not visualize board as board is not of type numpy.ndarry")
+        exit()
 
     #output = output(moves)
     time1 = time.time() - time0
