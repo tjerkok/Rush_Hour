@@ -15,7 +15,7 @@ Rush Hour seems to be an easy puzzle, altough it has a surprising challenging ch
 Add dependencies to a file named 'requirements.txt'.
 
 ## Usage
-python3 main.py [gameboards/"gamename".csv]
+python3 main.py [gameboards/"gamename".csv] ["algorithm"]
 
 ## Structure
 * /code
