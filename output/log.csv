@@ -28,3 +28,6 @@ gameboards/Rushhour6x6_2.csv,Random,1536,None,3.6791
 gameboards/Rushhour6x6_2.csv,BFS,15,706,16.7335
 gameboards/Rushhour6x6_3.csv,BFS,33,264,46.7587
 gameboards/Rushhour9x9_4.csv,BFS,27,94158,3236.0586
+gameboards/testboard4x4.csv,BFS,3,0,0.0073
+gameboards/testboard4x4.csv,BFS,3,0,0.514
+gameboards/testboard4x4.csv,BFS,3,0,0.5128
