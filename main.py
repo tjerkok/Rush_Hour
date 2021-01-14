@@ -38,7 +38,6 @@ if __name__ == '__main__':
         exit()
 
     time0 = time.time()
-
     # -------------------------- Random choice --------------------------
 
     if algorithm == 'Random':
@@ -55,9 +54,15 @@ if __name__ == '__main__':
     # ----------------------- Breadth First Search ----------------------
 
     elif algorithm == 'BFS':
-        winning_board, states = BFS.BFS(board)
+        winning_board, states = BFS.BFS(board, False)
 
+    elif algorithm == 'BFS_beam':
+        winning_board, states = BFS.BFS(board, True)
+   
 
+    else:
+        print("Algorithm doesn't exist")
+        exit()
     # ----------------------------- Output ------------------------------
 
     if not visualize(winning_board.load_board(), 'end'):   # result in code/visualization/test.png

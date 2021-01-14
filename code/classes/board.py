@@ -86,7 +86,6 @@ class Board(object):
 
         return self.board
 
-    # 0 is also a possible move
     def pos_moves(self):
         """Creates a dict with a list of all possible moves per vehicle"""
 
@@ -151,10 +150,24 @@ class Board(object):
 
         return self.possible_moves
 
+
+    def X_row_free(self):
+        """Returns the amount of free spaces ahead of the target car"""
+
+        coordinates = self.vehicles['X'].coordinates
+        row = self.board[coordinates[1]]
+
+        if self.boardsize < 10:
+            return list(row[coordinates[0]:]).count('_')
+        else:
+            return list(row[coordinates[0]:]).count('__')
+
+
     def move(self, vehicle_name, shift):
         """Moves a vehicle, if possible"""
 
-        if shift in self.possible_moves[vehicle_name]:
+        # if shift in self.possible_moves[vehicle_name]:
+        if shift in self.pos_moves()[vehicle_name]:
             vehicle = self.vehicles[vehicle_name]
 
             if vehicle.orientation == 'H':
@@ -164,9 +177,11 @@ class Board(object):
                 vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
 
             self.moves.append([vehicle_name, shift])
+
             return True
 
         return False
+    
 
     def win(self):
         """Checks for win, using vehicle X"""
