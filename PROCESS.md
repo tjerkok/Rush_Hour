@@ -33,3 +33,13 @@ We decided to keep track of all our solutions in log.csv so we could do a little
 
 ### Kika
 We ran all boards with the BFS and all boards 1000x with the Random algorithm, so we would have results to compare voor the Baseline Deadline of today. We discussed the results and formulated them in the Baseline PDF. 
+
+### Tjerko
+Worked on the baseline together with Kika and Bob.
+
+## 14 january 2021
+### Tjerko
+Trying to implement beam search on the Breadth First Search.
+
+### Kika
+Discussed options for improvement of the breadth First and came to the idea of the beam search. With the heuristic that we only pick a move from the moves with the greatest amount of free spaces ahead of the target car. 
