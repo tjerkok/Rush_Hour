@@ -61,7 +61,7 @@ if __name__ == '__main__':
             print(f"amount of moves max: {max(amount_of_moves)}")
             print(f"amount of moves average: {average_amount_of_moves}")
             print(f"amount of time average: {average_time_elapsed}")
-        else:
+        else:   # misschien deze else statement laten zitten omdat dat onderaan ook al weergegeven wordt
             print(f"amount of moves: {amount_of_moves[0]}")
             print(f"time elapsed: {time1[0]}")
 

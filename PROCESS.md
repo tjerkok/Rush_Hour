@@ -12,6 +12,9 @@ We discussed how we'll approach and structure the representation. I did the visu
 * Added comments and docstrings
 * Together we discussed the datastructure and programmed the main
 
+### Bob
+Made the initial classes, an option to play the game yourself as well as a random algorithm which solves the game. Also made the requested output.
+
 ## 11 january 2021
 Meeting with Kiara and Quinten.
 Added issues:
@@ -29,6 +32,9 @@ We worked together on finding out how to use the Breadth First algorithm. We dec
 Decided to use the Hash function for checking if a state was already used. However for further use we might want to use this function more, as we can not solve the 12x12 board yet, due to memory issues. 
 We decided to keep track of all our solutions in log.csv so we could do a little research and to compare multiple algorithms. We added the testboard for fast checking and we made the BFS algorithm work.
 
+### Bob
+We worked together this day, so I worked on the same things as Tjerko and Kika.
+
 ## 13 january 2021
 
 ### Kika
@@ -37,9 +43,25 @@ We ran all boards with the BFS and all boards 1000x with the Random algorithm, s
 ### Tjerko
 Worked on the baseline together with Kika and Bob.
 
+### Bob
+Also worked on the baseline which we had to submit today.
+
 ## 14 january 2021
 ### Tjerko
 Trying to implement beam search on the Breadth First Search.
 
 ### Kika
 Discussed options for improvement of the breadth First and came to the idea of the beam search. With the heuristic that we only pick a move from the moves with the greatest amount of free spaces ahead of the target car. 
+
+### Bob
+We worked together again so I did the same things as Tjerko and Kika. We also discussed the baseline and potential improvements with Kiara and Quinten.
+
+## 14 january 2021
+### Tjerko
+
+
+### Kika
+
+
+### Bob
+At the beginning of the day we worked together trying to improve the Breadth First Search algorithm. Then we split up and I was responsible to get out output through the check50 check, so I did that.

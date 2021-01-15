@@ -18,17 +18,27 @@ def Priority(items):
 
     possible_moves = [board.pos_moves() for board in items]
 
-   # Count all items within the lists in the values of the possible_moves dict https://www.geeksforgeeks.org/python-count-number-of-items-in-a-dictionary-value-that-is-a-list/ 
-    count_moves = 0 
-    for x in possible_moves: 
-        if isinstance(possible_moves[x], list): 
-            count_moves += len(possible_moves[x]) 
-    print(count_moves) 
+#    # Count all items within the lists in the values of the possible_moves dict https://www.geeksforgeeks.org/python-count-number-of-items-in-a-dictionary-value-that-is-a-list/ 
+#     count_moves = 0 
+#     for x in possible_moves: 
+#         if isinstance(possible_moves[x], list): 
+#             count_moves += len(possible_moves[x]) 
+#     print(count_moves) 
 
-    #items = [[board, board.pos_moves()] for board in items]
-    items = [[board, count_moves] for board in items] #count_moves kan niet zo worden geitereerd...? 
-    sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
-    sorted_items = [item[0] for item in sorted_items]
+#     #items = [[board, board.pos_moves()] for board in items]
+#     items = [[board, count_moves] for board in items] #count_moves kan niet zo worden geitereerd...? 
+#     sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
+#     sorted_items = [item[0] for item in sorted_items]
+    items_tuple = []
+    for item in items:
+        total_moves = sum(len(car) for moves in item.pos_moves().values() for car in moves.values()) 
+        # eerst wordt moves uit item.pos_moves() gepakt met for moves in item.pos_moves().values(), dus moves = dict([moves van auto a], [moves van auto b])
+        # daarna wordt voor elke moves de car eruit gepakt, waardoor bijv. car = [-1, 1, 2], dus dan de som van alle lengtes van de cars
+        # (dit heb ik neit zelf bedacht maar van internet geplukt hahaha)
+        items_tuple.append([item, sum()])
+        # dus items_tuple wordt een lijst met de state en dan het aantal moves [[state, 4], [state, 8], etc]
+
+    sorted_list = sorted(items_tuple, key=lambda x: x[1], reverse=True) # sorteert de lijst op het tweede element in de tuple, dus het aantal mogelijke moves
 
     # Prioritize https://www.geeksforgeeks.org/priority-queue-in-python/ 
     # try: 
