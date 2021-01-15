@@ -5,8 +5,10 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Function to apply a beam on a list of states. The list can be
-# a queue and stack, but has to be of type list. Returns the 
-# beamed list.
+# a queue and stack, but has to be of type list. The size of 
+# the beam is determined by the size of the board and the 
+# amount of vehicles. 
+# Returns the beamed list.
 ###############################################################
 
 from ..classes.board import Board
