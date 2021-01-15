@@ -16,7 +16,7 @@ import queue
 def Priority(items): 
     """A function that uses a Priority Cue search, which prioritizes the states with the most possible moves.""" 
 
-    possible_moves = board.pos_moves() for board in items
+    possible_moves = [board.pos_moves() for board in items]
 
    # Count all items within the lists in the values of the possible_moves dict https://www.geeksforgeeks.org/python-count-number-of-items-in-a-dictionary-value-that-is-a-list/ 
     count_moves = 0 
