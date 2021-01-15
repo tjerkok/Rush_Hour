@@ -14,7 +14,7 @@ from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
 from code.input.output.summary import summary
-from sys import argv
+from sys import argv, getsizeof
 import time
 
 if __name__ == '__main__':
@@ -43,10 +43,6 @@ if __name__ == '__main__':
 
     if algorithm == 'Random':
         winning_board = randomise.random_moves_algorithm(board)
-        serial = winning_board.serialize()
-        print(serial)
-        # print(winning_board.unserialize(serial))
-
         states = 'None'
 
     # -------------------------- Play yourself --------------------------
@@ -58,6 +54,7 @@ if __name__ == '__main__':
 
     elif algorithm == 'BFS':
         winning_board, states = BFS.BFS(board, False)
+        
 
     elif algorithm == 'BFS_beam':
         winning_board, states = BFS.BFS(board, True)
@@ -72,6 +69,19 @@ if __name__ == '__main__':
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
 
+    # serial = winning_board.serialize()
+    # print(serial)
+    # unserial = winning_board.unserialize(serial)
+    # print(unserial)
+    # winning = winning_board.load_board()
+    # winning.flags.writeable = False
+    # hashed_winning = hash(winning.tostring())
+    # print(f"size of hashed winning array: {getsizeof(hashed_winning)}")
+    # print(f"size of winning array: {getsizeof(winning)}")
+    # print(f"size of winning board: {getsizeof(winning_board)}")
+    # print(f"size of {type(unserial)} unserialized board: {getsizeof(unserial)}")
+    # print(f"size of serialized board: {getsizeof(serial)}")
+    # print(f"size of np array to bytes: {getsizeof(winning.tobytes())}")
     #output = output(moves)
     time1 = time.time() - time0
     print("winning")
