@@ -18,7 +18,7 @@ def random_moves_algorithm(filename, sample_size):
 
     amount_of_moves = []
     time1 = []
-    min_moves = 1000
+    min_moves = 1000000
 
     for i in range(sample_size):
         board = load_problem(filename)
