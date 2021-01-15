@@ -130,25 +130,25 @@ class Board(object):
                 if self.boardsize < 10:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                     for i in range(1, down + 1):
                         if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(-i)
+                            self.possible_moves[vehicle.name].append(i)
                         else:
                             break
                 else:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '__':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                 for i in range(1, down + 1):
                     if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '__':
-                        self.possible_moves[vehicle.name].append(-i)
+                        self.possible_moves[vehicle.name].append(i)
                     else:
                         break
 
@@ -201,7 +201,7 @@ class Board(object):
                 vehicle.coordinates = (vehicle.coordinates[0] + shift, vehicle.coordinates[1])
 
             else:
-                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
+                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] + shift)
 
             if not undo:
                 self.moves.append([vehicle_name, shift])
