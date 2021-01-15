@@ -8,6 +8,8 @@
 #########################################################
 
 import numpy as np
+import ast
+from ..classes.vehicle import Vehicle
 
 class Board(object):
     """
@@ -151,17 +153,30 @@ class Board(object):
 
         return self.possible_moves
 
-    def serialize(self): 
-        serialized = ""
-        for vehicle in self.vehicles.values():
-            serialized += f"({vehicle.name}, {vehicle.orientation}, {vehicle.coordinates}, {vehicle.length})." #Vehicle een ID geven?? 
+    # def serialize(self): 
+    #     serialized = ""
+    #     for vehicle in self.vehicles.values():
+    #         serialized += f"{vehicle.name},{vehicle.orientation},{vehicle.coordinates[0]},{vehicle.coordinates[1]},{vehicle.length}." 
+    # 
+    #     return serialized.strip(".")
+    
+    # def serialize_dict(self): 
+    #     serialized_dict = {}
+    #     for vehicle in self.vehicles.values():
 
-        return serialized 
+    # def unserialize(self, serial): 
+    #     self.vehicles = {}
+    #     for vehicle in serial.split("."):
+    #         vehicle = vehicle.split(",")
+    #         name = vehicle[0]
+    #         orientation = vehicle[1]
+    #         column = int(vehicle[2]) + 1
+    #         row = int(vehicle[3]) + 1
+    #         length = int(vehicle[4])
+    #         self.vehicles[name] = Vehicle(name, orientation, row, column, length)
+    # 
+    #     return self
         
-    def unserialize(self, serial): 
-        # for vehicle in serial.split(".").split().split()
-        pass
-
     def X_row_free(self):
         """Returns the amount of free spaces ahead of the target car"""
 
