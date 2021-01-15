@@ -13,7 +13,7 @@ import queue
 import copy
 
 
-def BFS(board, beam, max_depth = 10):
+def BFS(board, beam, priority, max_depth = 10):
     """Function that plays the Rush Hour game with a Breadth First Search algorithm"""
 
     BFS_queue = queue.Queue()
@@ -30,6 +30,8 @@ def BFS(board, beam, max_depth = 10):
                 beamed_list = Beam(list(BFS_queue.queue), board.boardsize, len(board.vehicles))
                 BFS_queue = queue.Queue()
                 [BFS_queue.put(item) for item in beamed_list]
+            if priority:
+                priority_list = Priority(BFS_queue.queue)
             move = len(state.moves)
 
         if not state.win():
