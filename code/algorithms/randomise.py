@@ -16,10 +16,6 @@ from ..input.output.load_in import load_problem
 def random_moves_algorithm(filename, sample_size):
     """Function that plays the Rush Hour game with a randomise algorithm."""
 
-    # truncate the baseline file
-    f = open('output/baseline.csv', 'w+')
-    f.close()
-
     amount_of_moves = []
     time1 = []
     min_moves = 1000
@@ -57,6 +53,7 @@ def random_moves_algorithm(filename, sample_size):
 
     with open('output/baseline.csv', 'a', newline='') as csvfile:
         a = csv.writer(csvfile, delimiter=',')
-        a.writerow(amount_of_moves)
+        a.writerow([filename, amount_of_moves])
+        a.writerows(map(lambda x: [x], amount_of_moves))
 
     return lowest_moves_board, amount_of_moves, time1
