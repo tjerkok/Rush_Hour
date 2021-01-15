@@ -5,7 +5,7 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Plays the Rush Hour game, using different algorithms.
-# Algorithms to choose: Random or BFS.
+# Algorithms to choose: Random, BFS or BFS_beam. 
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
@@ -14,7 +14,7 @@ from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
 from code.input.output.summary import summary
-from sys import argv
+from sys import argv, getsizeof
 import time
 from matplotlib import pyplot as plt
 import numpy as np
@@ -89,6 +89,9 @@ if __name__ == '__main__':
         print("Algorithm doesn't exist")
         exit()
 
+    else:
+        print("Algorithm doesn't exist")
+        exit()
     # ----------------------------- Output ------------------------------
     time1 = time.time() - time0
     
