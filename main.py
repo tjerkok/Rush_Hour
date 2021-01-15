@@ -16,6 +16,9 @@ from code.input.output.generate_output import output
 from code.input.output.summary import summary
 from sys import argv
 import time
+from matplotlib import pyplot as plt
+import numpy as np
+import csv
 
 
 if __name__ == '__main__':
@@ -25,16 +28,23 @@ if __name__ == '__main__':
     if len(argv) == 3:
         filename = argv[1]
         algorithm = argv[2]
+        if algorithm == 'Random':
+            sample_size = 1
+    elif len(argv) == 4 and argv[2] == 'Random':
+        filename = argv[1]
+        algorithm = argv[2]
+        sample_size = int(argv[3])
     elif len(argv) == 2:
         filename = argv[1]
         algorithm = 'None'
     else:
-        print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]')
+        print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm] ([sample size])')
         exit(1)
 
     board = load_problem(filename)
+    start_board = board.load_board()
 
-    if not visualize(board.load_board(), 'start'):   # result in code/visualization/test.png
+    if not visualize(start_board, 'start'):   # result in code/visualization/startboard.png
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
 
@@ -43,30 +53,68 @@ if __name__ == '__main__':
     # -------------------------- Random choice --------------------------
 
     if algorithm == 'Random':
-        winning_board = randomise.random_moves_algorithm(board)
+    	
+        winning_board, amount_of_moves, time1 = randomise.random_moves_algorithm(filename, sample_size)
 
-        if not visualize(board.load_board(), 'end'):   # result in code/visualization/test.png
-            print("Could not visualize board as board is not of type numpy.ndarry")
-            exit()
-            
+        if sample_size > 1:
+            average_amount_of_moves = sum(amount_of_moves) / sample_size
+            average_time_elapsed = sum(time1) / sample_size
+
+            print(f"amount of moves min: {min(amount_of_moves)}")
+            print(f"amount of moves max: {max(amount_of_moves)}")
+            print(f"amount of moves average: {average_amount_of_moves}")
+            print(f"amount of time average: {average_time_elapsed}")
+        else:
+            print(f"amount of moves: {amount_of_moves[0]}")
+            print(f"time elapsed: {time1[0]}")
+
         states = 'None'
 
     # -------------------------- Play yourself --------------------------
 
     elif algorithm == 'None':
+
         winning_board = play_yourself.play(board)
 
     # ----------------------- Breadth First Search ----------------------
 
     elif algorithm == 'BFS':
-        winning_board, states = BFS.BFS(board)
+        winning_board, states = BFS.BFS(board, False)
+        
 
+    elif algorithm == 'BFS_beam':
+        winning_board, states = BFS.BFS(board, True)
+
+    else:
+        print("Algorithm doesn't exist")
+        exit()
 
     # ----------------------------- Output ------------------------------
-
-    #output = output(moves)
     time1 = time.time() - time0
-    print("winning")
+    
+    if not visualize(winning_board.load_board(), 'end'):   # result in code/visualization/endboard.png
+        print("Could not visualize board as board is not of type numpy.ndarry")
+        exit()
+
+    # serial = winning_board.serialize()
+    # print(serial)
+    # unserial = winning_board.unserialize(serial)
+    # print(unserial)
+    # winning = winning_board.load_board()
+    # winning.flags.writeable = False
+    # hashed_winning = hash(winning.tostring())
+    # print(f"size of hashed winning array: {getsizeof(hashed_winning)}")
+    # print(f"size of winning array: {getsizeof(winning)}")
+    # print(f"size of winning board: {getsizeof(winning_board)}")
+    # print(f"size of {type(unserial)} unserialized board: {getsizeof(unserial)}")
+    # print(f"size of serialized board: {getsizeof(serial)}")
+    # print(f"size of np array to bytes: {getsizeof(winning.tobytes())}")
+    #output = output(moves)
+
+    output = output(winning_board.moves)
+
+    print(start_board)
+    print("game won")
     print(winning_board.load_board())
     print(f"states: {states}")
     print(f"moves: {winning_board.moves}")
