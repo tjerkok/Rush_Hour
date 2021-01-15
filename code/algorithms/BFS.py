@@ -37,7 +37,7 @@ def BFS(board, beam, priority, max_depth = 10):
         if not state.win():
             for vehicle, movelist in state.pos_moves().items():
                 for vehicle_move in movelist:
-                    
+
                     if not state.move(vehicle, vehicle_move):
                         print("invalid move")
 

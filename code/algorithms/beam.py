@@ -12,11 +12,11 @@
 ###############################################################
 
 from ..classes.board import Board
-import queue
 
 
 def Beam(items, board_size, vehicles):
     """Function that uses Beam Search with the most empty spaces ahead of the target car."""
+
     # 1 13 6 0.9
     # 2 13 6 0.9
     # 3 9 6 0.75

@@ -54,13 +54,13 @@ def visualize(board, state):
     ax.set_yticks([], minor=False)
     ax.set_xticks(np.arange(-.5, len(board[0]), 1), minor=True)
     ax.set_yticks(np.arange(-.5, len(board[0]), 1), minor=True)
-    ax.tick_params(axis=u'both', which=u'both',length=0)
+    ax.tick_params(axis=u'both', which=u'both', length=0)
     ax.set_xticklabels([])
 
     # Defines colours for vehicles
     for i in range(np.size(board, 0)):
         for j in range(np.size(board, 1)):
-            if board[i, j] =='X' or board[i, j] == 'X ':
+            if board[i, j] == 'X' or board[i, j] == 'X ':
                 ax.text(j, i, board[i, j], ha='center', va='center', color='blue')
             elif image[i, j] <= np.amax(image)/2:
                 ax.text(j, i, board[i, j], ha='center', va='center', color='black')
