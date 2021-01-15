@@ -101,3 +101,11 @@ gameboards/Rushhour6x6_1.csv,BFS,21,3647,2.9637
 gameboards/Rushhour6x6_1.csv,BFS,21,3647,2.7115
 gameboards/Rushhour6x6_1.csv,BFS,21,3647,2.5552
 gameboards/Rushhour6x6_1.csv,BFS,21,3647,2.5568
+gameboards/testboard4x4.csv,BFS,3,0,0.0253
+gameboards/testboard4x4.csv,BFS,3,0,0.0256
+gameboards/testboard4x4.csv,BFS,3,0,0.0063
+gameboards/testboard4x4.csv,BFS,3,13,0.0064
+gameboards/testboard6x6.csv,BFS,8,1079,2.0726
+gameboards/Rushhour6x6_2.csv,BFS,15,3327,5.9615
+gameboards/Rushhour6x6_2.csv,BFS,15,3327,5.852
+gameboards/Rushhour6x6_2.csv,BFS,15,3327,5.8387

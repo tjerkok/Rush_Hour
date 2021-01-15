@@ -11,6 +11,7 @@ import numpy as np
 import ast
 from ..classes.vehicle import Vehicle
 
+
 class Board(object):
     """
     A class that initializes the gameboard, moves vehicles and checks for win.
@@ -129,25 +130,25 @@ class Board(object):
                 if self.boardsize < 10:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                     for i in range(1, down + 1):
                         if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(-i)
+                            self.possible_moves[vehicle.name].append(i)
                         else:
                             break
                 else:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '__':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                 for i in range(1, down + 1):
                     if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '__':
-                        self.possible_moves[vehicle.name].append(-i)
+                        self.possible_moves[vehicle.name].append(i)
                     else:
                         break
 
@@ -189,20 +190,23 @@ class Board(object):
             return list(row[coordinates[0]:]).count('__')
 
 
-    def move(self, vehicle_name, shift):
+    def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
 
         # if shift in self.possible_moves[vehicle_name]:
-        if shift in self.pos_moves()[vehicle_name]:
+        if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
 
             if vehicle.orientation == 'H':
                 vehicle.coordinates = (vehicle.coordinates[0] + shift, vehicle.coordinates[1])
 
             else:
-                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
+                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] + shift)
 
-            self.moves.append([vehicle_name, shift])
+            if not undo:
+                self.moves.append([vehicle_name, shift])
+            else:
+                self.moves.pop(-1)
 
             return True
 

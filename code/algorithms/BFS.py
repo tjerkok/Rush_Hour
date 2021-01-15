@@ -37,15 +37,23 @@ def BFS(board, beam, priority, max_depth = 10):
         if not state.win():
             for vehicle, movelist in state.pos_moves().items():
                 for vehicle_move in movelist:
-                    child = copy.deepcopy(state)
-                    states += 1
-                    child.move(vehicle, vehicle_move)
-                    child_board = child.load_board()
-                    child_board.flags.writeable = False
-                    hashed_child = hash(child_board.tostring())
-                    if hashed_child not in boards_visited:
-                        boards_visited.add(hashed_child)
-                        BFS_queue.put(child)
+                    
+                    if not state.move(vehicle, vehicle_move):
+                        print("invalid move")
+
+                    else:
+                        state_board = state.load_board()
+
+                        state_board.flags.writeable = False
+                        hashed_state = hash(state_board.tostring())
+                        if hashed_state not in boards_visited:
+                            boards_visited.add(hashed_state)
+                            BFS_queue.put(copy.deepcopy(state))
+                            states += 1
+
+                        state.move(vehicle, -vehicle_move, True)
+                        state.load_board()
+                        state.pos_moves()
         else:
             winning_board = state
             BFS_queue = queue.Queue()
