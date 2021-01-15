@@ -30,6 +30,8 @@ def BFS(board, beam, max_depth = 10):
                 beamed_list = Beam(list(BFS_queue.queue), board.boardsize, len(board.vehicles))
                 BFS_queue = queue.Queue()
                 [BFS_queue.put(item) for item in beamed_list]
+            if priority:
+                priority_list = Priority(BFS_queue.queue)
             move = len(state.moves)
 
         if not state.win():
