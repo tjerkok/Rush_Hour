@@ -41,7 +41,7 @@ def random_moves_algorithm(filename, sample_size):
 
         if board.win():
             winning_board = board
-            #print(winning_board.load_board())
+            # print(winning_board.load_board())
 
             if len(winning_board.moves) < min_moves:
                 lowest_moves_board = winning_board

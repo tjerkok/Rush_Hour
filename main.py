@@ -5,7 +5,7 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Plays the Rush Hour game, using different algorithms.
-# Algorithms to choose: Random, BFS or BFS_beam. 
+# Algorithms to choose: Random, BFS or BFS_beam.
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
@@ -16,8 +16,6 @@ from code.input.output.generate_output import output
 from code.input.output.summary import summary
 from sys import argv, getsizeof
 import time
-from matplotlib import pyplot as plt
-import numpy as np
 
 
 if __name__ == '__main__':
@@ -52,7 +50,7 @@ if __name__ == '__main__':
     # -------------------------- Random choice --------------------------
 
     if algorithm == 'Random':
-    	
+
         winning_board, amount_of_moves, time1 = randomise.random_moves_algorithm(filename, sample_size)
 
         if sample_size > 1:
@@ -79,7 +77,6 @@ if __name__ == '__main__':
 
     elif algorithm == 'BFS':
         winning_board, states = BFS.BFS(board, False)
-        
 
     elif algorithm == 'BFS_beam':
         winning_board, states = BFS.BFS(board, True)
@@ -90,7 +87,7 @@ if __name__ == '__main__':
 
     # ----------------------------- Output ------------------------------
     time1 = time.time() - time0
-    
+
     if not visualize(winning_board.load_board(), 'end'):   # result in code/visualization/endboard.png
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
@@ -108,7 +105,6 @@ if __name__ == '__main__':
     # print(f"size of {type(unserial)} unserialized board: {getsizeof(unserial)}")
     # print(f"size of serialized board: {getsizeof(serial)}")
     # print(f"size of np array to bytes: {getsizeof(winning.tobytes())}")
-    #output = output(moves)
 
     output = output(winning_board.moves)
 

@@ -7,6 +7,7 @@
 # Creates a vehicle that is placed on the board.
 #########################################################
 
+
 class Vehicle(object):
     """
     Class with all information about a vehicle.

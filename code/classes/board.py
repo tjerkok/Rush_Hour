@@ -154,18 +154,18 @@ class Board(object):
 
         return self.possible_moves
 
-    # def serialize(self): 
+    # def serialize(self):
     #     serialized = ""
     #     for vehicle in self.vehicles.values():
-    #         serialized += f"{vehicle.name},{vehicle.orientation},{vehicle.coordinates[0]},{vehicle.coordinates[1]},{vehicle.length}." 
-    # 
+    #         serialized += f"{vehicle.name},{vehicle.orientation},{vehicle.coordinates[0]},{vehicle.coordinates[1]},{vehicle.length}."
+    #
     #     return serialized.strip(".")
-    
-    # def serialize_dict(self): 
+
+    # def serialize_dict(self):
     #     serialized_dict = {}
     #     for vehicle in self.vehicles.values():
 
-    # def unserialize(self, serial): 
+    # def unserialize(self, serial):
     #     self.vehicles = {}
     #     for vehicle in serial.split("."):
     #         vehicle = vehicle.split(",")
@@ -175,9 +175,9 @@ class Board(object):
     #         row = int(vehicle[3]) + 1
     #         length = int(vehicle[4])
     #         self.vehicles[name] = Vehicle(name, orientation, row, column, length)
-    # 
+    #
     #     return self
-        
+
     def X_row_free(self):
         """Returns the amount of free spaces ahead of the target car"""
 
@@ -188,7 +188,6 @@ class Board(object):
             return list(row[coordinates[0]:]).count('_')
         else:
             return list(row[coordinates[0]:]).count('__')
-
 
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
@@ -211,7 +210,6 @@ class Board(object):
             return True
 
         return False
-    
 
     def win(self):
         """Checks for win, using vehicle X"""
