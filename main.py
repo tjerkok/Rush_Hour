@@ -18,7 +18,6 @@ from sys import argv, getsizeof
 import time
 from matplotlib import pyplot as plt
 import numpy as np
-import csv
 
 
 if __name__ == '__main__':
@@ -89,9 +88,6 @@ if __name__ == '__main__':
         print("Algorithm doesn't exist")
         exit()
 
-    else:
-        print("Algorithm doesn't exist")
-        exit()
     # ----------------------------- Output ------------------------------
     time1 = time.time() - time0
     
