@@ -9,7 +9,7 @@
 
 class Vehicle(object):
     """
-    Class with all information about a vehicle
+    Class with all information about a vehicle.
 
     Attributes:
     Orientation: str (V(vertical)/H(horizontal))

@@ -152,14 +152,12 @@ class Board(object):
         return self.possible_moves
 
     def serialize(self): 
-        #serialized = ""
-        # for vehicle in self.vehicles.values()
-        #     serialized += f"({vehicle.value.name}, {vehicle.value.orientation}, {vehicle.value.coordinates}, {vehicle.value.length})." #Vehicle een ID geven?? 
+        serialized = ""
+        for vehicle in self.vehicles.values():
+            serialized += f"({vehicle.name}, {vehicle.orientation}, {vehicle.coordinates}, {vehicle.length})." #Vehicle een ID geven?? 
 
-        # return serialized 
-        pass
-
-
+        return serialized 
+        
     def unserialize(self, serial): 
         # for vehicle in serial.split(".").split().split()
         pass

@@ -43,8 +43,8 @@ if __name__ == '__main__':
 
     if algorithm == 'Random':
         winning_board = randomise.random_moves_algorithm(board)
-        # serial = winning_board.serialize()
-        # print(serial)
+        serial = winning_board.serialize()
+        print(serial)
         # print(winning_board.unserialize(serial))
 
         states = 'None'
