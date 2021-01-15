@@ -13,7 +13,7 @@ import queue
 import copy
 
 
-def BFS(board, beam, max_depth = 10):
+def BFS(board, beam, priority, max_depth = 10):
     """Function that plays the Rush Hour game with a Breadth First Search algorithm"""
 
     BFS_queue = queue.Queue()
