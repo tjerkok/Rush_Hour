@@ -22,6 +22,7 @@ class Board(object):
     Methods:
     load_board: loads the boards with the vehicles
     pos_moves: creates the possible_moves dict
+    X_row_free: Returns the amount of free spaces ahead of the target car
     move: moves a vehicle, if possible
     win: checks for win, using vehicle X
     """
@@ -150,6 +151,18 @@ class Board(object):
 
         return self.possible_moves
 
+    def serialize(self): 
+        #serialized = ""
+        # for vehicle in self.vehicles.values()
+        #     serialized += f"({vehicle.value.name}, {vehicle.value.orientation}, {vehicle.value.coordinates}, {vehicle.value.length})." #Vehicle een ID geven?? 
+
+        # return serialized 
+        pass
+
+
+    def unserialize(self, serial): 
+        # for vehicle in serial.split(".").split().split()
+        pass
 
     def X_row_free(self):
         """Returns the amount of free spaces ahead of the target car"""

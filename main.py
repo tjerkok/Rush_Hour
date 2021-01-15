@@ -5,7 +5,7 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Plays the Rush Hour game, using different algorithms.
-# Algorithms to choose: Random or BFS.
+# Algorithms to choose: Random, BFS or BFS_beam. 
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
@@ -38,12 +38,15 @@ if __name__ == '__main__':
         exit()
 
     time0 = time.time()
+
     # -------------------------- Random choice --------------------------
 
     if algorithm == 'Random':
         winning_board = randomise.random_moves_algorithm(board)
+        # serial = winning_board.serialize()
+        # print(serial)
+        # print(winning_board.unserialize(serial))
 
-            
         states = 'None'
 
     # -------------------------- Play yourself --------------------------
