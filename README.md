@@ -17,6 +17,11 @@ Add dependencies to a file named 'requirements.txt'.
 ## Usage
 python3 main.py [gameboards/"gamename".csv] ["algorithm"]
 
+Algorithms: 
+* "Random": Random search
+* "BFS" : Breadth-First search
+* "BFS_beam: Breadth-First search with beam heuristic
+
 ## Structure
 * /code
     * /algorithms: multiple algorithms to play the game.
