@@ -190,11 +190,11 @@ class Board(object):
             return list(row[coordinates[0]:]).count('__')
 
 
-    def move(self, vehicle_name, shift):
+    def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
 
         # if shift in self.possible_moves[vehicle_name]:
-        if shift in self.pos_moves()[vehicle_name]:
+        if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
 
             if vehicle.orientation == 'H':
@@ -203,7 +203,10 @@ class Board(object):
             else:
                 vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
 
-            self.moves.append([vehicle_name, shift])
+            if not undo:
+                self.moves.append([vehicle_name, shift])
+            else:
+                self.moves.pop(-1)
 
             return True
 
