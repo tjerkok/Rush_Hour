@@ -9,6 +9,7 @@
 
 from ..classes.board import Board
 from .beam import Beam
+from .priority import Priority
 import queue
 import copy
 
@@ -31,7 +32,9 @@ def BFS(board, beam, priority, max_depth = 10):
                 BFS_queue = queue.Queue()
                 [BFS_queue.put(item) for item in beamed_list]
             if priority:
-                Priority(BFS_queue.queue)
+                priority_list = Priority(list(BFS_queue.queue))
+                BFS_queue = queue.Queue()
+                [BFS_queue.put(item) for item in priority_list]
             move = len(state.moves)
 
         if not state.win():
