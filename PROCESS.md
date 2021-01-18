@@ -56,12 +56,15 @@ Discussed options for improvement of the breadth First and came to the idea of t
 ### Bob
 We worked together again so I did the same things as Tjerko and Kika. We also discussed the baseline and potential improvements with Kiara and Quinten.
 
-## 14 january 2021
+## 15 january 2021
 ### Tjerko
-
+We worked on improving the Breadth First Search algorithm. I figured out how to let the BFS only use deepcopy when there'll be a new state after moving. If the move created a state that's in the archive, deepcopy will be avoided. 
 
 ### Kika
 
 
 ### Bob
 At the beginning of the day we worked together trying to improve the Breadth First Search algorithm. Then we split up and I was responsible to get out output through the check50 check, so I did that.
+
+
+## 16 january 2021
