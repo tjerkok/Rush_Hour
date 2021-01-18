@@ -33,4 +33,3 @@ def Priority(items):
     # eerst wordt moves uit item.pos_moves() gepakt met for moves in item.pos_moves().values(), dus moves = dict([moves van auto a], [moves van auto b])
     # daarna wordt voor elke moves de car eruit gepakt, waardoor bijv. car = [-1, 1, 2], dus dan de som van alle lengtes van de cars
     # dus items_tuple wordt een lijst met de state en dan het aantal moves [[state, 4], [state, 8], etc]
-
