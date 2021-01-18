@@ -38,33 +38,28 @@ def BFS(board, beam, priority, heuristic='H1'):
                 [BFS_queue.put(item) for item in priority_list]
             move = len(state.moves)
 
-        if not state.win():
-            for vehicle, movelist in state.pos_moves().items():
-                for vehicle_move in movelist:
+        for vehicle, movelist in state.pos_moves().items():
+            for vehicle_move in movelist:
 
-                    if not state.move(vehicle, vehicle_move):
-                        print("invalid move")
+                if not state.move(vehicle, vehicle_move):
+                    print("invalid move")
 
+                else:
+                    state_board = state.load_board()
+
+                    state_board.flags.writeable = False
+                    hashed_state = hash(state_board.tostring())
+                    if hashed_state not in boards_visited:
+                        boards_visited.add(hashed_state)
+                        BFS_queue.put(copy.deepcopy(state))
+                        states += 1
+
+                    if state.win():
+                        BFS_queue = queue.Queue()
+                        winning_board = state
                     else:
-                        state_board = state.load_board()
-
-                        state_board.flags.writeable = False
-                        hashed_state = hash(state_board.tostring())
-                        if hashed_state not in boards_visited:
-                            boards_visited.add(hashed_state)
-                            BFS_queue.put(copy.deepcopy(state))
-                            states += 1
-
-                        if state.win():
-                            BFS_queue = queue.Queue()
-                            BFS_queue.put(state)
-                        else:
-                            state.move(vehicle, -vehicle_move, True)
-                            state.load_board()
-                            state.pos_moves()
-
-        else:
-            winning_board = state
-            BFS_queue = queue.Queue()
+                        state.move(vehicle, -vehicle_move, True)
+                        state.load_board()
+                        state.pos_moves()
 
     return winning_board, states
