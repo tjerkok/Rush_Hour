@@ -54,9 +54,14 @@ def BFS(board, beam, priority, max_depth = 10):
                             BFS_queue.put(copy.deepcopy(state))
                             states += 1
 
-                        state.move(vehicle, -vehicle_move, True)
-                        state.load_board()
-                        state.pos_moves()
+                        if state.win():
+                            BFS_queue = queue.Queue()
+                            BFS_queue.put(state)
+                        else:
+                            state.move(vehicle, -vehicle_move, True)
+                            state.load_board()
+                            state.pos_moves()
+                            
         else:
             winning_board = state
             BFS_queue = queue.Queue()
