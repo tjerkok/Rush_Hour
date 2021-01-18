@@ -77,13 +77,17 @@ if __name__ == '__main__':
 
     elif algorithm == 'BFS':
         winning_board, states = BFS.BFS(board, False, False)
-        
+
     elif algorithm == 'BFS_beam':
         winning_board, states = BFS.BFS(board, True, False)
 
     elif algorithm == 'BFS_priority':
         winning_board, states = BFS.BFS(board, False, True)
-   
+
+    # ----------------------- Breadth First Search ----------------------
+
+    elif algorithm == 'DFS':
+        winning_board, states = DFS.DFS(board, False, False)
 
     else:
         print("Algorithm doesn't exist")
@@ -115,6 +119,7 @@ if __name__ == '__main__':
     print(start_board)
     print("game won")
     print(winning_board.load_board())
+    print(f"time elapsed: {time1}")
     print(f"states: {states}")
     print(f"moves: {winning_board.moves}")
     print(f"amount of moves: {len(winning_board.moves)}")
