@@ -8,6 +8,9 @@
 #########################################################
 
 import numpy as np
+import ast
+from ..classes.vehicle import Vehicle
+
 
 class Board(object):
     """
@@ -22,6 +25,7 @@ class Board(object):
     Methods:
     load_board: loads the boards with the vehicles
     pos_moves: creates the possible_moves dict
+    X_row_free: Returns the amount of free spaces ahead of the target car
     move: moves a vehicle, if possible
     win: checks for win, using vehicle X
     """
@@ -86,7 +90,6 @@ class Board(object):
 
         return self.board
 
-    # 0 is also a possible move
     def pos_moves(self):
         """Creates a dict with a list of all possible moves per vehicle"""
 
@@ -127,43 +130,83 @@ class Board(object):
                 if self.boardsize < 10:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                     for i in range(1, down + 1):
                         if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(-i)
+                            self.possible_moves[vehicle.name].append(i)
                         else:
                             break
                 else:
                     for i in range(1, up + 1):
                         if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '__':
-                            self.possible_moves[vehicle.name].append(i)
+                            self.possible_moves[vehicle.name].append(-i)
                         else:
                             break
 
                 for i in range(1, down + 1):
                     if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '__':
-                        self.possible_moves[vehicle.name].append(-i)
+                        self.possible_moves[vehicle.name].append(i)
                     else:
                         break
 
         return self.possible_moves
 
-    def move(self, vehicle_name, shift):
+    # def serialize(self):
+    #     serialized = ""
+    #     for vehicle in self.vehicles.values():
+    #         serialized += f"{vehicle.name},{vehicle.orientation},{vehicle.coordinates[0]},{vehicle.coordinates[1]},{vehicle.length}."
+    #
+    #     return serialized.strip(".")
+
+    # def serialize_dict(self):
+    #     serialized_dict = {}
+    #     for vehicle in self.vehicles.values():
+
+    # def unserialize(self, serial):
+    #     self.vehicles = {}
+    #     for vehicle in serial.split("."):
+    #         vehicle = vehicle.split(",")
+    #         name = vehicle[0]
+    #         orientation = vehicle[1]
+    #         column = int(vehicle[2]) + 1
+    #         row = int(vehicle[3]) + 1
+    #         length = int(vehicle[4])
+    #         self.vehicles[name] = Vehicle(name, orientation, row, column, length)
+    #
+    #     return self
+
+    def X_row_free(self):
+        """Returns the amount of free spaces ahead of the target car"""
+
+        coordinates = self.vehicles['X'].coordinates
+        row = self.board[coordinates[1]]
+
+        if self.boardsize < 10:
+            return list(row[coordinates[0]:]).count('_')
+        else:
+            return list(row[coordinates[0]:]).count('__')
+
+    def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
 
-        if shift in self.possible_moves[vehicle_name]:
+        # if shift in self.possible_moves[vehicle_name]:
+        if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
 
             if vehicle.orientation == 'H':
                 vehicle.coordinates = (vehicle.coordinates[0] + shift, vehicle.coordinates[1])
 
             else:
-                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] - shift)
+                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] + shift)
 
-            self.moves.append([vehicle_name, shift])
+            if not undo:
+                self.moves.append([vehicle_name, shift])
+            else:
+                self.moves.pop(-1)
+
             return True
 
         return False

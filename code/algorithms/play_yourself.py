@@ -18,7 +18,7 @@ def play(board):
 
         # User input for move
         vehicle_name = input('letter of the vehicle you want to move: ').upper()
-        shift = input('places to move that vehicle, use minus for left/down: ')
+        shift = input('places to move that vehicle, use minus for left/up: ')
         board.pos_moves()
 
         # Vehicle moves if possible
