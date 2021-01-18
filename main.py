@@ -84,10 +84,10 @@ if __name__ == '__main__':
     elif algorithm == 'BFS_priority':
         winning_board, states = BFS.BFS(board, False, True)
 
-    # ----------------------- Breadth First Search ----------------------
+    elif algorithm == 'BFS_beam_priority':
+        winning_board, states = BFS.BFS(board, True, True)
 
-    elif algorithm == 'DFS':
-        winning_board, states = DFS.DFS(board, False, False)
+    # ------------------------------- Else ------------------------------
 
     else:
         print("Algorithm doesn't exist")

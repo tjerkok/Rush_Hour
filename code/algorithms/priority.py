@@ -4,18 +4,16 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Function to apply a priority on a queue of states. This uses the 
-# Heuristic that a board with the most possible moves is priority. 
-# item = queue with all states 
-# It returns queue with in the front the priority cues. 
+# Function to apply a priority on a queue of states. This uses the
+# Heuristic that a board with the most possible moves is priority.
+# item = queue with all states
+# It returns queue with in the front the priority cues.
 ###############################################################
 
-from ..classes.board import Board
-import queue
 
-def Priority(items): 
-    """A function that uses a Priority Cue search, which prioritizes the states with the most possible moves.""" 
- 
+def Priority(items):
+    """A function that uses a Priority Cue search, which prioritizes the states with the most possible moves."""
+
     # total_moves = 0
     # count = 0
     items_tuple = []
@@ -24,7 +22,7 @@ def Priority(items):
 
         items_tuple.append([item, total_moves])
 
-    sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) # sorteert de lijst op het tweede element in de tuple, dus het aantal mogelijke moves
+    sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True)  # sorteert de lijst op het tweede element in de tuple, dus het aantal mogelijke moves
     sorted_list = [item[0] for item in sorted_items]
 
     return sorted_list
