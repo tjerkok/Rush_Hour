@@ -127,4 +127,8 @@ if __name__ == '__main__':
     print(f"states: {states}")
     print(f"moves: {winning_board.moves}")
     print(f"amount of moves: {len(winning_board.moves)}")
-    summary(filename, algorithm, len(winning_board.moves), states, round(time1, 4))
+
+    try:
+        summary(filename, algorithm + heuristic, len(winning_board.moves), states, round(time1, 4))
+    except NameError:
+        summary(filename, algorithm, len(winning_board.moves), states, round(time1, 4))
