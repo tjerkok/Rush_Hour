@@ -80,9 +80,16 @@ if __name__ == '__main__':
     # ----------------------- Breadth First Search ----------------------
 
     elif algorithm == 'BFS':
-        breadth_first = BFS.BFS(board)
+        breadth_first = BFS.BFS(board, False, False)
         winning_board, states = breadth_first.run()
         # winning_board, states = BFS.BFS(board, False, False)
+
+    elif algorithm == 'BFS_beam':
+        winning_board, states = BFS.BFS(board, True, False, heuristic)
+        #algorithm = beam + heuristic
+
+    elif algorithm == 'BFS_priority':
+        winning_board, states = BFS.BFS(board, False, True, None)
 
     # elif algorithm == 'BFS_beam':
     #     winning_board, states = BFS.BFS(board, True, False, heuristic)
