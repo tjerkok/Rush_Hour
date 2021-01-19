@@ -10,58 +10,50 @@
 # anytree: https://pypi.org/project/anytree/
 from anytree import Node, RenderTree
 import copy
-
-def IDDFS(board):
-    """Function that uses the Iterative Deepening Depth First Search algorithm."""
-    for depth in range(1, 11):
-        winning_board, states = DLS(board, depth)
-        if winning_board is not None:
-            return winning_board, states
-
-    return winning_board, states
-
-# [['A', 1], ['C', -1], ['E', -1], ['F', -3], ['B', 3], ['G', -2], ['D', 2], ['X', 3]]
-def DLS(board, depth):  
-    """Function that uses the Depth First Search algorithm."""
-    BFS_stack = [board]
-    boards_visited = set()
-    states = 1
-
-    while len(BFS_stack) > 0:
-        state = BFS_stack.pop()
-        # if len(state.moves) == 8:
-        #     print([a.moves for a in BFS_stack if a.moves[0:1] == [['A', 1]]])
-        # if len(state.moves) == 2:
-        #     if state.moves == [['A', 1], ['C', -1]]:
-        #         print("got good state")
-        #         print(f"len(statemoves): {len(state.moves)}, depth: {depth}")
-
-        if len(state.moves) < depth:
-            for vehicle, movelist in state.pos_moves().items():
-                for vehicle_move in movelist:
-
-                    if not state.move(vehicle, vehicle_move):
-                        print("invalid move")
-                    else:
-                        state_board = state.load_board()
-                        state_board.flags.writeable = False
-                        hashed_state = hash(state_board.tostring())
-                        if hashed_state not in boards_visited:
-                            boards_visited.add(hashed_state)
-                            BFS_stack.append(copy.deepcopy(state))
-                            states += 1
+import time
+from .BFS import BFS
 
 
-                        if state.win():
-                            BFS_stack = []
-                            winning_board = state
-                            return winning_board, states
+class DFS(BFS):
+    def __init__(self, board, max_depth=100):
+        BFS.__init__(self, board)
+        self.max_depth = max_depth
 
-                        else:
-                            state.move(vehicle, -vehicle_move, True)
-                            state.load_board()
-                            state.pos_moves()
-                            winning_board = None
+    def get_next_state(self):
+        return self.states.pop()
 
+    def run(self):  
+        """Runs the algorithm until all possible states are checked."""
 
-    return winning_board, states
+        while self.states != []: 
+            new_board = self.get_next_state()
+            # print(len(new_board.moves))
+            if len(new_board.moves) >= self.max_depth:
+                return None, self.state_space
+
+            if new_board.win():
+                self.winning_board = new_board
+                return self.winning_board, self.state_space
+            else: 
+                print("possible moves")
+                print(new_board.pos_moves())
+                self.build_children(new_board) # lijst vullen met kids
+
+                print(len(self.states))
+                print([a.moves[0:2] for a in self.states])
+
+class IDDFS:
+    def __init__(self, board, max_depth):
+        self.max_depth = max_depth
+        self.board = board
+        self.winning_board = None
+
+    def run(self):
+        for depth in range(1, self.max_depth):
+            print(f"depth: {depth}")
+            depth_first = DFS(self.board, depth)
+            winning_board, states = depth_first.run()
+            if winning_board is not None:
+                return winning_board, states
+
+        return winning_board, states

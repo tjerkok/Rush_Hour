@@ -237,6 +237,7 @@ class Board(object):
             else:
                 self.moves.pop(-1)
 
+            self.load_board()
             return True
 
         return False
