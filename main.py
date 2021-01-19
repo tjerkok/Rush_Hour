@@ -31,6 +31,10 @@ if __name__ == '__main__':
         filename = argv[1]
         algorithm = argv[2]
         sample_size = int(argv[3])
+    elif len(argv) == 4 and argv[2] == 'BFS_beam':
+        filename = argv[1]
+        algorithm = argv[2]
+        heuristic = argv[3]
     elif len(argv) == 2:
         filename = argv[1]
         algorithm = 'None'
@@ -79,7 +83,7 @@ if __name__ == '__main__':
         winning_board, states = BFS.BFS(board, False, False)
 
     elif algorithm == 'BFS_beam':
-        winning_board, states = BFS.BFS(board, True, False)
+        winning_board, states = BFS.BFS(board, True, False, heuristic)
 
     elif algorithm == 'BFS_priority':
         winning_board, states = BFS.BFS(board, False, True)

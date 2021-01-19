@@ -189,6 +189,36 @@ class Board(object):
         else:
             return list(row[coordinates[0]:]).count('__')
 
+    def blocking_vehicles(self):
+        """Returns the amount of vehicles bloacking the target car"""
+
+        row = self.vehicles['X'].coordinates[1]
+        blocking_vehicles = []
+        for vehicle in self.vehicles:
+            if self.vehicles[vehicle].orientation == 'V':
+                if self.vehicles[vehicle].coordinates[1] == row or self.vehicles[vehicle].coordinates[1] + 1 == row:
+                    if self.vehicles[vehicle].coordinates[0] > (self.vehicles['X'].coordinates[0] + 1):
+                        blocking_vehicles.append(vehicle)
+
+        return blocking_vehicles
+
+    def goal_distance(self):
+        """Returns the amount of distance the target car still has to move"""
+
+        distance = self.boardsize - 2 - self.vehicles['X'].coordinates[0]
+
+        return distance
+
+    def blocked_blocking_vehicles(self):
+
+        blocking_vehicles = self.blocking_vehicles()
+        blocked_blocking_vehicles = []
+        for vehicle in blocking_vehicles:
+            if self.possible_moves[vehicle] == []:
+                blocked_blocking_vehicles.append(vehicle)
+
+        return blocked_blocking_vehicles
+
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
 

@@ -7,7 +7,6 @@
 # Function with Breadth First Search algorithm for Rush Hour game.
 ###############################################################
 
-from ..classes.board import Board
 from .beam import Beam
 from .priority import Priority
 import queue
@@ -20,16 +19,18 @@ def BFS(board, beam, priority, heuristic='H1'):
     BFS_queue = queue.Queue()
     BFS_queue.put(board)
     boards_visited = set()
-    states = 0
+    states = 1
     move = 0
     apply_priority = round(2.33 * board.boardsize)
 
     while not BFS_queue.empty():
+        # print(BFS_queue.qsize())
         state = BFS_queue.get()
         if move < len(state.moves):
             print(len(state.moves))
             if beam:
-                beamed_list = Beam(list(BFS_queue.queue), board.boardsize, len(board.vehicles), heuristic)
+                length = BFS_queue.qsize()
+                beamed_list = Beam(list(BFS_queue.queue), length, board.boardsize, len(board.vehicles), heuristic)
                 BFS_queue = queue.Queue()
                 [BFS_queue.put(item) for item in beamed_list]
             if priority and move > apply_priority:
