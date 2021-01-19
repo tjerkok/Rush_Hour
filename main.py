@@ -80,22 +80,32 @@ if __name__ == '__main__':
     # ----------------------- Breadth First Search ----------------------
 
     elif algorithm == 'BFS':
-        winning_board, states = BFS.BFS(board, False, False)
+        breadth_first = BFS.BFS(board)
+        winning_board, states = breadth_first.run()
+        # winning_board, states = BFS.BFS(board, False, False)
 
-    elif algorithm == 'BFS_beam':
-        winning_board, states = BFS.BFS(board, True, False, heuristic)
-        algorithm = beam + heuristic
+    # elif algorithm == 'BFS_beam':
+    #     winning_board, states = BFS.BFS(board, True, False, heuristic)
+    #     algorithm = beam + heuristic
 
-    elif algorithm == 'BFS_priority':
-        winning_board, states = BFS.BFS(board, False, True)
+    # elif algorithm == 'BFS_priority':
+    #     winning_board, states = BFS.BFS(board, False, True)
 
-    elif algorithm == 'BFS_beam_priority':
-        winning_board, states = BFS.BFS(board, True, True)
+    # elif algorithm == 'BFS_beam_priority':
+    #     winning_board, states = BFS.BFS(board, True, True)
+
 
     # ------------- Iterative Deepening Depth First Search --------------
 
+    elif algorithm == 'DFS':
+        depth_first = IDDFS.DFS(board)
+        winning_board, states = depth_first.run()
+    
+    # ------------- Iterative Deepening Depth First Search --------------
+
     elif algorithm == 'IDDFS':
-        winning_board, states = IDDFS.IDDFS(board)
+        i_depth_first = IDDFS.IDDFS(board, 13)
+        winning_board, states = i_depth_first.run()
     
     # ------------------------------- Else ------------------------------
 
