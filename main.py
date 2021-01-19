@@ -9,7 +9,7 @@
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
-from code.algorithms import randomise, play_yourself, BFS
+from code.algorithms import randomise, play_yourself, BFS, IDDFS
 from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
@@ -92,6 +92,11 @@ if __name__ == '__main__':
     elif algorithm == 'BFS_beam_priority':
         winning_board, states = BFS.BFS(board, True, True)
 
+    # ------------- Iterative Deepening Depth First Search --------------
+
+    elif algorithm == 'IDDFS':
+        winning_board, states = IDDFS.IDDFS(board)
+    
     # ------------------------------- Else ------------------------------
 
     else:
@@ -121,6 +126,7 @@ if __name__ == '__main__':
 
     output = output(winning_board.moves)
 
+    print("start board:")
     print(start_board)
     print("game won")
     print(winning_board.load_board())
