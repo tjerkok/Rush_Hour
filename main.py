@@ -84,6 +84,7 @@ if __name__ == '__main__':
 
     elif algorithm == 'BFS_beam':
         winning_board, states = BFS.BFS(board, True, False, heuristic)
+        algorithm = beam + heuristic
 
     elif algorithm == 'BFS_priority':
         winning_board, states = BFS.BFS(board, False, True)
@@ -127,4 +128,5 @@ if __name__ == '__main__':
     print(f"states: {states}")
     print(f"moves: {winning_board.moves}")
     print(f"amount of moves: {len(winning_board.moves)}")
+
     summary(filename, algorithm, len(winning_board.moves), states, round(time1, 4))
