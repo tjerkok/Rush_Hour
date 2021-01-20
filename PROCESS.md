@@ -69,9 +69,15 @@ At the beginning of the day we worked together trying to improve the Breadth Fir
 
 ## 18 january 2021
 
-## 19 
+## 19 january 2021
 ### Tjerko
 Set algorithms in classes
 
-## 20
-
+## 20 january 2021
+### Tjerko
+- iddfs
+- meeting
+- Trying to find best way to archive states on depth1, while other later found states on depth2, similar to archived state, are not skipped when depth1 > depth2.
+    * IDDFS (testboard6x6):
+        * Archiving with dictionary, key = hash, value = depth. states: 3531. moves: 8.
+        * Archiving with original set (losing most efficient solution, might not even find one). states: 741. moves: 10.
