@@ -19,7 +19,7 @@ def Beam(items, length, board_size, vehicles, heuristic):
     # 2 13 6 0.9
     # 3 9 6 0.75
     # beam_ratio = (vehicles * 2.5) / (board_size * board_size)
-    print(f"queue length: {length}")
+    # print(f"queue length: {length}")
 
     if length < 10:
         beam_ratio = 0.95
