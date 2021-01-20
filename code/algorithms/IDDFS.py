@@ -28,24 +28,26 @@ class DFS(BFS):
         board_array = board.load_board()
         board_array.flags.writeable = False
         hashed_board = hash(board_array.tostring())
-        
+
         if hashed_board in self.boards_visited:
             if self.boards_visited[hashed_board] > len(board.moves):
                 self.boards_visited[hashed_board] = len(board.moves)
                 self.states.append(board)
+                self.state_space += 1
         else:
             self.boards_visited[hashed_board] = len(board.moves)
             self.states.append(board)
+            self.state_space += 1
 
     def run(self):
         """Runs the algorithm until all possible states are checked."""
 
-        while self.states != []:
+        while self.states:
             new_board = self.get_next_state()
             if new_board.win():
                 self.winning_board = new_board
                 return self.winning_board, self.state_space
-            else: 
+            else:
                 if False:
                     print(f"moves done in this state: {new_board.moves}")
                     print("possible moves")

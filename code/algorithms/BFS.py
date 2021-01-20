@@ -25,6 +25,8 @@ class BFS:
         self.beam = beam
         self.priority = priority
         self.heuristic = heuristic
+        self.move = 0
+        self.apply_priority = 12
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
@@ -40,7 +42,6 @@ class BFS:
                     return False
 
                 self.add_to_archive(child)
-                self.state_space += 1
 
     def add_to_archive(self, board):
         """Function that adds the checked states to the archive."""
@@ -50,6 +51,7 @@ class BFS:
         if hashed_board not in self.boards_visited:
             self.boards_visited.add(hashed_board)
             self.states.append(board)
+            self.state_space += 1
 
         """ Dictionary ## langzamer doordat die meer staten doorgaat? of omdat die langzamer door de staten gaat. 
         if hashed_board in self.boards_visited:
@@ -66,20 +68,19 @@ class BFS:
         if self.beam:
             beamed_list = Beam(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic)
             self.states = beamed_list
-        if self.priority: # and move > apply_priority:
+        if self.priority:
             priority_list = Priority(self.states)
             self.states = priority_list
 
     def run(self):
         """Runs the algorithm untill all possible states are checked."""
-        move = 0
-        while self.states != []:
+        while self.states:
 
             new_board = self.get_next_state()
-            if self.beam or self.priority and move < len(new_board.moves) and self.states != []:
-                self.combine_algorithm()
-                move = len(new_board.moves)
-
+            if self.move < len(new_board.moves):
+                if self.beam or (self.priority and self.move > self.apply_priority):
+                    self.combine_algorithm()
+                self.move = len(new_board.moves)
 
             if new_board.win():
                 self.winning_board = new_board
