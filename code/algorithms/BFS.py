@@ -1,11 +1,11 @@
-###############################################################
+####################################################################
 # BFS.py
 #
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Function with Breadth First Search algorithm for Rush Hour game.
-###############################################################
+# Class with Breadth First Search algorithm for Rush Hour game.
+#####################################################################
 
 from .beam import Beam
 from .priority import Priority
@@ -25,6 +25,7 @@ class BFS:
         self.beam = beam
         self.priority = priority
         self.heuristic = heuristic
+        self.move = 0
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
@@ -63,26 +64,26 @@ class BFS:
 
     def combine_algorithm(self):
         """Combines the Beam search or the Priority search with the BFS."""
+        apply_priority = round(2.33 * self.boardsize)
         if self.beam:
             beamed_list = Beam(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic)
             self.states = beamed_list
-        if self.priority: # and move > apply_priority:
+        if self.priority and self.move > apply_priority:
             priority_list = Priority(self.states)
             self.states = priority_list
 
     def run(self):
         """Runs the algorithm untill all possible states are checked."""
-        move = 0
         while self.states != []:
 
             new_board = self.get_next_state()
-            if self.beam or self.priority and move < len(new_board.moves) and self.states != []:
+            if self.beam or self.priority and self.move < len(new_board.moves) and self.states != []:
                 self.combine_algorithm()
-                move = len(new_board.moves)
+                self.move = len(new_board.moves)
 
 
             if new_board.win():
-                self.winning_board = new_board
+                self.winning_board = new_board 
                 return self.winning_board, self.state_space
             else:
                 self.build_children(new_board) # lijst vullen met kids
