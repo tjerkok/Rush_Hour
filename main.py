@@ -44,6 +44,7 @@ if __name__ == '__main__':
 
     board = load_problem(filename)
     start_board = board.load_board()
+    print(start_board)
 
     if not visualize(start_board, 'start'):   # result in code/visualization/startboard.png
         print("Could not visualize board as board is not of type numpy.ndarry")
@@ -82,14 +83,15 @@ if __name__ == '__main__':
     elif algorithm == 'BFS':
         breadth_first = BFS.BFS(board, False, False)
         winning_board, states = breadth_first.run()
-        # winning_board, states = BFS.BFS(board, False, False)
 
     elif algorithm == 'BFS_beam':
-        winning_board, states = BFS.BFS(board, True, False, heuristic)
-        #algorithm = beam + heuristic
+        breadth_first = BFS.BFS(board, True, False, heuristic)
+        winning_board, states = breadth_first.run()
+        algorithm = f"{algorithm} {heuristic}"
 
     elif algorithm == 'BFS_priority':
-        winning_board, states = BFS.BFS(board, False, True, None)
+        breadth_first = BFS.BFS(board, False, True)
+        winning_board, states = breadth_first.run()
 
     # elif algorithm == 'BFS_beam':
     #     winning_board, states = BFS.BFS(board, True, False, heuristic)
@@ -107,13 +109,13 @@ if __name__ == '__main__':
     elif algorithm == 'DFS':
         depth_first = IDDFS.DFS(board)
         winning_board, states = depth_first.run()
-    
+
     # ------------- Iterative Deepening Depth First Search --------------
 
     elif algorithm == 'IDDFS':
         i_depth_first = IDDFS.IDDFS(board, 13)
         winning_board, states = i_depth_first.run()
-    
+
     # ------------------------------- Else ------------------------------
 
     else:
