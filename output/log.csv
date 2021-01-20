@@ -147,3 +147,24 @@ gameboards/testboard4x4.csv,IDDFS,3,34,0.0035
 gameboards/testboard6x6.csv,IDDFS,55,565,0.1308
 gameboards/testboard6x6_copy.csv,IDDFS,4,26,0.004
 gameboards/testboard6x6_copy.csv,IDDFS,99,1166,0.2753
+gameboards/testboard6x6_copy.csv,IDDFS,5,138,0.1165
+gameboards/Rushhour6x6_2.csv,BFS,15,24610,6.9678
+gameboards/testboard6x6.csv,IDDFS,10,2520,2.899
+gameboards/testboard6x6.csv,BFS,8,11582,2.2149
+gameboards/testboard6x6.csv,BFS,8,11582,2.2311
+gameboards/testboard6x6.csv,IDDFS,8,28459,15.0736
+gameboards/testboard6x6.csv,BFS,8,11582,2.2188
+gameboards/testboard4x4.csv,BFS,3,140,0.0154
+gameboards/testboard6x6_copy.csv,BFS,5,43014,9.6845
+gameboards/testboard6x6_copy.csv,BFS,5,4405,0.6622
+gameboards/testboard4x4.csv,BFS,3,55,0.0058
+gameboards/testboard4x4.csv,BFS,3,55,0.007
+gameboards/testboard4x4.csv,IDDFS,3,19,0.0047
+gameboards/testboard6x6_copy.csv,IDDFS,5,223,0.2491
+gameboards/testboard6x6.csv,IDDFS,8,28459,15.2488
+gameboards/Rushhour6x6_2.csv,BFS_beam H1,243,34404,25.1157
+gameboards/Rushhour6x6_2.csv,BFS,15,24610,7.0012
+gameboards/testboard4x4.csv,IDDFS,3,19,0.0061
+gameboards/Rushhour6x6_2.csv,BFS,15,24610,6.9456
+gameboards/testboard4x4.csv,BFS_beam H1,3,52,0.0061
+gameboards/Rushhour6x6_2.csv,BFS_beam H1,243,34404,16.7892
