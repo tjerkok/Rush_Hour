@@ -9,7 +9,7 @@
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
-from code.algorithms import randomise, play_yourself, BFS, IDDFS
+from code.algorithms import randomise, play_yourself, BFS, IDDFS, BFS_copy
 from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
@@ -94,15 +94,17 @@ if __name__ == '__main__':
         winning_board, states = breadth_first.run()
         algorithm = f"{algorithm} {heuristic}"
 
+    # elif algorithm == 'BFS':
+    #     winning_board, states = BFS_copy.BFS(board, False, False)
+
     # elif algorithm == 'BFS_beam':
-    #     winning_board, states = BFS.BFS(board, True, False, heuristic)
-    #     algorithm = beam + heuristic
+    #     winning_board, states = BFS_copy.BFS(board, True, False, heuristic)
 
     # elif algorithm == 'BFS_priority':
-    #     winning_board, states = BFS.BFS(board, False, True)
+    #     winning_board, states = BFS_copy.BFS(board, False, True)
 
     # elif algorithm == 'BFS_beam_priority':
-    #     winning_board, states = BFS.BFS(board, True, True)
+    #     winning_board, states = BFS_copy.BFS(board, True, True)
 
 
     # --------------------- Depth First Search -------------------------
