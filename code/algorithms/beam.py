@@ -13,7 +13,7 @@
 
 
 def Beam(items, length, board_size, vehicles, heuristic):
-    """Function that uses Beam Search with the most empty spaces ahead of the target car."""
+    """Function that uses Beam Search that prunes based on the heuristic."""
 
     # 1 13 6 0.9
     # 2 13 6 0.9
