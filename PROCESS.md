@@ -61,17 +61,22 @@ We worked together again so I did the same things as Tjerko and Kika. We also di
 We worked on improving the Breadth First Search algorithm. I figured out how to let the BFS only use deepcopy when there'll be a new state after moving. If the move created a state that's in the archive, deepcopy will be avoided. 
 
 ### Kika
-
+Added the priority search and tried serializing, however did this not give us any improvements. 
 
 ### Bob
 At the beginning of the day we worked together trying to improve the Breadth First Search algorithm. Then we split up and I was responsible to get out output through the check50 check, so I did that.
 
 
 ## 18 january 2021
+### Kika
+We worked on the deadline 'First Algorithm', I focused on writing the text. 
 
 ## 19 january 2021
 ### Tjerko
 Set algorithms in classes
+
+### Kika
+We discussed what our next steps would be, we chose for implementing Iterative deepening depth search and implemented that. Also we adjusted our algorithm by making classes of them with multiple functions. 
 
 ## 20 january 2021
 ### Tjerko
@@ -81,3 +86,7 @@ Set algorithms in classes
     * IDDFS (testboard6x6):
         * Archiving with dictionary, key = hash, value = depth. states: 3531. moves: 8.
         * Archiving with original set (losing most efficient solution, might not even find one). states: 741. moves: 10.
+
+### Kika
+We fixed the Iterative deepening depth search, we discussed our next steps and we had a meeting with Kiara and Quinten. 
+I focused on researching the magix number of apply_priority for the priority search. Also I did some research on a possible extension for breadth first search. 
