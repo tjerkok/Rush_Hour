@@ -14,7 +14,7 @@ import time
 from sys import getsizeof
 
 class BFS:
-    def __init__(self, board, beam=False, priority=False, heuristic='H1'):
+    def __init__(self, board, beam=False, priority=False, heuristic='H1', lookahead=True):
         self.board = copy.deepcopy(board)
         self.boardsize = board.boardsize
         self.vehicle_length = len(board.vehicles)
@@ -25,6 +25,7 @@ class BFS:
         self.beam = beam
         self.priority = priority
         self.heuristic = heuristic
+        self.lookahead = lookahead
         self.move = 0
         self.apply_priority = 0  #round(2.33 * self.boardsize)
 
@@ -41,7 +42,12 @@ class BFS:
                     print("invalid move")
                     return False
 
+                if child.win() and self.lookahead:
+                    self.winning_board = child
+                    return True
                 self.add_to_archive(child)
+
+        return False
 
     def add_to_archive(self, board):
         """Function that adds the checked states to the archive."""
@@ -86,7 +92,8 @@ class BFS:
                 self.winning_board = new_board 
                 return self.winning_board, self.state_space
             else:
-                self.build_children(new_board) # lijst vullen met kids
+                if self.build_children(new_board): # lijst vullen met kids, build_children() returnt True if child.win() dankzij lookahead
+                    return self.winning_board, self.state_space
 
         # if queue empty but not won, return None board
         return None, self.state_space

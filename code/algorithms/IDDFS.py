@@ -37,7 +37,27 @@ class DFS(BFS):
         else:
             self.boards_visited[hashed_board] = len(board.moves)
             self.states.append(board)
-            self.state_space += 1
+
+    # def add_to_archive(self, board):
+    #     """Function that adds the checked states to the archive."""
+    #     depth = len(board.moves)
+    #     board_array = board.load_board()
+    #     board_array.flags.writeable = False
+    #     hashed_board = hash(board_array.tostring())
+    #     if depth == self.max_depth:
+    #         if hashed_board not in self.boards_visited:
+    #             self.boards_visited.add(hashed_board)
+    #             self.states.append(board)
+    #     else:
+    #         self.states.append(board)
+    #         self.state_space += 1
+
+
+    #     # for i in range(depth - 1, 0, -1):
+    #     #     if hashed_board in self.boards_visited[i]:
+    #     #         print("already in archive")
+    #     #         return False
+
 
     def run(self):
         """Runs the algorithm until all possible states are checked."""
@@ -64,7 +84,6 @@ class DFS(BFS):
 
         return None, self.state_space
 
-# moves: [['A', 1], ['C', -1], ['E', -1], ['F', -3], ['B', 3], ['G', -2], ['D', 2], ['X', 3]]
 
 class IDDFS:
     def __init__(self, board, max_depth):
@@ -74,7 +93,7 @@ class IDDFS:
         self.boards_visited = set()
 
     def run(self):
-        for depth in range(1, self.max_depth):
+        for depth in range(1, self.max_depth + 1):
             print(f"depth: {depth}")
             depth_first = DFS(self.board, depth)
             winning_board, states = depth_first.run()
