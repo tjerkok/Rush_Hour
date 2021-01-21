@@ -202,3 +202,15 @@ gameboards/testboard6x6.csv,BFS_priority,8,1080,4.5652
 gameboards/testboard6x6.csv,BFS_priority,8,1080,4.6447
 gameboards/testboard6x6.csv,BFS_priority,8,1080,4.3526
 gameboards/testboard4x4.csv,BFS,3,14,0.0143
+gameboards/testboard4x4.csv,BFS_priority H2,3,12,0.0056
+gameboards/testboard6x6.csv,BFS_priority H2,8,1054,3.9591
+gameboards/Rushhour6x6_2.csv,BFS_priority H2,15,2123,8.9726
+gameboards/Rushhour6x6_2.csv,BFS_priority H7,15,2147,7.9021
+gameboards/Rushhour6x6_2.csv,BFS_priority H1,15,2053,7.9129
+gameboards/Rushhour6x6_2.csv,BFS_priority H3,15,2501,9.4488
+gameboards/Rushhour6x6_2.csv,BFS_priority H4,15,2165,8.301
+gameboards/Rushhour6x6_2.csv,BFS_priority H5,15,2156,8.3487
+gameboards/Rushhour6x6_2.csv,BFS_priority H6,15,2123,8.6475
+gameboards/Rushhour6x6_2.csv,BFS_beam H1,15,1744,4.6459
+gameboards/Rushhour6x6_2.csv,BFS_beam H6,15,1339,3.387
+gameboards/Rushhour6x6_2.csv,BFS_beam H7,16,1851,6.2714
