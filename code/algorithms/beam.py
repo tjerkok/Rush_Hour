@@ -21,20 +21,24 @@ def Beam(items, length, board_size, vehicles, heuristic):
     # beam_ratio = (vehicles * 2.5) / (board_size * board_size)
     # print(f"queue length: {length}")
 
-    if length < 10:
-        beam_ratio = 0.95
-    elif length >= 10 and length < 50:
-        beam_ratio = 0.85
-    elif length >= 50 and length < 500:
-        beam_ratio = 0.7
-    elif length >= 500 and length < 1000:
-        beam_ratio = 0.5
-    elif length >= 1000 and length < 5000:
-        beam_ratio = 0.3
-    elif length >= 5000:
-        beam_ratio = 0.25
+    # if length < 10:
+    #     beam_ratio = 0.95
+    # elif length >= 10 and length < 50:
+    #     beam_ratio = 0.85
+    # elif length >= 50 and length < 500:
+    #     beam_ratio = 0.7
+    # elif length >= 500 and length < 1000:
+    #     beam_ratio = 0.5
+    # elif length >= 1000 and length < 5000:
+    #     beam_ratio = 0.3
+    # elif length >= 5000:
+    #     beam_ratio = 0.25
 
-    beam = round(len(items) * beam_ratio)
+    # beam = round(len(items) * beam_ratio)
+    
+    # 10000 magic number for 7x7 board, because then 80% of the random problem instances get solved.
+    # then change this to satisfy for 6x6, 9x9, 12x12 board.
+    beam_width = round((board_size ^ 2) / (7 * 7) * 10000)
 
     # number of free spaces ahead of the target car
     if heuristic == 'H1':
@@ -83,4 +87,4 @@ def Beam(items, length, board_size, vehicles, heuristic):
         sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) 
         sorted_items = [item[0] for item in sorted_items]
 
-    return sorted_items[:beam]
+    return sorted_items[:beam_width]
