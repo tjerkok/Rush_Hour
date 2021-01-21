@@ -72,4 +72,15 @@ def Beam(items, length, board_size, vehicles, heuristic):
         sorted_items = sorted(items, key=lambda x: x[1], reverse=False)
         sorted_items = [item[0] for item in sorted_items]
 
+    # most possible moves per state 
+    elif heuristic == 'H7': 
+        items_tuple = []
+        for item in items:
+            total_moves = sum(len(moves) for moves in item.pos_moves().values())
+            items_tuple.append([item, total_moves])
+    
+        # Sort states per depth on most possible moves 
+        sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) 
+        sorted_items = [item[0] for item in sorted_items]
+
     return sorted_items[:beam]

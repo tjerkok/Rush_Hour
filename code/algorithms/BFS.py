@@ -75,7 +75,7 @@ class BFS:
             beamed_list = Beam(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic)
             self.states = beamed_list
         if self.priority:
-            priority_list = Priority(self.states)
+            priority_list = Priority(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic)
             self.states = priority_list
 
     def run(self):
