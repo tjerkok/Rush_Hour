@@ -168,3 +168,37 @@ gameboards/testboard4x4.csv,IDDFS,3,19,0.0061
 gameboards/Rushhour6x6_2.csv,BFS,15,24610,6.9456
 gameboards/testboard4x4.csv,BFS_beam H1,3,52,0.0061
 gameboards/Rushhour6x6_2.csv,BFS_beam H1,243,34404,16.7892
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.148
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3328,12.9897
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.0731
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.8813
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3328,13.3763
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3328,13.7986
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.7281
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.3382
+gameboards/testboard4x4.csv,BFS_priority,3,14,0.0153
+gameboards/testboard4x4.csv,BFS_priority,3,14,0.0113
+gameboards/testboard4x4.csv,BFS_priority,3,14,0.0163
+gameboards/testboard4x4.csv,BFS_priority,3,14,0.0117
+gameboards/testboard6x6.csv,BFS_priority,8,1080,5.0775
+gameboards/testboard6x6.csv,BFS_priority,8,1080,4.579
+gameboards/testboard6x6.csv,BFS_priority,8,1080,8.6054
+gameboards/testboard6x6.csv,BFS_priority,8,1080,4.4857
+gameboards/testboard6x6.csv,BFS,8,1080,4.3191
+gameboards/Rushhour6x6_2.csv,BFS,15,3328,13.6906
+gameboards/testboard4x4.csv,BFS_priority,3,14,0.0098
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.7072
+gameboards/Rushhour6x6_2.csv,BFS_beam H2,15,1785,4.8602
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.5569
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,14.7209
+gameboards/Rushhour6x6_2.csv,BFS,15,3328,12.9758
+gameboards/Rushhour6x6_2.csv,BFS,15,3328,13.7671
+gameboards/Rushhour6x6_2.csv,BFS,15,3328,13.1227
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,13.9196
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3328,12.578
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,13.457
+gameboards/Rushhour6x6_2.csv,BFS_priority,15,3321,12.9255
+gameboards/testboard6x6.csv,BFS_priority,8,1080,4.5652
+gameboards/testboard6x6.csv,BFS_priority,8,1080,4.6447
+gameboards/testboard6x6.csv,BFS_priority,8,1080,4.3526
+gameboards/testboard4x4.csv,BFS,3,14,0.0143
