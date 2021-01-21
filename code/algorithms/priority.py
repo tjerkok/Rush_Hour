@@ -47,9 +47,14 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
     # number of blocked blocking vehicles
     elif heuristic == 'H8':
         items = [[board, len(board.blocked_blocking_vehicles())] for board in items]
+
+    # first trying the biggest possible move for every vehicle 
+    #elif heuristic == 'H9': 
+        # nu moet die nog gaan sorteren op zoveel mogelijk moves... 
+        # items = [[board, board.reversed_pos_moves()] for board in items]
     
     # sort list  
-    if heuristic == 'H1' or 'H7': 
+    if heuristic == 'H1' or 'H7' or 'H9': 
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
         sorted_list = [item[0] for item in sorted_items]
     else: 
