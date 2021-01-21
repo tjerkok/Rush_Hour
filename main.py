@@ -9,7 +9,7 @@
 # If no algorithm chosen then you can play the game yourself.
 #########################################################
 
-from code.algorithms import randomise, play_yourself, BFS, IDDFS, BFS_copy
+from code.algorithms import randomise, play_yourself, BFS, IDDFS, BFS_copy, biggest_step
 from code.visualization.visualization import visualize
 from code.input.output.load_in import load_problem
 from code.input.output.generate_output import output
@@ -118,6 +118,12 @@ if __name__ == '__main__':
     elif algorithm == 'IDDFS':
         i_depth_first = IDDFS.IDDFS(board, 13)
         winning_board, states = i_depth_first.run()
+
+    # ------------- Biggest step first search with BFS ------------------
+    
+    elif algorithm == 'BFS_Step':
+        step = biggest_step.Step(board)
+        winning_board, states = step.run()
 
     # ------------------------------- Else ------------------------------
 
