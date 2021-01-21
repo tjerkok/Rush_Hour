@@ -90,3 +90,9 @@ We discussed what our next steps would be, we chose for implementing Iterative d
 ### Kika
 We fixed the Iterative deepening depth search, we discussed our next steps and we had a meeting with Kiara and Quinten. 
 I focused on researching the magic number of apply_priority for the priority search. Also I did some research on a possible extension for breadth first search. 
+
+## 21 january 2021
+### Kika
+Worked on the practice presentation, did some research after the differences between the heuristics. 
+Tried working out a new idea where the biggest possible steps are taken first. 
+Improved heuristics code for priority and beam. 
