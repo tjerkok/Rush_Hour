@@ -89,4 +89,4 @@ We discussed what our next steps would be, we chose for implementing Iterative d
 
 ### Kika
 We fixed the Iterative deepening depth search, we discussed our next steps and we had a meeting with Kiara and Quinten. 
-I focused on researching the magix number of apply_priority for the priority search. Also I did some research on a possible extension for breadth first search. 
+I focused on researching the magic number of apply_priority for the priority search. Also I did some research on a possible extension for breadth first search. 
