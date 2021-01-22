@@ -119,7 +119,7 @@ if __name__ == '__main__':
         i_depth_first = IDDFS.IDDFS(board, 13)
         winning_board, states = i_depth_first.run()
 
-    # ------------- Biggest step first search with BFS ------------------
+    # --------------- Biggest step first search with BFS ----------------
     
     elif algorithm == 'BFS_Step':
         step = biggest_step.Step(board)

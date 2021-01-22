@@ -27,7 +27,7 @@ class BFS:
         self.heuristic = heuristic
         self.lookahead = lookahead
         self.move = 0
-        self.apply_priority = 0  #round(2.33 * self.boardsize)
+        self.apply_priority = 12 #round(2.33 * self.boardsize)
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
