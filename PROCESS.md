@@ -66,10 +66,12 @@ Added the priority search and tried serializing, however did this not give us an
 ### Bob
 At the beginning of the day we worked together trying to improve the Breadth First Search algorithm. Then we split up and I was responsible to get out output through the check50 check, so I did that.
 
-
 ## 18 january 2021
 ### Kika
-We worked on the deadline 'First Algorithm', I focused on writing the text. 
+We worked on the deadline 'First Algorithm', I focused on writing the text.
+
+### Bob
+Also worked on the first algorithm pdf.
 
 ## 19 january 2021
 ### Tjerko
@@ -77,6 +79,9 @@ Set algorithms in classes
 
 ### Kika
 We discussed what our next steps would be, we chose for implementing Iterative deepening depth search and implemented that. Also we adjusted our algorithm by making classes of them with multiple functions. 
+
+### Bob
+Worked together on our algorithms.
 
 ## 20 january 2021
 ### Tjerko
@@ -91,8 +96,18 @@ We discussed what our next steps would be, we chose for implementing Iterative d
 We fixed the Iterative deepening depth search, we discussed our next steps and we had a meeting with Kiara and Quinten. 
 I focused on researching the magic number of apply_priority for the priority search. Also I did some research on a possible extension for breadth first search. 
 
+### Bob
+Tried to find out what beam width/beam ratio would be good to use and ran some tests to find out as well as searched on internet if there were any papers about it.
+
 ## 21 january 2021
 ### Kika
 Worked on the practice presentation, did some research after the differences between the heuristics. 
 Tried working out a new idea where the biggest possible steps are taken first. 
 Improved heuristics code for priority and beam. 
+
+### Bob
+Added a Heuristic which calculates the minimum moves required and uses that for our beam search/ priority queue and IDDFS
+
+## 21 january 2021
+### Bob
+We had the practice presentation today and after that I fixed some things about the heuristic I added yesterday, because it wasn't correct yet.
