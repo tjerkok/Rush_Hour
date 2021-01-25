@@ -10,8 +10,8 @@
 import csv
 import re
 
-from ...classes.board import Board
-from ...classes.vehicle import Vehicle
+from ..classes.board import Board
+from ..classes.vehicle import Vehicle
 
 
 def load_problem(filename):
@@ -32,9 +32,13 @@ def load_problem(filename):
             vehicle_col = int(row[2])
             vehicle_row = int(row[3])
             vehicle_length = int(row[4])
-            new_vehicle = Vehicle(vehicle_name, orientation, vehicle_row, vehicle_col, vehicle_length)
+
+            # Use the vehicle class to add a new vehicle
+            new_vehicle = Vehicle(vehicle_name, orientation, vehicle_row,
+                                  vehicle_col, vehicle_length)
             vehicles[vehicle_name] = new_vehicle
 
+    # Use the board class to make the board
     board = Board(vehicles, board_size)
 
     return board

@@ -9,12 +9,10 @@
 
 import csv
 
-
 def summary(filename, algorithm, amount_of_moves, states, time):
     """Generates a log csv file with the algorithms done"""
 
     with open('output/log.csv', 'a', newline='') as csvfile:
-        a = csv.writer(csvfile, delimiter=',')
+        newline = csv.writer(csvfile, delimiter=',')
         row = [filename, algorithm, amount_of_moves, states, time]
-        a.writerow(row)
-    return a
+        newline.writerow(row)
