@@ -75,6 +75,6 @@ def visualize(board, state):
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
 
     # saves visualization
-    plt.savefig(f'code/visualization/{state}board.png', dpi=400)
+    plt.savefig(f'output/{state}board.png', dpi=400)
 
     return True
