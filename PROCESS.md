@@ -108,6 +108,13 @@ Improved heuristics code for priority and beam.
 ### Bob
 Added a Heuristic which calculates the minimum moves required and uses that for our beam search/ priority queue and IDDFS
 
-## 21 january 2021
+## 22 january 2021
 ### Bob
 We had the practice presentation today and after that I fixed some things about the heuristic I added yesterday, because it wasn't correct yet.
+
+### Kika 
+We did the last preparations for the practice presentation and we listened and presented during the practice presentations. 
+
+## 25 january 2021 
+### Kika
+We worked on Algorithm 2, we discussed our next stepps, we divided our To Do list and worked on that.
