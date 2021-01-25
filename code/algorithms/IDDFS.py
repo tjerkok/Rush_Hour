@@ -4,7 +4,8 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# TODO.
+# A Depth First Search algorithm and an Iterative Deepening Depth
+# First Search algorithm.
 ###############################################################
 
 # anytree: https://pypi.org/project/anytree/
@@ -23,7 +24,6 @@ class DFS(BFS):
     def get_next_state(self):
         return self.states.pop()
 
-    # erg sloom (!!!)
     def add_to_archive(self, board):
         """Function that adds the checked states to the archive."""
         board_array = board.load_board()
@@ -38,27 +38,6 @@ class DFS(BFS):
         else:
             self.boards_visited[hashed_board] = len(board.moves)
             self.states.append(board)
-
-    # def add_to_archive(self, board):
-    #     """Function that adds the checked states to the archive."""
-    #     depth = len(board.moves)
-    #     board_array = board.load_board()
-    #     board_array.flags.writeable = False
-    #     hashed_board = hash(board_array.tostring())
-    #     if depth == self.max_depth:
-    #         if hashed_board not in self.boards_visited:
-    #             self.boards_visited.add(hashed_board)
-    #             self.states.append(board)
-    #     else:
-    #         self.states.append(board)
-    #         self.state_space += 1
-
-
-    #     # for i in range(depth - 1, 0, -1):
-    #     #     if hashed_board in self.boards_visited[i]:
-    #     #         print("already in archive")
-    #     #         return False
-
 
     def run(self):
         """Runs the algorithm until all possible states are checked."""
@@ -96,7 +75,10 @@ class IDDFS:
         self.state_space = 0
 
     def run(self):
-        for depth in range(1, self.max_depth + 1):
+        minimum = self.board.MinMovesHeuristic()
+        print(f"minimum moves required: {minimum}")
+ 
+        for depth in range(minimum, self.max_depth + 1):
             print(f"depth: {depth}")
             depth_first = DFS(self.board, depth)
             winning_board, states = depth_first.run()
