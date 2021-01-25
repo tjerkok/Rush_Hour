@@ -304,3 +304,6 @@ gameboards/Rushhour6x6_3.csv,BFS_priority H3,33,8204,41.5094
 gameboards/Rushhour6x6_3.csv,BFS_priority H1,33,8073,44.5976
 gameboards/Rushhour6x6_3.csv,BFS_priority H2,33,8312,41.47
 gameboards/Rushhour6x6_3.csv,BFS_priority H3,33,8204,41.6324
+gameboards/Rushhour6x6_1.csv,IDDFS,21,3220,102.5414
+gameboards/Rushhour6x6_2.csv,IDDFS,15,4571,131.9787
+gameboards/Rushhour6x6_3.csv,IDDFS,33,89653,6425.8032

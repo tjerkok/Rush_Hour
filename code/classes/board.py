@@ -295,10 +295,10 @@ class Board(object):
 
         return value
 
-    def reversed_pos_moves(self):
-        """Function that return the possible_moves dict with the moves reversed""" 
-        reversed_possible_moves = list(self.possible_moves.values()).reverse()
-        return reversed_possible_moves
+    # def reversed_pos_moves(self):
+    #     """Function that return the possible_moves dict with the moves reversed""" 
+    #     reversed_possible_moves = list(self.possible_moves.values()).reverse()
+    #     return reversed_possible_moves
 
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
