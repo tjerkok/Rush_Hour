@@ -10,11 +10,37 @@
 from .beam import Beam
 from .priority import Priority
 import copy
-import time
-from sys import getsizeof
 
 class BFS:
+    """
+    A class that uses the Breadth First Search Algorithm. 
+
+    Attributes:
+    board: np array with vehicles.
+    boardsize: int with boardwidth.
+    vehicle_length: int with vehicle length.
+    states: list with all possible states.
+    boards_visited: set with all hashed visited boards.
+    winning_board: np array with vehicles orientated in winning position.
+    state_space: int that counts the amount of states checked.
+    beam: bool for beam search.
+    priority: bool for priority queue search.
+    heuristic: str with the input heuristic.
+    lookahead: bool for lookahead.
+    move: int that counts the amount of moves within a depth.
+    apply_priority: int from which depth priority is applied.
+
+    Methods:
+    get_next_state: picks the first item from the list with states. 
+    build_children: creates all possible child-states from the current state
+    and adds them to the archive.
+    add_to_archive: checks if a state is already checked for win. 
+    combine_algorithm: applies priority, with or without beam search to BFS.
+    run: runs the algorithm until all states are checked. 
+    """
+
     def __init__(self, board, beam=False, priority=False, heuristic='H1', lookahead=True):
+        """Loads all information neccessary for the BFS.""" 
         self.board = copy.deepcopy(board)
         self.boardsize = board.boardsize
         self.vehicle_length = len(board.vehicles)
@@ -27,7 +53,7 @@ class BFS:
         self.heuristic = heuristic
         self.lookahead = lookahead
         self.move = 0
-        self.apply_priority = 12 #round(2.33 * self.boardsize)
+        self.apply_priority = 0 #round(2.33 * self.boardsize)
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
@@ -45,6 +71,7 @@ class BFS:
                 if child.win() and self.lookahead:
                     self.winning_board = child
                     return True
+
                 self.add_to_archive(child)
 
         return False
@@ -52,48 +79,46 @@ class BFS:
     def add_to_archive(self, board):
         """Function that adds the checked states to the archive."""
         board_array = board.load_board()
+
+        # makes np array immutable and hashes it 
         board_array.flags.writeable = False
         hashed_board = hash(board_array.tostring())
+
+        # checks if hashed board is already checked for win
         if hashed_board not in self.boards_visited:
             self.boards_visited.add(hashed_board)
             self.states.append(board)
             self.state_space += 1
 
-        """ Dictionary ## langzamer doordat die meer staten doorgaat? of omdat die langzamer door de staten gaat. 
-        if hashed_board in self.boards_visited:
-            if self.boards_visited[hashed_board] > len(board.moves):
-                self.boards_visited[hashed_board] = len(board.moves)
-                self.states.append(board)
-        else:
-            self.boards_visited[hashed_board] = len(board.moves)
-            self.states.append(board)
-        """
-
     def combine_algorithm(self):
-        """Combines the Beam search or the Priority search with the BFS."""
-        if self.beam: 
-            beamed_list = Priority(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic, beam=True)
-            self.states = beamed_list
-        if self.priority:
-            priority_list = Priority(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic, beam=False)
-            self.states = priority_list
+        """applies priority, with or without beam search to BFS."""
+        self.states = Priority(
+                        self.states, 
+                        len(self.states), 
+                        self.boardsize, 
+                        self.vehicle_length, 
+                        self.heuristic, 
+                        self.beam)
 
     def run(self):
         """Runs the algorithm untill all possible states are checked."""
         while self.states:
 
             new_board = self.get_next_state()
-            if self.move < len(new_board.moves):
-                if self.beam or (self.priority and self.move > self.apply_priority):
-                    self.combine_algorithm()
+
+            # checks for moves left, beam and priority
+            if self.move < len(new_board.moves) and self.beam or (
+                self.priority and self.move > self.apply_priority):
+                self.combine_algorithm()
                 self.move = len(new_board.moves)
 
+            # check for win 
             if new_board.win():
                 self.winning_board = new_board 
                 return self.winning_board, self.state_space
-            else:
-                if self.build_children(new_board): # lijst vullen met kids, build_children() returnt True if child.win() dankzij lookahead
-                    return self.winning_board, self.state_space
+            # build children
+            elif self.build_children(new_board): 
+                return self.winning_board, self.state_space
 
-        # if queue empty but not won, return None board
+        # if list with states empty but not won, return None board
         return None, self.state_space
