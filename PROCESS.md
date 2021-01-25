@@ -73,6 +73,9 @@ We worked on the deadline 'First Algorithm', I focused on writing the text.
 ### Bob
 Also worked on the first algorithm pdf.
 
+### Tjerko
+Even I was working on the First Algorithm pdf.
+
 ## 19 january 2021
 ### Tjerko
 Set algorithms in classes
@@ -91,6 +94,7 @@ Worked together on our algorithms.
     * IDDFS (testboard6x6):
         * Archiving with dictionary, key = hash, value = depth. states: 3531. moves: 8.
         * Archiving with original set (losing most efficient solution, might not even find one). states: 741. moves: 10.
+Concluded the best way for the IDDFS to archive was a dictionary. Even while it was slow, it does give a solution for the problem, whereas an archive set didn't depend on the depth of the found state, which is way less efficient.
 
 ### Kika
 We fixed the Iterative deepening depth search, we discussed our next steps and we had a meeting with Kiara and Quinten. 
@@ -108,6 +112,16 @@ Improved heuristics code for priority and beam.
 ### Bob
 Added a Heuristic which calculates the minimum moves required and uses that for our beam search/ priority queue and IDDFS
 
-## 21 january 2021
+### Tjerko
+Worked on the practice presentation and getting the results for the presentation.
+
+## 22 january 2021
 ### Bob
 We had the practice presentation today and after that I fixed some things about the heuristic I added yesterday, because it wasn't correct yet.
+
+### Tjerko
+Did the practice presentation.
+
+## 25 january 2022
+## Tjerko
+Worked on the Second Algorithm pdf and started cleaning up the repository (adding comments, fixing duplicate code etc).
