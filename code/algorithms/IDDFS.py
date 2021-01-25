@@ -8,20 +8,24 @@
 # First Search algorithm.
 ###############################################################
 
-# anytree: https://pypi.org/project/anytree/
-import copy
-import time
 from .BFS import BFS
 
 
 class DFS(BFS):
+    """Class to use the Depth First Search on a Board object."""
     def __init__(self, board, max_depth=10000):
+        """ Depth First Search is based on the Breadth First Search
+            class, so it takes the same attributes, but turned
+            lookahead off. The archive boards_visited is a dictionary
+            to keep track of the depth of the visited board. """
         BFS.__init__(self, board, lookahead=False)
         self.max_depth = max_depth
         self.boards_visited = {}
         self.state_space = 0
 
     def get_next_state(self):
+        """Returns the last element from the list. This way it functions
+        as a stack instead of a queue (BFS)."""
         return self.states.pop()
 
     def add_to_archive(self, board):
@@ -30,7 +34,9 @@ class DFS(BFS):
         board_array.flags.writeable = False
         hashed_board = hash(board_array.tostring())
 
+        # check if the hashed board is already known
         if hashed_board in self.boards_visited:
+            # checks if board is found after less moves, add to stack
             if self.boards_visited[hashed_board] > len(board.moves):
                 self.boards_visited[hashed_board] = len(board.moves)
                 self.states.append(board)
@@ -40,33 +46,25 @@ class DFS(BFS):
             self.states.append(board)
 
     def run(self):
-        """Runs the algorithm until all possible states are checked."""
-
+        """Runs the algorithm until the stack is empty or when a
+        winning board is found."""
         while self.states:
             new_board = self.get_next_state()
             if new_board.win():
                 self.winning_board = new_board
                 return self.winning_board, self.state_space
-            else:
-                if True:
-                    print(f"moves done in this state: {new_board.moves}")
-                    print("possible moves")
-                    print(new_board.load_board())
-                    print("pos moves")
-                    print(new_board.pos_moves())
-
-                if len(new_board.moves) < self.max_depth:
-                    if self.build_children(new_board): # lijst vullen met kids, return True bij child.win()
-                        return self.winning_board, self.state_space
-
-                if False:
-                    print(len(self.states))
-                    print([f"{a.moves[0:2]}" for a in self.states])
+            # don't make children when max depth is reached
+            elif len(new_board.moves) < self.max_depth:
+                # build.children returns True when lookahead finds win
+                if self.build_children(new_board): 
+                    return self.winning_board, self.state_space
 
         return None, self.state_space
 
 
 class IDDFS:
+    """Class to use the Iterative Deepening Depth First Search on a 
+    Board object with a maxdepth."""
     def __init__(self, board, max_depth):
         self.max_depth = max_depth
         self.board = board
@@ -75,15 +73,21 @@ class IDDFS:
         self.state_space = 0
 
     def run(self):
+        """Runs the algorithm. For every depth until the max depth a
+        DFS object is made and runs."""
+        # derives the mninimum amount of moves
         minimum = self.board.MinMovesHeuristic()
         print(f"minimum moves required: {minimum}")
- 
+
+        # starts at the minimum amount of moves (depth) until max depth
         for depth in range(minimum, self.max_depth + 1):
             print(f"depth: {depth}")
             depth_first = DFS(self.board, depth)
-            winning_board, states = depth_first.run()
+            self.winning_board, states = depth_first.run()
+            # saves the states from one DFS to the total amount of states
             self.state_space += states
-            if winning_board is not None:
-                return winning_board, self.state_space
-
-        return winning_board, self.state_space
+            # if True, a winning board is found
+            if self.winning_board is not None:
+                return self.winning_board, self.state_space
+        # if winning board is still None, no solution has been found
+        return self.winning_board, self.state_space
