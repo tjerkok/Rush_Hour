@@ -74,7 +74,9 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
     
     # Minimum number of required moves heuristic
     elif heuristic == 'H9':
-        items = [[board, board.MinMovesHeuristic()] for board in items]
+        items = [
+            [board, board.MinMovesHeuristic()] for board in items
+            ]
     
     # sort states per depth 
     if heuristic == 'H1': 
