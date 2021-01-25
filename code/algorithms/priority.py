@@ -47,6 +47,10 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
     # number of blocked blocking vehicles
     elif heuristic == 'H8':
         items = [[board, len(board.blocked_blocking_vehicles())] for board in items]
+    
+    # Minimum number of required moves heuristic
+    elif heuristic == 'H9':
+        items = [[board, board.MinMovesHeuristic()] for board in items]
 
     # first trying the biggest possible move for every vehicle 
     #elif heuristic == 'H9': 
