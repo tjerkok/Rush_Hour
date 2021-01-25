@@ -71,9 +71,6 @@ class BFS:
 
     def combine_algorithm(self):
         """Combines the Beam search or the Priority search with the BFS."""
-        # if self.beam:
-        #     beamed_list = Beam(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic)
-        #     self.states = beamed_list
         if self.beam: 
             beamed_list = Priority(self.states, len(self.states), self.boardsize, self.vehicle_length, self.heuristic, beam=True)
             self.states = beamed_list
