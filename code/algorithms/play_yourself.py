@@ -30,7 +30,7 @@ def play(board):
 
     if board.win():
         print('game won')
-        winning_board = board.load_board()
+        winning_board = board
 
     elif counter == max_moves:
         print('maximum moves reached')

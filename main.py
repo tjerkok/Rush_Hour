@@ -7,7 +7,7 @@
 # Plays the Rush Hour game, using different algorithms.
 # Algorithms to choose: Random, BFS, BFS_beam, BFS_priority and IDDFS
 # If no algorithm chosen then you can play the game yourself.
-# Heuristics to choose: H1 t/m H9. If none is chosen, H1 will be 
+# Heuristics to choose: H1 t/m H9. If none is chosen, H1 will be
 # selected.
 #########################################################
 
@@ -22,12 +22,14 @@ import time
 
 def No_solution():
     """Returns error when no solution has been found."""
+
     print("The winning board was not found. Try increasing the max depth"
           " when using the IDDFS algorithm.")
     exit()
 
 def Wrong_usage():
     """Returns error when the usage is wrong."""
+
     print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]"
     " ([sample size]) ([heuristic]) ([max_depth])")
     print('Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n'
@@ -115,7 +117,7 @@ if __name__ == '__main__':
             breadth_first = BFS.BFS(board, False, True, heuristic)
             winning_board, states = breadth_first.run()
             algorithm = f"{algorithm} {heuristic}"
-        elif algorithm == "BFS_step":
+        elif algorithm == 'BFS_step':
             step = biggest_step.Step(board)
             winning_board, states = step.run()
         else:
@@ -130,7 +132,7 @@ if __name__ == '__main__':
 
     # ------------- Iterative Deepening Depth First Search --------------
 
-    # Runs the Iterative Deepening Depth First Search 
+    # Runs the Iterative Deepening Depth First Search
     elif algorithm == 'IDDFS':
         i_depth_first = IDDFS.IDDFS(board, max_depth)
         winning_board, states = i_depth_first.run()
@@ -148,23 +150,25 @@ if __name__ == '__main__':
         No_solution()
 
     # save time and moves values to print
-    if algorithm != "Random":
+    if algorithm != 'Random':
         time1 = time.time() - time0
         amount_of_moves = len(winning_board.moves)
 
     # result in code/visualization/endboard.png
-    if not visualize(winning_board.load_board(), 'end'):   
+    if not visualize(winning_board.load_board(), 'end'):
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
-        
+
     # prints results
     print("start board:")
     print(board.load_board())
     print("end board")
     print(winning_board.load_board())
-    if algorithm == "Random":
-        states = sum(amount_of_moves)
+    if algorithm == 'Random':
+        states = sum(amount_of_moves) + 1
         time1 = sum(time1)
+    elif algorithm == 'None':
+        states = amount_of_moves + 1
     else:
         print(f"amount of moves: {amount_of_moves}")
     print(f"time elapsed: {time1}")
@@ -174,4 +178,3 @@ if __name__ == '__main__':
     # saves run to the log and generates output
     summary(filename, algorithm, len(winning_board.moves), states, round(time1, 4))
     output = output(winning_board.moves)
-
