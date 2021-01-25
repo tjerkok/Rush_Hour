@@ -16,7 +16,7 @@ from .BFS import BFS
 
 class DFS(BFS):
     def __init__(self, board, max_depth=10000):
-        BFS.__init__(self, board)
+        BFS.__init__(self, board, lookahead=False)
         self.max_depth = max_depth
         self.boards_visited = {}
         self.state_space = 0
