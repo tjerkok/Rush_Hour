@@ -28,7 +28,10 @@ def No_solution():
 
 def Wrong_usage():
     """Returns error when the usage is wrong."""
-    print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm] ([sample size]) ([heuristic]) ([max_depth])')
+    print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]"
+    " ([sample size]) ([heuristic]) ([max_depth])")
+    print('Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n'
+    '-IDDFS\nHeuristics: H1 t/m H9\nRandom:\n-sample size\nIDDFS:\n-max_depth (required)')
     exit(1)
 
 
@@ -137,9 +140,7 @@ if __name__ == '__main__':
     # If the algorithm input didn't match any of the known algorithms
     else:
         print("Algorithm doesn't exist")
-        print('Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]'
-              ' ([sample size]) ([heuristic]) ([max_depth])')
-        exit()
+        Wrong_usage()
 
     # ----------------------------- Output ------------------------------
     # No solution has been found
