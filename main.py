@@ -76,7 +76,7 @@ if __name__ == '__main__':
     if algorithm == 'Random':
         # runs the random algorithm with given sample size
         winning_board, amount_of_moves, time1 = randomise.random_moves_algorithm(
-            filename, sample_size)
+            board, sample_size, filename)
 
         # calculates averages of results
         if sample_size > 1:

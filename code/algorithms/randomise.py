@@ -10,10 +10,11 @@
 import random
 import time
 import csv
-from ..input.output.load_in import load_problem
+import copy
+from ..output.load_in import load_problem
 
 
-def random_moves_algorithm(filename, sample_size):
+def random_moves_algorithm(board, sample_size, filename):
     """Function that plays the Rush Hour game with a randomise algorithm."""
 
     amount_of_moves = []
@@ -21,7 +22,7 @@ def random_moves_algorithm(filename, sample_size):
     min_moves = 1000000
 
     for i in range(sample_size):
-        board = load_problem(filename)
+        board = copy.deepcopy(board)
         time0 = time.time()
         board.load_board()
 
