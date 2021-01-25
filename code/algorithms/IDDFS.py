@@ -19,6 +19,7 @@ class DFS(BFS):
         BFS.__init__(self, board)
         self.max_depth = max_depth
         self.boards_visited = {}
+        self.state_space = 0
 
     def get_next_state(self):
         return self.states.pop()
@@ -47,15 +48,16 @@ class DFS(BFS):
                 self.winning_board = new_board
                 return self.winning_board, self.state_space
             else:
-                if False:
+                if True:
                     print(f"moves done in this state: {new_board.moves}")
                     print("possible moves")
                     print(new_board.load_board())
+                    print("pos moves")
                     print(new_board.pos_moves())
 
                 if len(new_board.moves) < self.max_depth:
-                    self.build_children(new_board) # lijst vullen met kids
-
+                    if self.build_children(new_board): # lijst vullen met kids, return True bij child.win()
+                        return self.winning_board, self.state_space
 
                 if False:
                     print(len(self.states))
@@ -70,6 +72,7 @@ class IDDFS:
         self.board = board
         self.winning_board = None
         self.boards_visited = set()
+        self.state_space = 0
 
     def run(self):
         minimum = self.board.MinMovesHeuristic()
@@ -79,8 +82,8 @@ class IDDFS:
             print(f"depth: {depth}")
             depth_first = DFS(self.board, depth)
             winning_board, states = depth_first.run()
- 
+            self.state_space += states
             if winning_board is not None:
-                return winning_board, states
+                return winning_board, self.state_space
 
-        return winning_board, states
+        return winning_board, self.state_space
