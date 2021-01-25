@@ -49,7 +49,8 @@ def random_moves_algorithm(filename, sample_size):
 
         time1.append(time.time() - time0)
         amount_of_moves.append(len(winning_board.moves))
-        print(f"boards won: {i + 1}")
+        if sample_size > 1:
+            print(f"boards won: {i + 1}")
 
     with open('output/baseline.csv', 'a', newline='') as csvfile:
         a = csv.writer(csvfile, delimiter=',')
