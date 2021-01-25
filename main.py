@@ -31,7 +31,7 @@ if __name__ == '__main__':
         filename = argv[1]
         algorithm = argv[2]
         sample_size = int(argv[3])
-    elif len(argv) == 4 and (argv[2] == 'BFS_beam' or argv[2] == "BFS_priority"):
+    elif len(argv) == 4 and (argv[2] == 'BFS_beam' or argv[2] == 'BFS_priority' or argv[2] == 'IDDFS'):
         filename = argv[1]
         algorithm = argv[2]
         heuristic = argv[3]
@@ -94,19 +94,6 @@ if __name__ == '__main__':
         winning_board, states = breadth_first.run()
         algorithm = f"{algorithm} {heuristic}"
 
-    # elif algorithm == 'BFS':
-    #     winning_board, states = BFS_copy.BFS(board, False, False)
-
-    # elif algorithm == 'BFS_beam':
-    #     winning_board, states = BFS_copy.BFS(board, True, False, heuristic)
-
-    # elif algorithm == 'BFS_priority':
-    #     winning_board, states = BFS_copy.BFS(board, False, True)
-
-    # elif algorithm == 'BFS_beam_priority':
-    #     winning_board, states = BFS_copy.BFS(board, True, True)
-
-
     # --------------------- Depth First Search -------------------------
 
     elif algorithm == 'DFS':
@@ -116,7 +103,7 @@ if __name__ == '__main__':
     # ------------- Iterative Deepening Depth First Search --------------
 
     elif algorithm == 'IDDFS':
-        i_depth_first = IDDFS.IDDFS(board, 13)
+        i_depth_first = IDDFS.IDDFS(board, 100, heuristic)
         winning_board, states = i_depth_first.run()
 
     # --------------- Biggest step first search with BFS ----------------
