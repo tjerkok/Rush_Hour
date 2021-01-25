@@ -12,10 +12,10 @@
 #########################################################
 
 from code.algorithms import randomise, play_yourself, BFS, IDDFS, biggest_step
-from code.input.visualization import visualize
-from code.input.load_in import load_problem
-from code.input.generate_output import output
-from code.input.summary import summary
+from code.output.visualization import visualize
+from code.output.load_in import load_problem
+from code.output.generate_output import output
+from code.output.summary import summary
 from sys import argv
 import time
 
