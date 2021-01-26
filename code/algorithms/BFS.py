@@ -7,13 +7,12 @@
 # Class with Breadth First Search algorithm for Rush Hour game.
 #####################################################################
 
-from .beam import Beam
 from .priority import Priority
 import copy
 
 class BFS:
     """
-    A class that uses the Breadth First Search Algorithm. 
+    A class that uses the Breadth First Search Algorithm.
 
     Attributes:
     board: np array with vehicles.
@@ -31,16 +30,16 @@ class BFS:
     apply_priority: int from which depth priority is applied.
 
     Methods:
-    get_next_state: picks the first item from the list with states. 
+    get_next_state: picks the first item from the list with states.
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
-    add_to_archive: checks if a state is already checked for win. 
+    add_to_archive: checks if a state is already checked for win.
     combine_algorithm: applies priority, with or without beam search to BFS.
-    run: runs the algorithm until all states are checked. 
+    run: runs the algorithm until all states are checked.
     """
 
     def __init__(self, board, beam=False, priority=False, heuristic='H1', lookahead=True):
-        """Loads all information neccessary for the BFS.""" 
+        """Loads all information neccessary for the BFS."""
         self.board = copy.deepcopy(board)
         self.boardsize = board.boardsize
         self.vehicle_length = len(board.vehicles)
@@ -53,7 +52,7 @@ class BFS:
         self.heuristic = heuristic
         self.lookahead = lookahead
         self.move = 0
-        self.apply_priority = 0 #round(2.33 * self.boardsize)
+        self.apply_priority = 0
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
@@ -80,7 +79,7 @@ class BFS:
         """Function that adds the checked states to the archive."""
         board_array = board.load_board()
 
-        # makes np array immutable and hashes it 
+        # makes np array immutable and hashes it
         board_array.flags.writeable = False
         hashed_board = hash(board_array.tostring())
 
@@ -93,11 +92,11 @@ class BFS:
     def combine_algorithm(self):
         """applies priority, with or without beam search to BFS."""
         self.states = Priority(
-                        self.states, 
-                        len(self.states), 
-                        self.boardsize, 
-                        self.vehicle_length, 
-                        self.heuristic, 
+                        self.states,
+                        len(self.states),
+                        self.boardsize,
+                        self.vehicle_length,
+                        self.heuristic,
                         self.beam)
 
     def run(self):
@@ -112,12 +111,13 @@ class BFS:
                 self.combine_algorithm()
                 self.move = len(new_board.moves)
 
-            # check for win 
+            # check for win
             if new_board.win():
-                self.winning_board = new_board 
+                self.winning_board = new_board
                 return self.winning_board, self.state_space
+
             # build children
-            elif self.build_children(new_board): 
+            elif self.build_children(new_board):
                 return self.winning_board, self.state_space
 
         # if list with states empty but not won, return None board
