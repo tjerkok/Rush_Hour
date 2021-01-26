@@ -35,22 +35,22 @@ def Priority(items, board_size, heuristic, beam):
     elif heuristic == 'H4':
         items = [
             [board, len(board.blocking_vehicles()) +
-            board.goal_distance()] for board in items
+             board.goal_distance()] for board in items
             ]
 
     # H2 + H3 + H8
     elif heuristic == 'H5':
         items = [
             [board, len(board.blocking_vehicles()) +
-            board.goal_distance() +
-            len(board.blocked_blocking_vehicles())] for board in items
+             board.goal_distance() +
+             len(board.blocked_blocking_vehicles())] for board in items
             ]
 
     # H2 + H8
     elif heuristic == 'H6':
         items = [
             [board, len(board.blocked_blocking_vehicles()) +
-            len(board.blocking_vehicles())] for board in items
+             len(board.blocking_vehicles())] for board in items
             ]
 
     # most possible moves per state
@@ -77,6 +77,7 @@ def Priority(items, board_size, heuristic, beam):
         items = [
             [board, board.MinMovesHeuristic()] for board in items
             ]
+        print(items[1])
 
     # sort states per depth
     if heuristic == 'H1':

@@ -62,13 +62,17 @@ def visualize(board, state):
     for i in range(np.size(board, 0)):
         for j in range(np.size(board, 1)):
             if board[i, j] == 'X' or board[i, j] == 'X ':
-                ax.text(j, i, board[i, j], ha='center', va='center', color='blue')
+                ax.text(j, i, board[i, j], ha='center',
+                        va='center', color='blue')
             elif image[i, j] <= np.amax(image)/2:
-                ax.text(j, i, board[i, j], ha='center', va='center', color='black')
+                ax.text(j, i, board[i, j], ha='center',
+                        va='center', color='black')
             elif image[i, j] > np.amax(image)/2:
-                ax.text(j, i, board[i, j], ha='center', va='center', color='white')
+                ax.text(j, i, board[i, j], ha='center',
+                        va='center', color='white')
             else:
-                ax.text(j, i, board[i, j], ha='center', va='center', color='black')
+                ax.text(j, i, board[i, j], ha='center',
+                        va='center', color='black')
 
     ax.grid(which='minor', color='black', linestyle='-', linewidth=2)
 

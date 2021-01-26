@@ -26,17 +26,18 @@ def No_solution():
           " when using the IDDFS algorithm.")
     exit()
 
+
 def Wrong_usage():
     """Returns error when the usage is wrong."""
     print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]"
-    " ([sample size]) ([heuristic]) ([max_depth])")
-    print('Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n'
-    '-IDDFS\nHeuristics: H1 t/m H9\nRandom:\n-sample size\nIDDFS:\n-max_depth (required)')
+          " ([sample size]) ([heuristic]) ([max_depth])")
+    print("Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n"
+          "-IDDFS\nHeuristics: H1 t/m H9\nRandom:\n-sample size\nIDDFS:\n-max_depth (required)")
     exit(1)
 
 
 if __name__ == '__main__':
-    
+
     # ------------------------------ Input ------------------------------
     # handles the various combinations of input
     if 1 <= len(argv) <= 4:
@@ -53,6 +54,8 @@ if __name__ == '__main__':
 
             elif len(argv) == 4:
                 if algorithm == 'IDDFS':
+                    if not argv[3].isnumeric():
+                        Wrong_usage()
                     max_depth = int(argv[3])
                 else:
                     heuristic = argv[3]
@@ -66,8 +69,8 @@ if __name__ == '__main__':
     # loads the csv file and creates the vehicles and board
     board = load_problem(filename)
 
-    # visualizes the starting board, if failed the error is displayed
-    if not visualize(board.load_board(), 'start'):   # result in code/visualization/startboard.png
+    # visualizes starting board in output file, if failed an error is displayed
+    if not visualize(board.load_board(), 'start'):
         print("Could not visualize board as board is not of type numpy.ndarry")
         exit()
 
@@ -130,20 +133,20 @@ if __name__ == '__main__':
 
     # ------------- Iterative Deepening Depth First Search --------------
 
-    # Runs the Iterative Deepening Depth First Search
+    # runs the Iterative Deepening Depth First Search
     elif algorithm == 'IDDFS':
         i_depth_first = IDDFS.IDDFS(board, max_depth)
         winning_board, states = i_depth_first.run()
 
     # ------------------------------- Wrong input -----------------------
 
-    # If the algorithm input didn't match any of the known algorithms
+    # if the algorithm input didn't match any of the known algorithms
     else:
         print("Algorithm doesn't exist")
         Wrong_usage()
 
     # ----------------------------- Output ------------------------------
-    # No solution has been found
+    # no solution has been found
     if winning_board is None:
         No_solution()
 

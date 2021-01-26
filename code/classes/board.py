@@ -5,9 +5,11 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Creates the board, moves vehicles and checks for win.
+# Also contains all the heuristic functions.
 #########################################################
 
 import numpy as np
+
 
 class Board(object):
     """

@@ -18,11 +18,11 @@ def play(board):
 
         board.pos_moves()
 
-        # User input for move
+        # user input for move
         vehicle_name = input("letter of the vehicle you want to move: ")
         shift = input("places to move that vehicle, use minus for left/up: ")
 
-        # Vehicle moves if possible
+        # vehicle moves if possible
         if board.move(vehicle_name.upper(), int(shift)):
             print(board.load_board())
             counter += 1
