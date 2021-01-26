@@ -127,7 +127,7 @@ Did the practice presentation.
 
 ## 25 january 2021 
 ### Kika
-We worked on Algorithm 2, we discussed our next stepps, we divided our To Do list and worked on that.
+We worked on Algorithm 2, we discussed our next stepps, we divided our To Do list and worked on that. For me that was improving the code for BFS, Priority, output, randomise, Readme.
 
 ## Tjerko
 Worked on the Second Algorithm pdf and started cleaning up the repository (adding comments, fixing duplicate code etc).
@@ -137,7 +137,7 @@ Worked on the second algorithm pdf as well and tried to fix the duplicate code i
 
 ## 26 january 2021 
 ### Kika
-
+We had a meeting met Kiara en Quinten. After that I updated the README, the the design doc and the BFS. 
 
 ## Tjerko
 
