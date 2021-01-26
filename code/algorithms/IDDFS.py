@@ -12,7 +12,22 @@ from .BFS import BFS
 
 
 class DFS(BFS):
-    """Class to use the Depth First Search on a Board object."""
+    """
+    Class to use the Depth First Search on a Board object.
+
+    Attributes:
+    BFS attributes.
+    max_depth: int with the maximum depth to look for a solution.
+    boards_visited: dictionary which keys are the depth of the hashed board.
+    state_space: int to keep track of amount of spaces visited.
+
+    Methods:
+    get_next_state: picks the last item from the list with states.
+    add_to_archive: checks if state is already visited and for which depth.
+        If the depth is lower than the previous found, it will be overwritten.
+    run: runs the algorithm until all states are checked or a state is won.
+    """
+
     def __init__(self, board, max_depth=10000):
         """ Depth First Search is based on the Breadth First Search
             class, so it takes the same attributes, but turned
@@ -56,20 +71,32 @@ class DFS(BFS):
             # don't make children when max depth is reached
             elif len(new_board.moves) < self.max_depth:
                 # build.children returns True when lookahead finds win
-                if self.build_children(new_board): 
+                if self.build_children(new_board):
                     return self.winning_board, self.state_space
 
         return None, self.state_space
 
 
 class IDDFS:
-    """Class to use the Iterative Deepening Depth First Search on a 
-    Board object with a maxdepth."""
+    """
+    Class to use the Iterative Deepening Depth First Search on a
+    Board object with a maxdepth.
+
+    Attributes:
+    max_depth: int with the maximum depth the DFS has to be iterated to.
+    board: Board object with the starting board.
+    winning_board: Board object with the end board.
+    state_space: int with the states from every DFS summed, which gives the
+        total amount of states visited.
+
+    Methods:
+    run: runs the alogrithm until the DFS has been done on every depth or if
+        a winning board has been found.
+    """
     def __init__(self, board, max_depth):
         self.max_depth = max_depth
         self.board = board
         self.winning_board = None
-        self.boards_visited = set()
         self.state_space = 0
 
     def run(self):

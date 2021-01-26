@@ -22,14 +22,12 @@ import time
 
 def No_solution():
     """Returns error when no solution has been found."""
-
     print("The winning board was not found. Try increasing the max depth"
           " when using the IDDFS algorithm.")
     exit()
 
 def Wrong_usage():
     """Returns error when the usage is wrong."""
-
     print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]"
     " ([sample size]) ([heuristic]) ([max_depth])")
     print('Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n'
@@ -38,7 +36,7 @@ def Wrong_usage():
 
 
 if __name__ == '__main__':
-
+    
     # ------------------------------ Input ------------------------------
     # handles the various combinations of input
     if 1 <= len(argv) <= 4:

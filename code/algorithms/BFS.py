@@ -52,7 +52,6 @@ class BFS:
         self.heuristic = heuristic
         self.lookahead = lookahead
         self.move = 0
-        self.apply_priority = 0
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
