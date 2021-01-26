@@ -9,10 +9,14 @@
     * to obtain a certain result via a certain file
 
 ## Rush Hour case explanation
-Rush Hour seems to be an easy puzzle, altough it has a surprising challenging character. In a square field with varying dimensions is a black car named 'X', your car. This car must go to the exit, which is placed right in front of the car. However, other vehicles, cars of two units and trucs of three units, that may only be moved in their direction of travel, block the way to the exit. The vehicles are not aloud to turn around. The assignment is simple: clear the way to the exit by moving other vehicles and move your black car to the exit. 
+Rush Hour seems to be an easy puzzle, altough it has a surprising challenging character. In a square field with varying dimensions is a black car named 'X', your car. This car must go to the exit, which is placed right in front of the car. However, other vehicles, cars of two units and trucs of three units, that may only be moved in their direction of travel, block the way to the exit. The vehicles are not aloud to turn around. The assignment is simple: clear the way to the exit by moving other vehicles and move your black car to the exit.
+
+## Description of approach to the algorithms
+
 
 ## Requirements
-Dependencies in 'requirements.txt'.
+Deze codebase is volledig geschreven in Python 3.8.5 t/m 3.9.1. 
+Onderstaande packages om deze code te draaien staan in requirements.txt en zijn te installeren met behulp van pip: "pip install -r requirements.txt"
 * numpy==1.19.4
 * matplotlib==3.3.3
 
@@ -53,11 +57,13 @@ Heuristics:
     * /algorithms: multiple algorithms to play the game.
     * /classes: two classes for this game: Board and Vehicle.
     * /visualization: code for matplot visualization of the gameboard. 
-    * /input/output: two functions for loading input and generating output. 
+    * /input_output: functions for loading input and generating output, log and visualisation. 
 * /gameboards: csv input with multiple gameboards. 
-* /output: csf output with the moves per vehicle to come to a win.
+* /output: contains log.csv, output.csv and visualisation of the startboard and endboard. 
 * /docs: contains the design document. 
 * /statespace: contains calculations of the state space assignment. 
+* main.py: plays the rush hour game and deals with input. 
+* PROCESS.md: Contains our working logbook. 
 
 ## Authors
 * Tjerko Kieft
