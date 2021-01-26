@@ -55,20 +55,16 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
 
     # most possible moves per state 
     elif heuristic == 'H7': 
-        items = [
-            [board, sum(moves)] for board in items for moves in 
-            board.pos_moves().values()
-            ]
-        # items_tuple = []
-        # for item in items:
-        #     total_moves = sum(
-        #         len(moves) for moves in item.pos_moves().values()
-        #         )
-        #     items_tuple.append([item, total_moves])
+        items_tuple = []
+        for item in items:
+            total_moves = sum(
+                len(moves) for moves in item.pos_moves().values()
+                )
+            items_tuple.append([item, total_moves])
     
-        # # sort states per depth on most possible moves 
-        # sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) 
-        # sorted_list = [item[0] for item in sorted_items]
+        # sort states per depth on most possible moves 
+        sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) 
+        sorted_list = [item[0] for item in sorted_items]
     
     # minimum number of blocked blocking vehicles
     elif heuristic == 'H8':
@@ -83,10 +79,10 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
             ]
     
     # sort states per depth
-    if heuristic in ['H1', 'H7']:
+    if heuristic == 'H1': 
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
         sorted_list = [item[0] for item in sorted_items]
-    else:
+    elif heuristic != 'H7':
         sorted_items = sorted(items, key=lambda x: x[1], reverse=False)
         sorted_list = [item[0] for item in sorted_items]
 
