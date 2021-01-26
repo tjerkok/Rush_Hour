@@ -9,7 +9,6 @@
 
 import numpy as np
 
-
 class Board(object):
     """
     A class that initializes the gameboard, moves vehicles and checks for win.
@@ -29,7 +28,7 @@ class Board(object):
     """
 
     def __init__(self, vehicles, boardsize):
-        """Loads in all needed information for the board"""
+        """Loads in all needed information for the board."""
         self.vehicles = vehicles
         self.boardsize = boardsize
         self.board = []
@@ -37,7 +36,7 @@ class Board(object):
         self.moves = []
 
     def load_board(self):
-        """Loads the boards with the vehicles"""
+        """Loads the boards with the vehicles."""
         self.board = list(self.board)
         self.board.clear()
         cols = []
@@ -64,7 +63,7 @@ class Board(object):
         return self.board
 
     def fill_names(self, vehicle, name_length, x, y):
-        """Fills the array with vehicle names depending on orientation"""
+        """Fills the array with vehicle names depending on orientation."""
         if vehicle.orientation == 'H':
             x_index = 1
             y_index = 0
@@ -81,7 +80,7 @@ class Board(object):
                 self.board[y + i * y_index, x + i * x_index] = vehicle.name
 
     def pos_moves(self):
-        """Creates a dict with a list of all possible moves per vehicle"""
+        """Creates a dict with a list of all possible moves per vehicle."""
         # for all vehicles in the board find the possible moves
         for vehicle in self.vehicles.values():
             self.possible_moves[vehicle.name] = []
@@ -93,7 +92,7 @@ class Board(object):
         return self.possible_moves
 
     def fill_possible_moves(self, vehicle, x, y):
-        """Fills possible moves dictionary depending on orientation"""
+        """Fills possible moves dictionary depending on orientation."""
         # defines a string for the empty space
         if self.boardsize < 10:
             empty = '_'
@@ -125,7 +124,7 @@ class Board(object):
                 break
 
     def X_row_free(self):
-        """Returns the amount of free spaces ahead of the target car"""
+        """Returns the amount of free spaces ahead of the target car."""
         coordinates = self.vehicles['X'].coordinates
         row = self.board[coordinates[1]]
 
@@ -135,7 +134,7 @@ class Board(object):
             return list(row[coordinates[0]:]).count('__')
 
     def blocking_vehicles(self):
-        """Returns the amount of vehicles bloacking the target car"""
+        """Returns the amount of vehicles bloacking the target car."""
         x_row = self.vehicles['X'].coordinates[1]
         x_col = self.vehicles['X'].coordinates[0]
 
@@ -152,13 +151,13 @@ class Board(object):
         return blocking_vehicles
 
     def goal_distance(self):
-        """Returns the amount of distance the target car still has to move"""
+        """Returns the amount of distance the target car still has to move."""
         distance = self.boardsize - 2 - self.vehicles['X'].coordinates[0]
 
         return distance
 
     def blocked_blocking_vehicles(self, blocking=None):
-        """Returns the vehicles that block the blocked vehicles"""
+        """Returns the vehicles that block the blocked vehicles."""
         if blocking is None:
             blocking = self.blocking_vehicles()
             self.visited = []
@@ -213,14 +212,14 @@ class Board(object):
         return blocking_vehicles
 
     def MinMovesHeuristic(self):
-        """Heuristic that makes use of the minimum amount of moves the board has to make"""
+        """Heuristic that makes use of the minimum amount of moves the board has to make."""
         if self.win():
             return 0
 
         return self.MinimumRequiredMoves()
 
     def MinimumRequiredMoves(self):
-        """Counts the minimum amount of moves the board has to make"""
+        """Counts the minimum amount of moves the board has to make."""
         self.visited = ['X']
 
         blocked_vehicles = self.blocking_vehicles()
@@ -241,7 +240,7 @@ class Board(object):
         return value
 
     def move(self, vehicle_name, shift, undo=False):
-        """Moves a vehicle, if possible"""
+        """Moves a vehicle, if possible."""
         # if shift in self.possible_moves[vehicle_name]:
         if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
@@ -263,7 +262,7 @@ class Board(object):
         return False
 
     def win(self):
-        """Checks for win, using vehicle X"""
+        """Checks for win, using vehicle X."""
         if self.vehicles['X'].coordinates[0] == self.boardsize - 2:
             return True
         else:
