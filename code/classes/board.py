@@ -139,84 +139,98 @@ class Board(object):
         x_row = self.vehicles['X'].coordinates[1]
         x_col = self.vehicles['X'].coordinates[0]
 
+        # adds vehicles that are in the way of the target car to the array
         blocking_vehicles = []
         for vehicle in self.vehicles:
             if self.vehicles[vehicle].orientation == 'V':
                 vehicle_col = self.vehicles[vehicle].coordinates[0]
                 vehicle_row = self.vehicles[vehicle].coordinates[1]
 
-                if vehicle_row == x_row or vehicle_col + 1 == x_row:
+                if vehicle_row == x_row or vehicle_row + 1 == x_row:
                     if vehicle_col > (x_col + 1):
                         blocking_vehicles.append(vehicle)
 
         return blocking_vehicles
 
     def goal_distance(self):
-        """Returns the amount of distance the target car still has to move"""
+        """Returns the distance the target car still has to move"""
         distance = self.boardsize - 2 - self.vehicles['X'].coordinates[0]
 
         return distance
 
     def blocked_blocking_vehicles(self, blocking=None):
         """Returns the vehicles that block the blocked vehicles"""
+        # if we use heuristic 2
         if blocking is None:
             blocking = self.blocking_vehicles()
             self.visited = []
 
+        # for all vehicles add the ones that block to the array
         blocking_vehicles = []
-
         for blocked_vehicle in blocking:
             col = self.vehicles[blocked_vehicle].coordinates[0]
             row = self.vehicles[blocked_vehicle].coordinates[1]
             length = self.vehicles[blocked_vehicle].length
 
-            for vehicle in [vehicle for vehicle in self.vehicles if vehicle not in self.visited]:
+            for vehicle in [vehicle for vehicle in self.vehicles if (
+                            vehicle not in self.visited)]:
                 vehicle_col = self.vehicles[vehicle].coordinates[0]
                 vehicle_row = self.vehicles[vehicle].coordinates[1]
                 vehicle_length = self.vehicles[vehicle].length
 
-                if self.vehicles[blocked_vehicle].orientation == 'V':
-                    if self.vehicles[vehicle].orientation == 'V':
-                        if vehicle_col == col:
-                            if vehicle_length == 2:
-                                if vehicle_row + 2 == row or vehicle_row - length == row:
-                                    blocking_vehicles.append(vehicle)
-                            else:
-                                if vehicle_row + 2 == row or vehicle_row + 3 == row or vehicle_row - length == row:
-                                    blocking_vehicles.append(vehicle)
-                    else:
-                        if vehicle_row + 1 == row or vehicle_row - length == row:
-                            if vehicle_length == 2:
-                                if vehicle_col == col or vehicle_col + 1 == col:
-                                    blocking_vehicles.append(vehicle)
-                            else:
-                                if vehicle_col == col or vehicle_col + 1 == col or vehicle_col + 2 == col:
-                                    blocking_vehicles.append(vehicle)
-                else:
-                    if self.vehicles[vehicle].orientation == 'H':
-                        if vehicle_row == row:
-                            if vehicle_length == 2:
-                                if vehicle_col + 2 == col or vehicle_col - length == col:
-                                    blocking_vehicles.append(vehicle)
-                            else:
-                                if vehicle_col + 2 == col or vehicle_col + 3 == col or vehicle_col - length == col:
-                                    blocking_vehicles.append(vehicle)
-                    else:
-                        if vehicle_col + 1 == col or vehicle_col - length == col:
-                            if vehicle_length == 2:
-                                if vehicle_row == row or vehicle_row + 1 == row:
-                                    blocking_vehicles.append(vehicle)
-                            else:
-                                if vehicle_row == row or vehicle_row + 1 == row or vehicle_row + 2 == row:
-                                    blocking_vehicles.append(vehicle)
+                self.fill_blocking_vehicles(blocking_vehicles, blocked_vehicle,
+                                            vehicle, col, row, length,
+                                            vehicle_col, vehicle_row,
+                                            vehicle_length)
 
         return blocking_vehicles
 
-    def MinMovesHeuristic(self):
-        """Heuristic that makes use of the minimum amount of moves the board has to make"""
-        if self.win():
-            return 0
+    def fill_blocking_vehicles(self, blocking_vehicles, blocked_vehicle,
+                               vehicle, col, row, length,
+                               vehicle_col, vehicle_row,
+                               vehicle_length):
+        """Fills the blocking_vehicles array depending on orientation"""
+        # defined the first and second part for the if statement
+        if self.vehicles[blocked_vehicle].orientation == 'V':
+            orientation = 'V'
+            blocking_first = col
+            blocking_second = row
+            vehicle_first = vehicle_col
+            vehicle_second = vehicle_row
+        else:
+            orientation = 'H'
+            blocking_first = row
+            blocking_second = col
+            vehicle_first = vehicle_row
+            vehicle_second = vehicle_col
 
+        # appends blocking vehicles to the blocking_vehicles array
+        if self.vehicles[vehicle].orientation == orientation:
+            if vehicle_first == blocking_first:
+                if vehicle_length == 2:
+                    if vehicle_second + 2 == blocking_second or (
+                       vehicle_second - length == blocking_second):
+                        blocking_vehicles.append(vehicle)
+                else:
+                    if vehicle_second + 2 == blocking_second or (
+                       vehicle_second + 3 == blocking_second) or (
+                       vehicle_second - length == blocking_second):
+                        blocking_vehicles.append(vehicle)
+        else:
+            if vehicle_second + 1 == blocking_second or (
+               vehicle_second - length == blocking_second):
+                if vehicle_length == 2:
+                    if vehicle_first == blocking_first or (
+                       vehicle_first + 1 == blocking_first):
+                        blocking_vehicles.append(vehicle)
+                else:
+                    if vehicle_first == blocking_first or (
+                       vehicle_first + 1 == blocking_first) or (
+                       vehicle_col + 2 == blocking_first):
+                        blocking_vehicles.append(vehicle)
+
+    def MinMovesHeuristic(self):
+        """Heuristic that makes use of the minimum required moves"""
         return self.MinimumRequiredMoves()
 
     def MinimumRequiredMoves(self):
@@ -228,30 +242,35 @@ class Board(object):
         for vehicle in blocked_vehicles:
             self.visited.append(vehicle)
 
+        # find all the vehicles that block the blocking vehicles recursively
         while blocked_vehicles:
             blocked_vehicles = self.blocked_blocking_vehicles(blocked_vehicles)
-
             for vehicle in blocked_vehicles:
                 self.visited.append(vehicle)
 
+        # remove the duplicate vehicles
         no_duplicates_visited = []
-        [no_duplicates_visited.append(visited) for visited in self.visited if visited not in no_duplicates_visited]
-        value = len(no_duplicates_visited)
+        [no_duplicates_visited.append(visited) for visited in self.visited if (
+         visited not in no_duplicates_visited)]
 
-        return value
+        min_required = len(no_duplicates_visited)
+
+        return min_required
 
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
-        # if shift in self.possible_moves[vehicle_name]:
+        # if the move is possible or should be undone execute the move
         if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
 
             if vehicle.orientation == 'H':
-                vehicle.coordinates = (vehicle.coordinates[0] + shift, vehicle.coordinates[1])
-
+                vehicle.coordinates = (vehicle.coordinates[0] + shift,
+                                       vehicle.coordinates[1])
             else:
-                vehicle.coordinates = (vehicle.coordinates[0], vehicle.coordinates[1] + shift)
+                vehicle.coordinates = (vehicle.coordinates[0],
+                                       vehicle.coordinates[1] + shift)
 
+            # add the moves for the board if we don't want to undo a move
             if not undo:
                 self.moves.append([vehicle_name, shift])
             else:
