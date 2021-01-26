@@ -16,12 +16,12 @@ class BFS:
     A class that uses the Breadth First Search Algorithm.
 
     Attributes:
-    board: np array with vehicles.
+    board: Board object. 
     boardsize: int with boardwidth.
     vehicle_length: int with vehicle length.
     states: list with all possible states.
     boards_visited: set with all hashed visited boards.
-    winning_board: np array with vehicles orientated in winning position.
+    winning_board: Board object with vehicles orientated in winning position.
     state_space: int that counts the amount of states checked.
     beam: bool for beam search.
     priority: bool for priority queue search.
@@ -34,9 +34,9 @@ class BFS:
     get_next_state: picks the first item from the list with states.
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
-    add_to_archive: checks if a state is already checked for win.
+    add_to_archive: checks if a state is already visited.
     combine_algorithm: applies priority, with or without beam search to BFS.
-    run: runs the algorithm until all states are checked.
+    run: runs the algorithm until all states are checked or untill won. 
     """
 
     def __init__(self, board, beam=False, priority=False, heuristic='H1', lookahead=True):
@@ -89,14 +89,6 @@ class BFS:
             self.states.append(board)
             self.state_space += 1
 
-    def combine_algorithm(self):
-        """applies priority, with or without beam search to BFS."""
-        self.states = Priority(
-                        self.states,
-                        self.boardsize,
-                        self.heuristic,
-                        self.beam)
-
     def run(self):
         """Runs the algorithm untill all possible states are checked."""
         while self.states:
@@ -104,8 +96,15 @@ class BFS:
             new_board = self.get_next_state()
 
             # checks for moves left, beam and priority
-            if self.move < len(new_board.moves) and (self.priority or self.beam):
-                self.combine_algorithm()
+            if self.move < len(new_board.moves) and (
+                self.priority or self.beam):
+                self.states = Priority(
+                            self.states,
+                            len(self.states),
+                            self.boardsize,
+                            self.vehicle_length,
+                            self.heuristic,
+                            self.beam)
                 self.move = len(new_board.moves)
 
             # check for win

@@ -131,3 +131,16 @@ We worked on Algorithm 2, we discussed our next stepps, we divided our To Do lis
 
 ## Tjerko
 Worked on the Second Algorithm pdf and started cleaning up the repository (adding comments, fixing duplicate code etc).
+
+### Bob
+Worked on the second algorithm pdf as well and tried to fix the duplicate code in our board class a little bit.
+
+## 26 january 2021 
+### Kika
+
+
+## Tjerko
+
+
+### Bob
+Fix the duplicate code in our board class
