@@ -4,10 +4,10 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Function to apply a priority on a list of states. 
-# The priority queue can also be pruned, using a beam. 
-# Multiple heuristics can ben chosen from. 
-# It returns a list with in the front the priority states. 
+# Function to apply a priority on a list of states.
+# The priority queue can also be pruned, using a beam.
+# Multiple heuristics can ben chosen from.
+# It returns a list with in the front the priority states.
 ###############################################################
 
 def Priority(items, length, board_size, vehicles, heuristic, beam):
@@ -31,64 +31,64 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
             [board, board.goal_distance()] for board in items
             ]
 
-    # H2 + H3 
+    # H2 + H3
     elif heuristic == 'H4':
         items = [
-            [board, len(board.blocking_vehicles()) + 
+            [board, len(board.blocking_vehicles()) +
             board.goal_distance()] for board in items
             ]
 
     # H2 + H3 + H8
     elif heuristic == 'H5':
         items = [
-            [board, len(board.blocking_vehicles()) + 
-            board.goal_distance() + 
+            [board, len(board.blocking_vehicles()) +
+            board.goal_distance() +
             len(board.blocked_blocking_vehicles())] for board in items
             ]
 
     # H2 + H8
     elif heuristic == 'H6':
         items = [
-            [board, len(board.blocked_blocking_vehicles()) + 
+            [board, len(board.blocked_blocking_vehicles()) +
             len(board.blocking_vehicles())] for board in items
             ]
 
-    # most possible moves per state 
-    elif heuristic == 'H7': 
+    # most possible moves per state
+    elif heuristic == 'H7':
         items_tuple = []
         for item in items:
             total_moves = sum(
                 len(moves) for moves in item.pos_moves().values()
                 )
             items_tuple.append([item, total_moves])
-    
-        # sort states per depth on most possible moves 
-        sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True) 
+
+        # sort states per depth on most possible moves
+        sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True)
         sorted_list = [item[0] for item in sorted_items]
-    
+
     # minimum number of blocked blocking vehicles
     elif heuristic == 'H8':
         items = [
             [board, len(board.blocked_blocking_vehicles())] for board in items
             ]
-    
-    # minimum number of required moves 
+
+    # minimum number of required moves
     elif heuristic == 'H9':
         items = [
             [board, board.MinMovesHeuristic()] for board in items
             ]
-    
-    # sort states per depth 
-    if heuristic == 'H1': 
+
+    # sort states per depth
+    if heuristic == 'H1':
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
         sorted_list = [item[0] for item in sorted_items]
-    elif heuristic != 'H7': 
+    elif heuristic != 'H7':
         sorted_items = sorted(items, key=lambda x: x[1], reverse=False)
         sorted_list = [item[0] for item in sorted_items]
 
-    # check for beam, else use priority 
-    if beam: 
+    # check for beam, else use priority
+    if beam:
         beam_width = round((board_size ^ 2) / (7 * 7) * 10000)
         return sorted_list[:beam_width]
-    
+
     return sorted_list
