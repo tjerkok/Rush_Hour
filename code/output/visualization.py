@@ -14,14 +14,13 @@ import numpy as np
 
 def visualize(board, state):
     """Creates a visualisation of the gameboard using matplotlib"""
-
     # checks if the board is a numpy array
     if not isinstance(board, np.ndarray):
         return False
 
     if state == "end":
         plt.close()
-    
+
     legend = {}
     i = 0
     image = []
@@ -33,7 +32,6 @@ def visualize(board, state):
 
         if letter == 'X' or letter == 'X ':
             legend['X'] = -1
-
         else:
             legend[letter] = i
             i += 1
