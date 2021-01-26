@@ -1,21 +1,66 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>350</x><y>206</y><w>190</w><h>90</h></coordinates><panel_attributes>_object: Class_Vehicle
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>440</x><y>496</y><w>190</w><h>90</h></coordinates><panel_attributes>_object: Class_Vehicle
 --
-name: str
-orientation: str (V/H)
-coordinates: tuple (col, row)
-length: int
+self.name: str
+self.orientation: str (V/H)
+self.coordinates: tuple (col, row)
+self.length: int
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>206</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>206</y><w>310</w><h>170</h></coordinates><panel_attributes>_object: Class_Board
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>376</y><w>190</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>336</y><w>310</w><h>290</h></coordinates><panel_attributes>_object: Class_Board
 --
-name: str
-boardsize: int
-vehicles: {vehicle_name:new_vehicle}
-board: []
-possible_moves: {vehicle_name:[]}
+self.boardsize: int
+self.vehicles: {vehicle_name:new_vehicle}
+self.board: []
+self.possible_moves: {vehicle_name:[]}
+self.moves: []
 --
 load_board(self): return self.board
+fill_names(self, vehicle, name_length, x, y): 
 pos_moves(self): return self.possible_moves
+fill_possible_moves(self, vehicle, x, y):
+X_row_free(self): list(row[coordinates[0]:]).count('_')
+blocking_vehicles(self): blocking_vehicles
+goal_distance(self): return distance
+blocked_blocking_vehicles(self, blocking=None): return blocking_vehicles
+MinMovesHeuristic(self): return self.MinimumRequiredMoves()
+MinimumRequiredMoves(self): return value
 move(self, vehicle_name, shift): return bool 
 win(self): return bool
 
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>270</w><h>280</h></coordinates><panel_attributes>_object: Class_BFS
+--
+self.board = copy.deepcopy(board)
+self.boardsize = board.boardsize
+self.vehicle_length = len(board.vehicles)
+self.states = [copy.deepcopy(self.board)]
+self.boards_visited = set()
+self.winning_board = None
+self.state_space = 1
+self.beam = beam
+self.priority = priority
+self.heuristic = heuristic
+self.lookahead = lookahead
+self.move = 0
+--
+get_next_state(self): return self.states.pop(0)
+build_children(self, board): return bool
+add_to_archive(self, board): 
+run(self): self.winning_board, self.state_space
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>290</y><w>260</w><h>110</h></coordinates><panel_attributes>_object: Class_IDDFS
+--
+self.max_depth = max_depth
+self.board = board
+self.winning_board = None
+self.state_space = 0
+--
+run(self): self.winning_board, self.state_space
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>70</y><w>260</w><h>130</h></coordinates><panel_attributes>_object: Class_DFS(BFS)
+--
+self.max_depth = max_depth
+self.boards_visited = {}
+self.state_space = 0
+--
+get_next_state(self): return self.states.pop()
+add_to_archive(self, board): 
+run(self): self.winning_board, self.state_space
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>190</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;100</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>271</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;65;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>1</y><w>200</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;70</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>190</y><w>110</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;150;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>290</y><w>190</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;170;10</additional_attributes></element></diagram>
