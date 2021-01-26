@@ -8,8 +8,6 @@
 #########################################################
 
 import numpy as np
-import ast
-from ..classes.vehicle import Vehicle
 
 
 class Board(object):
@@ -46,7 +44,7 @@ class Board(object):
         self.board.clear()
         cols = []
 
-        # Uses the boardsize from the filename
+        # Uses the boardsize to fill the array with underscores
         if self.boardsize < 10:
             for col in range(self.boardsize):
                 cols.append('_')
@@ -59,36 +57,30 @@ class Board(object):
 
         self.board = np.array(self.board, dtype='U25')
 
-        if self.boardsize < 10:
-            for vehicle in self.vehicles.values():
-                x, y = vehicle.coordinates[0], vehicle.coordinates[1]
+        # For loop to fill the array with vehicle names
+        for vehicle in self.vehicles.values():
+            x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-                if vehicle.orientation == 'H':
-                    for i in range(vehicle.length):
-                        self.board[y, x + i] = vehicle.name
-                else:
-                    for i in range(vehicle.length):
-                        self.board[y + i, x] = vehicle.name
-        else:
-            for vehicle in self.vehicles.values():
-                x, y = vehicle.coordinates[0], vehicle.coordinates[1]
-
-                if len(vehicle.name) < 2:
-                    if vehicle.orientation == 'H':
-                        for i in range(vehicle.length):
-                            self.board[y, x + i] = f'{vehicle.name} '
-                    else:
-                        for i in range(vehicle.length):
-                            self.board[y + i, x] = f'{vehicle.name} '
-                else:
-                    if vehicle.orientation == 'H':
-                        for i in range(vehicle.length):
-                            self.board[y, x + i] = vehicle.name
-                    else:
-                        for i in range(vehicle.length):
-                            self.board[y + i, x] = vehicle.name
+            self.fill_names(vehicle, vehicle.orientation, len(vehicle.name), x, y)
 
         return self.board
+
+    def fill_names(self, vehicle, orientation, name_length, x, y):
+        """Fills the array with vehicle names depending on orientation"""
+
+        if vehicle.orientation == 'H':
+            x_index = 1
+            y_index = 0
+        else:
+            x_index = 0
+            y_index = 1
+
+        if name_length < 2 and self.boardsize >= 10:
+            for i in range(vehicle.length):
+                self.board[y + i * y_index, x + i * x_index] = f'{vehicle.name} '
+        else:
+            for i in range(vehicle.length):
+                self.board[y + i * y_index, x + i * x_index] = vehicle.name
 
     def pos_moves(self):
         """Creates a dict with a list of all possible moves per vehicle"""
@@ -153,30 +145,6 @@ class Board(object):
                         break
 
         return self.possible_moves
-
-    # def serialize(self):
-    #     serialized = ""
-    #     for vehicle in self.vehicles.values():
-    #         serialized += f"{vehicle.name},{vehicle.orientation},{vehicle.coordinates[0]},{vehicle.coordinates[1]},{vehicle.length}."
-    #
-    #     return serialized.strip(".")
-
-    # def serialize_dict(self):
-    #     serialized_dict = {}
-    #     for vehicle in self.vehicles.values():
-
-    # def unserialize(self, serial):
-    #     self.vehicles = {}
-    #     for vehicle in serial.split("."):
-    #         vehicle = vehicle.split(",")
-    #         name = vehicle[0]
-    #         orientation = vehicle[1]
-    #         column = int(vehicle[2]) + 1
-    #         row = int(vehicle[3]) + 1
-    #         length = int(vehicle[4])
-    #         self.vehicles[name] = Vehicle(name, orientation, row, column, length)
-    #
-    #     return self
 
     def X_row_free(self):
         """Returns the amount of free spaces ahead of the target car"""
