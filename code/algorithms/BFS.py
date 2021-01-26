@@ -100,9 +100,7 @@ class BFS:
                 self.priority or self.beam):
                 self.states = Priority(
                             self.states,
-                            len(self.states),
                             self.boardsize,
-                            self.vehicle_length,
                             self.heuristic,
                             self.beam)
                 self.move = len(new_board.moves)
