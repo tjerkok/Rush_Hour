@@ -35,7 +35,6 @@ class BFS:
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
     add_to_archive: checks if a state is already visited.
-    combine_algorithm: applies priority, with or without beam search to BFS.
     run: runs the algorithm until all states are checked or untill won. 
     """
 

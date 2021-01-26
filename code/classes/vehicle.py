@@ -20,7 +20,7 @@ class Vehicle(object):
     """
 
     def __init__(self, name, orientation, row, col, length):
-        """Loads all information of the vehicle in the class"""
+        """Loads all information of the vehicle in the class."""
         self.name = name
         self.orientation = orientation
         self.coordinates = (col - 1, row - 1)

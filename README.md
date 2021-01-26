@@ -1,22 +1,22 @@
 # Rush Hour
 
 ## Rush Hour 
-Rush hour is een puzzel waarbij het doel is om de rode (target) auto naar de uitgang te leiden die recht voor hem ligt. Echter zijn er ook andere voertuigen die de weg versperren, auto’s van twee eenheden lang en trucks van drie eenheden lang. Elk voertuig kan alleen vooruit en achteruit in de richting van zijn positie (horizontaal/verticaal). De opdracht hierbij is dus om de weg naar de uitgang vrij te maken door voertuigen te verplaatsen en de rode (target) auto naar de uitgang te brengen. 
+Rush hour is a puzzle where the goal is to lead the red (target) car to the exit, right in front of it. However, there are other vehicles that block the road, cars of two units long and trucks three units long. Each vehicle can only move forward and backward in the direction of its position (horizontal/vertical). The task here is therefore to clear the way to the exit by moving vehicles and bringing the red (target) car to the exit. 
 
 ## Description of approach to the algorithms
-* Random: hierbij wordt eerst een random voertuig gekozen uit de lijst met alle mogelijke voertuigen die kunnen bewegen. Vervolgens wordt een random move gekozen uit alle mogelijke moves die dat voertuig heeft. 
-* Breadth First Search(BFS): voor elke staat van het bord voeren we alle mogelijke beweginge uit die mogelijk zijn om vervolgens de nieuwe staat van het bord toe te voegen aan de queue(FIFO) met alle staten.
-    * archief: Hierbij maken wij ook gebruik van een archief wat bijhoudt welke staat al in het archief staat, als de staat al in het archief staat, werken we hier niet mee verder en dus wordt de staat niet aan de queue toegevoegd.
-    * Beam + heuristieken: We geven aan onze Beam functie de queue mee, deze wordt vervolgens met heuristieken gesorteerd en hiervan worden de 'slechtste' staten afgeknipt. 
-        * Beam ratio vs width: eerst hadden wij het idee dat je het best een percentage van de queue lengte kon wegknippen, een beam ratio noemden we dit. Dit brengt alleen risico’s met zich mee, want in Rush Hour is het soms het geval dat je één stap achteruit moet, om er vervolgens twee vooruit te gaan. Het risico hiervan is dus dat je snel de optimale oplossing weg knipt. Hierna vonden we dat 80% van de random puzzels met een 7x7 bord wordt opgelost met een Beam breedte van 10000. Wij gebruiken daarom voor de beam breedte de volgende formule: (bord grootte^2) / (7^2) * 10000.
-    * Priority + heuristieken: Bij onze priority queue doen we in principe hetzelfde als bij de beam search, we geven een queue mee en deze sorteren we. Echter knippen we nu niet de slechtste staten weg, maar deze houden we.
-    * Early solution detection (lookahead): Early solution detection wordt bij ons toegepast op het moment dat we kinderen aanmaken in de BFS, als een kind het bord al oplost, returnen we meteen de oplossing, in plaats van dat het eerst alle andere kinderen nog aanmaakt.
-* Iterative Deepening Depth First Search algoritme(IDDFS): dit is eigenlijk een Depth First Search wat voortdurend zijn diepte één stapje omhoog doet totdat een oplossing is gevonden. Dit houdt in dat het algoritme start bij de begin staat, om dan vervolgens alle mogelijke staten tot een bepaalde diepte te doorzoeken. Het nadeel van de IDDFS is dat het erg veel tijd kost om tot een oplossing te komen, dus waar bij BFS het probleem het geheugen is, is dit bij IDDFS de tijd. Dit wordt veroorzaakt doordat de hele zoekboom weer opnieuw doorlopen moet worden met Depth First Search bij het verhogen van de diepte met één. Dat betekent veel dubbel onnodig werk.
-    * Heuristieken: Om het proces van de IDDFS te versnellen hebben wij gebruik gemaakt van een heuristiek die het minimaal aantal verplichte moves berekent en vanaf die diepte pas gaat zoeken. 
+* Random: a random vehicle is first selected from the list of all possible vehicles that can move. A random move is then selected from all possible moves for that vehicle.
+* Breadth First Search(BFS): for each state of the board all possible moves are performed and the new required states of the board are then added to the queue (FIFO) with all states. 
+    * Archive: the archive keeps track of which state is already in the archive, if the state is already in the archive, no new children are being build and the state is not added to the queue. 
+    * Beam + heuristicks: We give the queue to our Beam function, which is then sorted based on heuristics and the 'worst' states are cut off from the queue. 
+        * Beam ratio vs width: At first we had the idea that it was best to cut a percentage of the queue length, called a beam ratio. This only entails risks, because in Rush Hour it is sometimes the case that you have to go back one step and then go forward two. The risk of this is therefore that youcut away the optimal solution too quickly. After this we found that 80% of the random puzzles with a 7x7 board are solved with a Beam width of 10000. We therefore use the following formula for the beam width: (board size ^ 2) / (7 ^ 2) * 10000. 
+    * Priority + heuristicks: the priority queue does basically the same as the beam search. However, the worst states are not cut off.
+    * Early solution detection (lookahead): Early solution detection is applied at the moment that children are created in the BFS. If a child already solves the board, the solution is immediately returned, instead of first creating all other children. 
+* Iterative Deepening Depth First Search algoritme(IDDFS): this is actually a Depth First Search(DFS) which continuously increases its depth one step until a solution is found. This means that the algorithm starts at the beginning state, and then searches all possible states to a certain depth. The disadvantage of the IDDFS is that it takes a lot of time to come to a solution, so where for BFS the problem is memory, with IDDFS this is the time. The reason for this is that the entire search tree has to be run again with DFS when increasing the depth by one. That means a lot of unnecessary work. 
+    * Heuristick: to speed up the process of the IDDFS, we have used a heuristic that calculates the minimum number of required moves and only starts searching from that depth. 
 
 ## Requirements
-Deze codebase is volledig geschreven in Python 3.8.5 t/m 3.9.1. 
-Onderstaande packages om deze code te draaien staan in requirements.txt en zijn te installeren met behulp van pip: "pip install -r requirements.txt"
+This codebase is fully written in Python 3.8.5 t/m 3.9.1. 
+The packages for running this code are in requirements.txt and can be installed using pip: "pip install -r requirements.txt"
 * numpy, versie 1.19.4
 * matplotlib, versie 3.3.3
 
