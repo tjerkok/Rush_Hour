@@ -4,10 +4,10 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Function to apply a priority on a list of states. 
-# The priority queue can also be pruned, using a beam. 
-# Multiple heuristics can ben chosen from. 
-# It returns a list with in the front the priority states. 
+# Function to apply a priority on a list of states.
+# The priority queue can also be pruned, using a beam.
+# Multiple heuristics can ben chosen from.
+# It returns a list with in the front the priority states.
 ###############################################################
 
 def Priority(items, length, board_size, vehicles, heuristic, beam):
@@ -31,25 +31,25 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
             [board, board.goal_distance()] for board in items
             ]
 
-    # H2 + H3 
+    # H2 + H3
     elif heuristic == 'H4':
         items = [
-            [board, len(board.blocking_vehicles()) + 
+            [board, len(board.blocking_vehicles()) +
             board.goal_distance()] for board in items
             ]
 
     # H2 + H3 + H8
     elif heuristic == 'H5':
         items = [
-            [board, len(board.blocking_vehicles()) + 
-            board.goal_distance() + 
+            [board, len(board.blocking_vehicles()) +
+            board.goal_distance() +
             len(board.blocked_blocking_vehicles())] for board in items
             ]
 
     # H2 + H8
     elif heuristic == 'H6':
         items = [
-            [board, len(board.blocked_blocking_vehicles()) + 
+            [board, len(board.blocked_blocking_vehicles()) +
             len(board.blocking_vehicles())] for board in items
             ]
 
@@ -94,5 +94,5 @@ def Priority(items, length, board_size, vehicles, heuristic, beam):
     if beam: 
         beam_width = round((board_size ^ 2) / (7 * 7) * 10000)
         return sorted_list[:beam_width]
-    
+
     return sorted_list

@@ -61,11 +61,11 @@ class Board(object):
         for vehicle in self.vehicles.values():
             x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-            self.fill_names(vehicle, vehicle.orientation, len(vehicle.name), x, y)
+            self.fill_names(vehicle, len(vehicle.name), x, y)
 
         return self.board
 
-    def fill_names(self, vehicle, orientation, name_length, x, y):
+    def fill_names(self, vehicle, name_length, x, y):
         """Fills the array with vehicle names depending on orientation"""
 
         if vehicle.orientation == 'H':
@@ -75,6 +75,7 @@ class Board(object):
             x_index = 0
             y_index = 1
 
+        # Adds the vehicle names to the board
         if name_length < 2 and self.boardsize >= 10:
             for i in range(vehicle.length):
                 self.board[y + i * y_index, x + i * x_index] = f'{vehicle.name} '
@@ -85,66 +86,48 @@ class Board(object):
     def pos_moves(self):
         """Creates a dict with a list of all possible moves per vehicle"""
 
+        # For all vehicles in the board find the possible moves
         for vehicle in self.vehicles.values():
             self.possible_moves[vehicle.name] = []
 
-            if vehicle.orientation == 'H':
-                left, right = vehicle.coordinates[0], self.boardsize - (vehicle.coordinates[0] + vehicle.length)
+            x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-                if self.boardsize < 10:
-                    for i in range(1, left + 1):
-                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '_':
-                            self.possible_moves[vehicle.name].append(-i)
-                        else:
-                            break
-
-                    for i in range(1, right + 1):
-                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '_':
-                            self.possible_moves[vehicle.name].append(i)
-                        else:
-                            break
-                else:
-                    for i in range(1, left + 1):
-                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] - i] == '__':
-                            self.possible_moves[vehicle.name].append(-i)
-                        else:
-                            break
-
-                    for i in range(1, right + 1):
-                        if self.board[vehicle.coordinates[1], vehicle.coordinates[0] + vehicle.length - 1 + i] == '__':
-                            self.possible_moves[vehicle.name].append(i)
-                        else:
-                            break
-
-            else:
-                up, down = vehicle.coordinates[1], self.boardsize - (vehicle.coordinates[1] + vehicle.length)
-
-                if self.boardsize < 10:
-                    for i in range(1, up + 1):
-                        if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(-i)
-                        else:
-                            break
-
-                    for i in range(1, down + 1):
-                        if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '_':
-                            self.possible_moves[vehicle.name].append(i)
-                        else:
-                            break
-                else:
-                    for i in range(1, up + 1):
-                        if self.board[vehicle.coordinates[1] - i, vehicle.coordinates[0]] == '__':
-                            self.possible_moves[vehicle.name].append(-i)
-                        else:
-                            break
-
-                for i in range(1, down + 1):
-                    if self.board[vehicle.coordinates[1] + vehicle.length - 1 + i, vehicle.coordinates[0]] == '__':
-                        self.possible_moves[vehicle.name].append(i)
-                    else:
-                        break
+            self.fill_possible_moves(vehicle, x, y)
 
         return self.possible_moves
+
+    def fill_possible_moves(self, vehicle, x, y):
+        """Fills possible moves dictionary depending on orientation"""
+
+        # defines a string for the empty space
+        if self.boardsize < 10:
+            empty = '_'
+        else:
+            empty = '__'
+
+        if vehicle.orientation == 'H':
+            x_index = 1
+            y_index = 0
+            front, back = x, self.boardsize - (x + vehicle.length)
+        else:
+            x_index = 0
+            y_index = 1
+            front, back = y, self.boardsize - (y + vehicle.length)
+
+        # Fills the possible moves dictionary for the empty spaces in the front
+        for i in range(1, front + 1):
+            if self.board[y - i * y_index, x - i * x_index] == empty:
+                self.possible_moves[vehicle.name].append(-i)
+            else:
+                break
+
+        # Fills the possible moves dictionary for the empty spaces in the back
+        for i in range(1, back + 1):
+            if self.board[y + (vehicle.length - 1 + i) * y_index,
+                          x + (vehicle.length - 1 + i) * x_index] == empty:
+                self.possible_moves[vehicle.name].append(i)
+            else:
+                break
 
     def X_row_free(self):
         """Returns the amount of free spaces ahead of the target car"""
@@ -232,15 +215,15 @@ class Board(object):
                                     blocking_vehicles.append(vehicle)
 
         return blocking_vehicles
-    
+
     def MinMovesHeuristic(self):
         """Heuristic that makes use of the minimum amount of moves the board has to make"""
 
         if self.win():
             return 0
-        
+
         return self.MinimumRequiredMoves()
-    
+
     def MinimumRequiredMoves(self):
         """Counts the minimum amount of moves the board has to make"""
 
@@ -262,11 +245,6 @@ class Board(object):
         value = len(no_duplicates_visited)
 
         return value
-
-    # def reversed_pos_moves(self):
-    #     """Function that return the possible_moves dict with the moves reversed""" 
-    #     reversed_possible_moves = list(self.possible_moves.values()).reverse()
-    #     return reversed_possible_moves
 
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible"""
