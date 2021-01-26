@@ -6,7 +6,7 @@ Rush hour is a puzzle where the goal is to lead the red (target) car to the exit
 ## Description of approach to the algorithms
 * Random: a random vehicle is first selected from the list of all possible vehicles that can move. A random move is then selected from all possible moves for that vehicle.
 * Breadth First Search(BFS): for each state of the board all possible moves are performed and the new required states of the board are then added to the queue (FIFO) with all states. 
-    * archive: the archive keeps track of which state is already in the archive, if the state is already in the archive, no new children are being build and the state is not added to the queue. 
+    * Archive: the archive keeps track of which state is already in the archive, if the state is already in the archive, no new children are being build and the state is not added to the queue. 
     * Beam + heuristicks: We give the queue to our Beam function, which is then sorted based on heuristics and the 'worst' states are cut off from the queue. 
         * Beam ratio vs width: At first we had the idea that it was best to cut a percentage of the queue length, called a beam ratio. This only entails risks, because in Rush Hour it is sometimes the case that you have to go back one step and then go forward two. The risk of this is therefore that youcut away the optimal solution too quickly. After this we found that 80% of the random puzzles with a 7x7 board are solved with a Beam width of 10000. We therefore use the following formula for the beam width: (board size ^ 2) / (7 ^ 2) * 10000. 
     * Priority + heuristicks: the priority queue does basically the same as the beam search. However, the worst states are not cut off.
