@@ -15,12 +15,36 @@ Rush Hour seems to be an easy puzzle, altough it has a surprising challenging ch
 Add dependencies to a file named 'requirements.txt'.
 
 ## Usage
-python3 main.py [gameboards/"gamename".csv] ["algorithm"]
+python3 main.py [gameboards/"gamename".csv] ["algorithm"] (["heuristic"]) (["sample size"]) (["max depth"])
+
+* If no algorithm is given, you play the game yourself.
+* Choose heuristic between H1 and H9. 
+* Give sample size if using the "Random" algorithm.
+* Give max depth if using the IDDFS (required).
 
 Algorithms: 
 * "Random": Random search
 * "BFS" : Breadth-First search
-* "BFS_beam: Breadth-First search with beam heuristic
+* "BFS_beam": Breadth-First search with beam 
+* "BFS_priority": Breadth-First search with priority queue
+* "IDDFS": Iterative Deepenening Depth-First search
+
+Heuristics: 
+* H1: maximal number of free spaces ahead of the target car
+* H2: minimum number of vehicles blocking the target car
+* H3: minimum distance to the goal position for the target car
+* H4: H2 + H3 
+* H5: H2 + H3 + H8
+* H6: H2 + H8
+* H7: most possible moves per state 
+* H8: minimum number of blocked blocking vehicles
+* H9: minimum number of required moves
+
+## Results and output 
+* output/output.csv: saves for every vehicle the move that it has made per run in chronological order. 
+* output/log.csv: logbook that saves per run per filename the algorithm used, the amount of moves performed, the amount of states checked and the time that has been passed. 
+* output/startboard.png: a visualisation of the game's startboard. 
+* output/endboard.png: a visualisation of the game's winning endboard.
 
 ## Structure
 * /code
