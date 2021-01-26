@@ -119,9 +119,15 @@ Worked on the practice presentation and getting the results for the presentation
 ### Bob
 We had the practice presentation today and after that I fixed some things about the heuristic I added yesterday, because it wasn't correct yet.
 
+### Kika 
+We did the last preparations for the practice presentation and we listened and presented during the practice presentations. 
+
 ### Tjerko
 Did the practice presentation.
 
-## 25 january 2022
+## 25 january 2021 
+### Kika
+We worked on Algorithm 2, we discussed our next stepps, we divided our To Do list and worked on that.
+
 ## Tjerko
 Worked on the Second Algorithm pdf and started cleaning up the repository (adding comments, fixing duplicate code etc).

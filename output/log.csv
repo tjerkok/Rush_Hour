@@ -307,3 +307,101 @@ gameboards/Rushhour6x6_3.csv,BFS_priority H3,33,8204,41.6324
 gameboards/Rushhour6x6_1.csv,IDDFS,21,3220,102.5414
 gameboards/Rushhour6x6_2.csv,IDDFS,15,4571,131.9787
 gameboards/Rushhour6x6_3.csv,IDDFS,33,89653,6425.8032
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.1721
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,659,2.1045
+gameboards/Rushhour6x6_1.csv,BFS,21,624,1.9365
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.1105
+gameboards/Rushhour6x6_1.csv,BFS_beam H2,21,707,2.406
+gameboards/Rushhour6x6_1.csv,BFS_beam H2,21,707,2.4618
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.0905
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,2.2132
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,4.35
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,3.8036
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,3.5148
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,3.553
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.6855
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.213
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.2384
+gameboards/Rushhour6x6_1.csv,BFS,21,624,1.9731
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,659,2.0849
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,5.924
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,4.1647
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,3.6052
+gameboards/Rushhour6x6_1.csv,Random,221,None,226.7991
+gameboards/Rushhour6x6_1.csv,Random,898,None,39.0482
+gameboards/Rushhour6x6_1.csv,Random,1321,None,4.9975
+gameboards/Rushhour6x6_1.csv,Random,1191,None,3.3928
+gameboards/Rushhour6x6_1.csv,Random,4607,None,25.3081
+gameboards/Rushhour6x6_1.csv,Random,837,None,8.6551
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.3343
+gameboards/Rushhour6x6_1.csv,BFS_beam H2,21,707,2.307
+gameboards/Rushhour6x6_1.csv,BFS_beam H3,21,703,2.3803
+gameboards/Rushhour6x6_1.csv,BFS_beam H4,21,707,3.1667
+gameboards/Rushhour6x6_1.csv,BFS_beam H5,21,707,2.545
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,707,2.1417
+gameboards/Rushhour6x6_1.csv,BFS_beam H7,21,641,2.0777
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,626,1.9166
+gameboards/Rushhour6x6_1.csv,BFS_beam H2,21,624,1.7354
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,1.9823
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,3.9365
+gameboards/Rushhour6x6_1.csv,BFS_beam H7,21,641,2.641
+gameboards/Rushhour6x6_1.csv,BFS_beam H8,21,637,2.7772
+gameboards/Rushhour6x6_1.csv,BFS_beam H4,21,624,3.8257
+gameboards/Rushhour6x6_1.csv,BFS_beam H5,21,625,2.0376
+gameboards/Rushhour6x6_1.csv,BFS_beam H5,21,625,2.4582
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,626,2.1587
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,626,2.0152
+gameboards/Rushhour6x6_1.csv,BFS_beam H4,21,624,2.3956
+gameboards/Rushhour6x6_1.csv,BFS_beam H8,21,637,2.6062
+gameboards/Rushhour6x6_1.csv,BFS_beam H8,21,637,2.0911
+gameboards/Rushhour6x6_1.csv,BFS_beam H8,21,637,2.1028
+gameboards/Rushhour6x6_1.csv,BFS_beam H7,21,641,2.0871
+gameboards/Rushhour6x6_1.csv,BFS_beam H3,21,624,2.2827
+gameboards/Rushhour6x6_1.csv,BFS_beam H1,21,659,2.0754
+gameboards/Rushhour6x6_1.csv,BFS_beam H2,21,624,2.043
+gameboards/Rushhour6x6_1.csv,BFS_beam H3,21,624,2.8915
+gameboards/Rushhour6x6_1.csv,BFS_beam H4,21,624,1.9397
+gameboards/Rushhour6x6_1.csv,BFS_beam H5,21,625,2.0085
+gameboards/Rushhour6x6_1.csv,BFS_beam H6,21,626,1.7253
+gameboards/Rushhour6x6_1.csv,BFS_beam H7,21,641,2.0135
+gameboards/Rushhour6x6_1.csv,BFS_beam H8,21,637,2.048
+gameboards/Rushhour6x6_2.csv,BFS_beam H1,15,2053,9.4012
+gameboards/Rushhour6x6_2.csv,BFS_beam H2,15,2123,10.7408
+gameboards/Rushhour6x6_2.csv,BFS_beam H3,15,2501,11.5176
+gameboards/Rushhour6x6_2.csv,BFS_beam H4,15,2165,10.0229
+gameboards/Rushhour6x6_2.csv,BFS_beam H5,15,2154,10.6191
+gameboards/Rushhour6x6_2.csv,BFS_beam H6,15,2123,10.2596
+gameboards/Rushhour6x6_2.csv,BFS_beam H7,15,2147,9.6492
+gameboards/Rushhour6x6_2.csv,BFS_beam H8,15,2136,11.2076
+gameboards/Rushhour6x6_3.csv,BFS_beam H1,33,8073,40.308
+gameboards/Rushhour6x6_3.csv,BFS_beam H2,33,8182,47.1265
+gameboards/Rushhour6x6_3.csv,BFS_beam H3,33,8357,49.1506
+gameboards/Rushhour6x6_3.csv,BFS_beam H4,33,8248,42.4962
+gameboards/Rushhour6x6_3.csv,BFS_beam H5,33,8212,43.1592
+gameboards/Rushhour6x6_3.csv,BFS_beam H6,33,8182,43.9006
+gameboards/Rushhour6x6_3.csv,BFS_beam H7,33,8091,40.912
+gameboards/Rushhour6x6_3.csv,BFS_beam H8,33,8257,42.9443
+gameboards/Rushhour6x6_3.csv,BFS_priority H1,33,8349,44.1661
+gameboards/Rushhour6x6_3.csv,BFS_priority H2,33,8349,42.6981
+gameboards/Rushhour6x6_3.csv,BFS_priority H3,33,8349,80.1089
+gameboards/Rushhour6x6_3.csv,BFS_priority H8,33,8349,46.4034
+gameboards/Rushhour6x6_3.csv,BFS_priority H1,33,8349,63.332
+gameboards/Rushhour6x6_3.csv,BFS_priority H1,33,8349,80.6422
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.974
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,2.7952
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,2.0977
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.7761
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.7771
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8511
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.9593
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8379
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8336
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,2.0852
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8082
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8816
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.7402
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,2.1939
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8412
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8084
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.8439
+gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,1.986
