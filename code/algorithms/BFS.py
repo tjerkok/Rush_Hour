@@ -52,7 +52,6 @@ class BFS:
         self.heuristic = heuristic
         self.lookahead = lookahead
         self.move = 0
-        self.apply_priority = 0
 
     def get_next_state(self):
         """Gets the next state from the list of states."""
@@ -93,9 +92,7 @@ class BFS:
         """applies priority, with or without beam search to BFS."""
         self.states = Priority(
                         self.states,
-                        len(self.states),
                         self.boardsize,
-                        self.vehicle_length,
                         self.heuristic,
                         self.beam)
 
@@ -106,8 +103,7 @@ class BFS:
             new_board = self.get_next_state()
 
             # checks for moves left, beam and priority
-            if self.move < len(new_board.moves) and self.beam or (
-                self.priority and self.move > self.apply_priority):
+            if self.move < len(new_board.moves) and (self.priority or self.beam):
                 self.combine_algorithm()
                 self.move = len(new_board.moves)
 
