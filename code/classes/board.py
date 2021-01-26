@@ -188,7 +188,7 @@ class Board(object):
                                vehicle_col, vehicle_row,
                                vehicle_length):
         """Fills the blocking_vehicles array depending on orientation."""
-        # defined the first and second part for the if statement
+        # defines the first and second part for the if statement
         if self.vehicles[blocked_vehicle].orientation == 'V':
             orientation = 'V'
             blocking_first = col
