@@ -9,6 +9,7 @@
 
 from .priority import Priority
 import copy
+import time
 
 class BFS:
     """
