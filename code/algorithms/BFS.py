@@ -35,7 +35,6 @@ class BFS:
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
     add_to_archive: checks if a state is already visited.
-    combine_algorithm: applies priority, with or without beam search to BFS.
     run: runs the algorithm until all states are checked or untill won. 
     """
 
@@ -100,9 +99,7 @@ class BFS:
                 self.priority or self.beam):
                 self.states = Priority(
                             self.states,
-                            len(self.states),
                             self.boardsize,
-                            self.vehicle_length,
                             self.heuristic,
                             self.beam)
                 self.move = len(new_board.moves)
