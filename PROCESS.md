@@ -140,7 +140,7 @@ Worked on the second algorithm pdf as well and tried to fix the duplicate code i
 We had a meeting met Kiara en Quinten. After that I updated the README, the the design doc and the BFS. 
 
 ## Tjerko
-
+Did cleanup on several files. Removed duplicate code, fixed docstrings, comments.
 
 ### Bob
 Fix the duplicate code in our board class
@@ -148,3 +148,6 @@ Fix the duplicate code in our board class
 ## 26 january 2021
 ### Kika
 Worked out the biggest_step heuristic, updated the design and the README's. Did the final check with the group. 
+
+## Tjerko
+Did the a final cleanup together. Also added a line of code in build_children, which makes sure the algorithm doesn't try to make a move with the car that has been moved latest on that state. The move won't be saved to the final state space as it already is in the archive. It does prevent a deepcopy for those moves, so it reduces the time the algorithm takes.
