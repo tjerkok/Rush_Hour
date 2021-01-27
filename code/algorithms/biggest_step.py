@@ -4,9 +4,9 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Class with the BFS combined with the heuristic 
-# that only the biggest possible move of every vehicle is 
-# checked. 
+# Class with the BFS combined with the heuristic
+# that only the biggest possible move of every vehicle is
+# checked.
 ###############################################################
 
 import copy
@@ -16,8 +16,8 @@ from .BFS import BFS
 
 class Step(BFS):
     """
-    Class to use the Breadth First Search combined with the heuristic of 
-    performing the biggest possible move of every vehicle.  
+    Class to use the Breadth First Search combined with the heuristic of
+    performing the biggest possible move of every vehicle.
 
     Attributes:
     BFS attributes.
@@ -38,7 +38,7 @@ class Step(BFS):
                 movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
                 child = copy.deepcopy(board)
 
-                # move vehicle 
+                # move vehicle
                 if not child.move(vehicle, movelist[0]):
                     print("invalid move")
                     return False
