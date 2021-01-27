@@ -4,7 +4,7 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Class with the BFS combined with the heuristick 
+# Class with the BFS combined with the heuristic 
 # that the biggest possible move of a vehicle is checked first.
 ###############################################################
 
@@ -13,7 +13,7 @@ from .BFS import BFS
 
 class Step(BFS):
     """
-    Class to use the Breadth First Search combined with the heuristick of 
+    Class to use the Breadth First Search combined with the heuristic of 
     performing the biggest possible move of a vehicle first.
 
     Attributes:
