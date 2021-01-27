@@ -6,7 +6,8 @@
 #
 # Class with the BFS combined with the heuristic 
 # that the biggest possible move of every vehicle is checked 
-# first, then all other moves are checked for each vehicle.
+# first, then all other moves are checked for each vehicle, 
+# in order of the biggest steps first.
 ###############################################################
 
 import copy
@@ -15,7 +16,8 @@ from .BFS import BFS
 class Step(BFS):
     """
     Class to use the Breadth First Search combined with the heuristic of 
-    performing the biggest possible move of a vehicle first.
+    performing the biggest possible move of every vehicle first and then 
+    performing the other moves in order of size of the steps. 
 
     Attributes:
     BFS attributes.
