@@ -51,6 +51,7 @@ class DFS(BFS):
 
         # check if the hashed board is already known
         if hashed_board in self.boards_visited:
+
             # checks if board is found after less moves, add to stack
             if self.boards_visited[hashed_board] > len(board.moves):
                 self.boards_visited[hashed_board] = len(board.moves)
@@ -68,8 +69,10 @@ class DFS(BFS):
             if new_board.win():
                 self.winning_board = new_board
                 return self.winning_board, self.state_space
+
             # don't make children when max depth is reached
             elif len(new_board.moves) < self.max_depth:
+
                 # build.children returns True when lookahead finds win
                 if self.build_children(new_board):
                     return self.winning_board, self.state_space
@@ -104,17 +107,18 @@ class IDDFS:
         DFS object is made and runs."""
         # derives the mninimum amount of moves
         minimum = self.board.MinMovesHeuristic()
-        print(f"minimum moves required: {minimum}")
 
         # starts at the minimum amount of moves (depth) until max depth
         for depth in range(minimum, self.max_depth + 1):
-            print(f"depth: {depth}")
             depth_first = DFS(self.board, depth)
             self.winning_board, states = depth_first.run()
+
             # saves the states from one DFS to the total amount of states
             self.state_space += states
-            # if True, a winning board is found
+
+            # if True a winning board is found
             if self.winning_board is not None:
                 return self.winning_board, self.state_space
-        # if winning board is still None, no solution has been found
+
+        # no solution has been found if winning board is still None
         return self.winning_board, self.state_space

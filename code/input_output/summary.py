@@ -9,6 +9,7 @@
 
 import csv
 
+
 def summary(filename, algorithm, amount_of_moves, states, time):
     """Generates a log csv file with the algorithms done"""
     with open('output/log.csv', 'a', newline='') as csvfile:

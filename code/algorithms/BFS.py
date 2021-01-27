@@ -9,14 +9,14 @@
 
 from .priority import Priority
 import copy
-import time
+
 
 class BFS:
     """
     A class that uses the Breadth First Search Algorithm.
 
     Attributes:
-    board: Board object. 
+    board: Board object.
     boardsize: int with boardwidth.
     vehicle_length: int with vehicle length.
     states: list with all possible states.
@@ -35,10 +35,11 @@ class BFS:
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
     add_to_archive: checks if a state is already visited.
-    run: runs the algorithm until all states are checked or untill won. 
+    run: runs the algorithm until all states are checked or untill won.
     """
 
-    def __init__(self, board, beam=False, priority=False, heuristic='H1', lookahead=True):
+    def __init__(self, board, beam=False, priority=False,
+                 heuristic='H1', lookahead=True):
         """Loads all information neccessary for the BFS."""
         self.board = copy.deepcopy(board)
         self.boardsize = board.boardsize
@@ -96,7 +97,7 @@ class BFS:
 
             # checks for moves left, beam and priority
             if self.move < len(new_board.moves) and (
-                self.priority or self.beam):
+               self.priority or self.beam):
                 self.states = Priority(
                             self.states,
                             self.boardsize,
