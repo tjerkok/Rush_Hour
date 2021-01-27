@@ -17,3 +17,6 @@ This folder contains all the code that is used by the main.py
     * summary.py: logbook that keeps track of all games in log.csv: filename, algorithm, amount of moves, states, time.
     * visualization.py: generates png of startboard and endboard. 
 
+step 
+
+heuristics
