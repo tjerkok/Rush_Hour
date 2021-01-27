@@ -121,6 +121,10 @@ if __name__ == '__main__':
         elif algorithm == 'BFS_step':
             step = biggest_step.Step(board)
             winning_board, states = step.run()
+        elif algorithm == 'BFS_step_beam':
+            step = biggest_step.Step(board, True, False, heuristic)
+            winning_board, states = step.run()
+            algorithm = f"{algorithm} {heuristic}"
         else:
             Wrong_usage()
 
