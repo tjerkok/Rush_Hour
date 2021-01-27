@@ -15,8 +15,8 @@ def output(moves):
     """Generates an output csv file with all moves per car"""
 
     with open('output/output.csv', 'w', newline='') as csvfile:
-        output = csv.writer(csvfile, delimiter=',')
-        output.writerow(['car', 'move'])
+        write = csv.writer(csvfile, delimiter=',')
+        write.writerow(['car', 'move'])
         for move in moves:
-            output.writerow(move)
-    return output
+            write.writerow(move)
+    return write

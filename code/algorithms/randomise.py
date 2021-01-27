@@ -14,7 +14,7 @@ import time
 import copy
 
 
-def random_moves_algorithm(board, sample_size, filename):
+def random_moves_algorithm(board, sample_size):
     """Function that plays the Rush Hour game with a randomise algorithm."""
     amount_of_moves = []
     time1 = []
@@ -32,7 +32,6 @@ def random_moves_algorithm(board, sample_size, filename):
         board.load_board()
 
         while not board.win():
-
             # lists all possible moves and picks random vehicle
             possible_moves = list(board.pos_moves().items())
             rand = random.choice(possible_moves)
@@ -47,17 +46,14 @@ def random_moves_algorithm(board, sample_size, filename):
                 board.move(vehicle_name, int(shift))
                 board.load_board()
 
-        if board.win():
-            winning_board = board
-
-            # keeps track of minimal amount of moves
-            if len(winning_board.moves) < min_moves:
-                lowest_moves_board = winning_board
-                min_moves = len(winning_board.moves)
+        # keeps track of minimal amount of moves
+        if len(board.moves) < min_moves:
+            lowest_moves_board = board
+            min_moves = len(board.moves)
 
         # keeps track of time, moves and boards
         time1.append(time.time() - time0)
-        amount_of_moves.append(len(winning_board.moves))
+        amount_of_moves.append(len(board.moves))
         if sample_size > 1:
             print(f"boards won: {i + 1}")
 

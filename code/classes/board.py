@@ -11,7 +11,7 @@
 import numpy as np
 
 
-class Board(object):
+class Board():
     """
     A class that initializes the gameboard, moves vehicles and checks for win.
 
@@ -36,6 +36,7 @@ class Board(object):
         self.board = []
         self.possible_moves = {}
         self.moves = []
+        self.visited = []
 
     def load_board(self):
         """Loads the boards with the vehicles."""
@@ -163,7 +164,6 @@ class Board(object):
         """Returns the vehicles that block the blocked vehicles."""
         if blocking is None:
             blocking = self.blocking_vehicles()
-            self.visited = []
 
         # for all vehicles add the ones that block to the array
         blocking_vehicles = []
@@ -229,14 +229,13 @@ class Board(object):
                        vehicle_col + 2 == blocking_first):
                         blocking_vehicles.append(vehicle)
 
-    def MinMovesHeuristic(self):
-        """Heuristic that makes use of the minimum required moves."""
-        return self.MinimumRequiredMoves()
+    # def MinMovesHeuristic(self):
+    #     """Heuristic that makes use of the minimum required moves."""
+    #     return self.MinimumRequiredMoves()
 
-    def MinimumRequiredMoves(self):
+    def MinMovesHeuristic(self):
         """Counts the minimum amount of moves the board has to make."""
         self.visited = ['X']
-
         blocked_vehicles = self.blocking_vehicles()
 
         for vehicle in blocked_vehicles:
@@ -285,5 +284,5 @@ class Board(object):
         """Checks for win using vehicle X."""
         if self.vehicles['X'].coordinates[0] == self.boardsize - 2:
             return True
-        else:
-            return False
+            
+        return False

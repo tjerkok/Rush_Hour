@@ -7,8 +7,8 @@
 # Class with Breadth First Search algorithm for Rush Hour game.
 #####################################################################
 
-from .priority import Priority
 import copy
+from .priority import Priority
 
 
 class BFS:
@@ -18,7 +18,6 @@ class BFS:
     Attributes:
     board: Board object.
     boardsize: int with boardwidth.
-    vehicle_length: int with vehicle length.
     states: list with all possible states.
     boards_visited: set with all hashed visited boards.
     winning_board: Board object with vehicles orientated in winning position.
@@ -28,7 +27,6 @@ class BFS:
     heuristic: str with the input heuristic.
     lookahead: bool for lookahead.
     move: int that counts the amount of moves within a depth.
-    apply_priority: int from which depth priority is applied.
 
     Methods:
     get_next_state: picks the first item from the list with states.
@@ -43,7 +41,6 @@ class BFS:
         """Loads all information neccessary for the BFS."""
         self.board = copy.deepcopy(board)
         self.boardsize = board.boardsize
-        self.vehicle_length = len(board.vehicles)
         self.states = [copy.deepcopy(self.board)]
         self.boards_visited = set()
         self.winning_board = None
@@ -83,7 +80,7 @@ class BFS:
         board_array.flags.writeable = False
         hashed_board = hash(board_array.tostring())
 
-        # checks if hashed board is already checked for win
+        # checks if hashed board is already visited
         if hashed_board not in self.boards_visited:
             self.boards_visited.add(hashed_board)
             self.states.append(board)
@@ -110,7 +107,7 @@ class BFS:
                 self.winning_board = new_board
                 return self.winning_board, self.state_space
 
-            # build children
+            # build children and checks if children win
             elif self.build_children(new_board):
                 return self.winning_board, self.state_space
 

@@ -5,19 +5,21 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Plays the Rush Hour game, using different algorithms.
-# Algorithms to choose: Random, BFS, BFS_beam, BFS_priority and IDDFS
+# Algorithms to choose: Random, BFS, BFS_beam, BFS_priority, BFS_step,
+# BFS_step_beam and IDDFS.
 # If no algorithm chosen then you can play the game yourself.
 # Heuristics to choose: H1 t/m H9. If none is chosen, H1 will be
 # selected.
 #########################################################
+
+import time
+from sys import argv
 
 from code.algorithms import randomise, play_yourself, BFS, IDDFS, biggest_step
 from code.input_output.visualization import visualize
 from code.input_output.load_in import load_problem
 from code.input_output.generate_output import output
 from code.input_output.summary import summary
-from sys import argv
-import time
 
 
 def No_solution():
@@ -31,8 +33,10 @@ def Wrong_usage():
     """Returns error when the usage is wrong."""
     print("Usage: python3 main.py [gameboards/Rushhour9x9_4.csv] [algorithm]"
           " ([sample size]) ([heuristic]) ([max_depth])")
-    print("Give no algorithm input to play by yourself.\nAlgorithms: \n-Random\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n"
-          "-IDDFS\nHeuristics: H1 t/m H9\nRandom:\n-sample size\nIDDFS:\n-max_depth (required)")
+    print("Give no algorithm input to play by yourself.\nAlgorithms: \n-Random"
+          "\n-BFS\n-BFS_beam\n-BFS_priority\n-BFS_step\n-BFS_step_beam\n-IDDFS"
+          "\nHeuristics: H1 t/m H9\nRandom:\n-sample size\nIDDFS:\n-max_depth"
+          "(required)")
     exit(1)
 
 
@@ -59,6 +63,8 @@ if __name__ == '__main__':
                     max_depth = int(argv[3])
                 else:
                     heuristic = argv[3]
+            elif algorithm == 'IDDFS':
+                Wrong_usage()
             else:
                 heuristic = 'H1'
         else:
@@ -82,7 +88,7 @@ if __name__ == '__main__':
     if algorithm == 'Random':
         # runs the random algorithm with given sample size
         winning_board, amount_of_moves, time1 = randomise.random_moves_algorithm(
-            board, sample_size, filename)
+            board, sample_size)
 
         # calculates averages of results
         if sample_size > 1:
@@ -105,7 +111,7 @@ if __name__ == '__main__':
 
     # ----------------------- Breadth First Search ----------------------
 
-    # runs the BFS with/without beam and/or priority
+    # runs the BFS with/without beam and/or priority and/or step
     elif algorithm[0:3] == 'BFS':
         if algorithm == 'BFS' and len(argv) == 3:
             breadth_first = BFS.BFS(board, False, False)
@@ -150,6 +156,7 @@ if __name__ == '__main__':
         Wrong_usage()
 
     # ----------------------------- Output ------------------------------
+    
     # no solution has been found
     if winning_board is None:
         No_solution()
