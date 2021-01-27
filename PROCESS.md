@@ -151,3 +151,6 @@ Worked out the biggest_step heuristic, updated the design and the README's. Did 
 
 ## Tjerko
 Did the a final cleanup together. Also added a line of code in build_children, which makes sure the algorithm doesn't try to make a move with the car that has been moved latest on that state. The move won't be saved to the final state space as it already is in the archive. It does prevent a deepcopy for those moves, so it reduces the time the algorithm takes.
+
+### Bob
+Final cleanup and getting results
