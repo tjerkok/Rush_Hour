@@ -4,17 +4,19 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-# Class with the BFS combined with the heuristic 
-# that the biggest possible move of every vehicle is checked 
+# Class with the BFS combined with the heuristic
+# that the biggest possible move of every vehicle is checked
 # first, then all other moves are checked for each vehicle.
 ###############################################################
 
 import copy
+
 from .BFS import BFS
+
 
 class Step(BFS):
     """
-    Class to use the Breadth First Search combined with the heuristic of 
+    Class to use the Breadth First Search combined with the heuristic of
     performing the biggest possible move of a vehicle first.
 
     Attributes:
@@ -35,7 +37,7 @@ class Step(BFS):
                     movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
 
                 # first perform for every vehicle the biggest step
-                if i == 0 :
+                if i == 0:
                     movelist = movelist[:1]
                 # then perform all other steps per vehicle
                 else:
