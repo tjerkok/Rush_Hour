@@ -413,3 +413,19 @@ gameboards/Rushhour6x6_1.csv,BFS_priority H2,21,624,3.1911
 gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,3.7362
 gameboards/Rushhour6x6_1.csv,BFS_priority H1,21,624,3.3866
 gameboards/Rushhour6x6_3.csv,BFS_priority H1,33,8349,78.2998
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,2.1117
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,3.5882
+gameboards/Rushhour6x6_1.csv,BFS_step,21,624,2.5701
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2621,14.2425
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,12.5038
+gameboards/Rushhour6x6_3.csv,BFS_step,33,8315,57.1368
+gameboards/Rushhour6x6_3.csv,BFS_step,33,8349,40.3676
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2621,11.3511
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,8.494
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,2.1099
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,3.2292
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,2.9589
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,3.1835
+gameboards/Rushhour6x6_1.csv,BFS_step,21,699,2.6586
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,13.5602
+gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,9.7842
