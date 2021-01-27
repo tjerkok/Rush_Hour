@@ -429,3 +429,6 @@ gameboards/Rushhour6x6_1.csv,BFS_step,21,699,3.1835
 gameboards/Rushhour6x6_1.csv,BFS_step,21,699,2.6586
 gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,13.5602
 gameboards/Rushhour6x6_2.csv,BFS_step,15,2189,9.7842
+gameboards/Rushhour6x6_1.csv,BFS_step_beam H6,21,632,1.8827
+gameboards/Rushhour6x6_2.csv,BFS_step_beam H6,15,2133,8.4969
+gameboards/Rushhour6x6_2.csv,BFS_step_beam H1,15,2056,9.3147
