@@ -9,7 +9,6 @@
 
 import csv
 import re
-
 from ..classes.board import Board
 from ..classes.vehicle import Vehicle
 
