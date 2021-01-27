@@ -32,27 +32,28 @@ class Step(BFS):
         """Creates all possible child-states."""
         for i in range(0, 1):
             for vehicle, movelist in board.pos_moves().items():
-                if len(movelist) > 1:
-                    # sort for the biggest amount of steps first
-                    movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
+                if not board.moves or board.moves[-1][0] != vehicle:
+                    if len(movelist) > 1:
+                        # sort for the biggest amount of steps first
+                        movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
 
-                # first perform for every vehicle the biggest step
-                if i == 0:
-                    movelist = movelist[:1]
-                # then perform all other steps per vehicle
-                else:
-                    movelist = movelist[1:]
+                    # first perform for every vehicle the biggest step
+                    if i == 0:
+                        movelist = movelist[:1]
+                    # then perform all other steps per vehicle
+                    else:
+                        movelist = movelist[1:]
 
-                for vehicle_move in movelist:
-                    child = copy.deepcopy(board)
-                    if not child.move(vehicle, vehicle_move):
-                        print("invalid move")
-                        return False
+                    for vehicle_move in movelist:
+                        child = copy.deepcopy(board)
+                        if not child.move(vehicle, vehicle_move):
+                            print("invalid move")
+                            return False
 
-                    if child.win() and self.lookahead:
-                        self.winning_board = child
-                        return True
+                        if child.win() and self.lookahead:
+                            self.winning_board = child
+                            return True
 
-                    self.add_to_archive(child)
+                        self.add_to_archive(child)
 
         return False
