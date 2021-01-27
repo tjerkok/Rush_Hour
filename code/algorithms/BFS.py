@@ -59,16 +59,18 @@ class BFS:
         """Creates all possible child-states."""
         for vehicle, movelist in board.pos_moves().items():
             for vehicle_move in movelist:
-                child = copy.deepcopy(board)
-                if not child.move(vehicle, vehicle_move):
-                    print("invalid move")
-                    return False
+                # checks if the same car isn't moved twice
+                if not board.moves or board.moves[-1][0] != vehicle:
+                    child = copy.deepcopy(board)
+                    if not child.move(vehicle, vehicle_move):
+                        print("invalid move")
+                        return False
 
-                if child.win() and self.lookahead:
-                    self.winning_board = child
-                    return True
+                    if child.win() and self.lookahead:
+                        self.winning_board = child
+                        return True
 
-                self.add_to_archive(child)
+                    self.add_to_archive(child)
 
         return False
 
