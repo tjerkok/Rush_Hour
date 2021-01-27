@@ -35,7 +35,7 @@ class Step(BFS):
             # movelist cannot be empty and only if car isn't moved in last move
             if movelist and (not board.moves or board.moves[-1][0] != vehicle):
 
-                # sort for the biggest steps first
+                # sort for the biggest steps first and make child
                 movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
                 child = copy.deepcopy(board)
 
