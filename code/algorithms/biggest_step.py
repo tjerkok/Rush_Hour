@@ -4,16 +4,10 @@
 # Programmeertheorie, Rush Hour
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
-<<<<<<< HEAD
 # Class with the BFS combined with the heuristic 
 # that the biggest possible move of every vehicle is checked 
 # first, then all other moves are checked for each vehicle, 
 # in order of the biggest steps first.
-=======
-# Class with the BFS combined with the heuristic
-# that the biggest possible move of every vehicle is checked
-# first, then all other moves are checked for each vehicle.
->>>>>>> ed1d3105a15e49a4c6429b9d86992f1701541676
 ###############################################################
 
 import copy
@@ -23,14 +17,8 @@ from .BFS import BFS
 
 class Step(BFS):
     """
-<<<<<<< HEAD
     Class to use the Breadth First Search combined with the heuristic of 
-    performing the biggest possible move of every vehicle first and then 
-    performing the other moves in order of size of the steps. 
-=======
-    Class to use the Breadth First Search combined with the heuristic of
-    performing the biggest possible move of a vehicle first.
->>>>>>> ed1d3105a15e49a4c6429b9d86992f1701541676
+    performing the biggest possible move of every vehicle.  
 
     Attributes:
     BFS attributes.
@@ -43,30 +31,23 @@ class Step(BFS):
 
     def build_children(self, board):
         """Creates all possible child-states."""
-        for i in range(0, 1):
-            for vehicle, movelist in board.pos_moves().items():
-                if not board.moves or board.moves[-1][0] != vehicle:
-                    if len(movelist) > 1:
-                        # sort for the biggest amount of steps first
-                        movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
+        for vehicle, movelist in board.pos_moves().items():
+            # movelist cannot be empty and only if car isn't moved in last move
+            if movelist and (not board.moves or board.moves[-1][0] != vehicle):
 
-                    # first perform for every vehicle the biggest step
-                    if i == 0:
-                        movelist = movelist[:1]
-                    # then perform all other steps per vehicle
-                    else:
-                        movelist = movelist[1:]
+                # sort for the biggest steps first
+                movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
+                child = copy.deepcopy(board)
 
-                    for vehicle_move in movelist:
-                        child = copy.deepcopy(board)
-                        if not child.move(vehicle, vehicle_move):
-                            print("invalid move")
-                            return False
+                # move vehicle 
+                if not child.move(vehicle, movelist[0]):
+                    print("invalid move")
+                    return False
 
-                        if child.win() and self.lookahead:
-                            self.winning_board = child
-                            return True
+                if child.win() and self.lookahead:
+                    self.winning_board = child
+                    return True
 
-                        self.add_to_archive(child)
+                self.add_to_archive(child)
 
         return False
