@@ -20,7 +20,7 @@ class Step(BFS):
     BFS attributes.
 
     Methods:
-    BFS attributes. 
+    BFS methods.
     build_children: creates all possible child-states from the current state
     and adds them to the archive.
     """
