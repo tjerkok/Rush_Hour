@@ -13,6 +13,7 @@
 #########################################################
 
 import time
+
 from sys import argv
 
 from code.algorithms import randomise, play_yourself, BFS, IDDFS, biggest_step
@@ -156,7 +157,7 @@ if __name__ == '__main__':
         Wrong_usage()
 
     # ----------------------------- Output ------------------------------
-    
+
     # no solution has been found
     if winning_board is None:
         No_solution()
