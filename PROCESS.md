@@ -144,3 +144,7 @@ We had a meeting met Kiara en Quinten. After that I updated the README, the the 
 
 ### Bob
 Fix the duplicate code in our board class
+
+## 26 january 2021
+### Kika
+Worked out the biggest_step heuristic, updated the design and the README's. Did the final check with the group. 
