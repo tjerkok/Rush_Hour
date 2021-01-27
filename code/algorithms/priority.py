@@ -10,6 +10,7 @@
 # It returns a list with in the front the priority states.
 ###############################################################
 
+
 def Priority(items, board_size, heuristic, beam):
     """A function that prioritizes states based on a heuristic."""
     # maximal number of free spaces ahead of the target car

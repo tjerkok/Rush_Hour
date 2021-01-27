@@ -7,9 +7,9 @@
 # Creates a visualization of the board and saves the image.
 #############################################################
 
-from string import ascii_uppercase
 import matplotlib.pyplot as plt
 import numpy as np
+from string import ascii_uppercase
 
 
 def visualize(board, state):

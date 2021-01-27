@@ -7,6 +7,7 @@
 # Function to play the Rush Hour game yourself.
 #########################################################
 
+
 def play(board):
     """Function to play the Rush Hour game yourself with your keyboard"""
     print(board.load_board())
