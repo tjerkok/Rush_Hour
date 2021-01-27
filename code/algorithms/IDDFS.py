@@ -29,10 +29,9 @@ class DFS(BFS):
     """
 
     def __init__(self, board, max_depth=10000):
-        """ Depth First Search is based on the Breadth First Search
+        """Depth First Search is based on the Breadth First Search
             class, so it takes the same attributes, but turned
-            lookahead off. The archive boards_visited is a dictionary
-            to keep track of the depth of the visited board. """
+            lookahead off."""
         BFS.__init__(self, board, lookahead=False)
         self.max_depth = max_depth
         self.boards_visited = {}
@@ -60,6 +59,7 @@ class DFS(BFS):
         else:
             self.boards_visited[hashed_board] = len(board.moves)
             self.states.append(board)
+            self.state_space += 1
 
     def run(self):
         """Runs the algorithm until the stack is empty or when a
@@ -97,6 +97,8 @@ class IDDFS:
         a winning board has been found.
     """
     def __init__(self, board, max_depth):
+        """Provides information needed for Iterative Deepening Depth
+        First Search."""
         self.max_depth = max_depth
         self.board = board
         self.winning_board = None
@@ -112,11 +114,8 @@ class IDDFS:
         for depth in range(minimum, self.max_depth + 1):
             depth_first = DFS(self.board, depth)
             self.winning_board, states = depth_first.run()
-
-            # saves the states from one DFS to the total amount of states
             self.state_space += states
 
-            # if True a winning board is found
             if self.winning_board is not None:
                 return self.winning_board, self.state_space
 

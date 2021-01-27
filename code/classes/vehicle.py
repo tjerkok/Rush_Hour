@@ -8,7 +8,7 @@
 #########################################################
 
 
-class Vehicle(object):
+class Vehicle():
     """
     Class with all information about a vehicle.
 

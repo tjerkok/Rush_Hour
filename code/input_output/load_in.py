@@ -15,30 +15,29 @@ from ..classes.vehicle import Vehicle
 
 
 def load_problem(filename):
-    """Loads the vehicles and the boardsize from the csv input file"""
-
+    """Loads the vehicles and the boardsize from the csv input file."""
     vehicles = {}
     with open(filename, newline='') as csvfile:
-        # Reads the boardsize from the name of the csvfile
+        # reads the boardsize from the name of the csvfile
         match = re.search(r'\d+x', filename)
         board_size = int(str((match[0]))[:-1])
 
-        # Reads the csv input file into vehicles dict
-        r = csv.reader(csvfile, delimiter=',')
-        next(r, None)
-        for row in r:
+        # reads the csv input file into vehicles dict
+        read = csv.reader(csvfile, delimiter=',')
+        next(read, None)
+        for row in read:
             vehicle_name = row[0]
             orientation = row[1]
             vehicle_col = int(row[2])
             vehicle_row = int(row[3])
             vehicle_length = int(row[4])
 
-            # Use the vehicle class to add a new vehicle
+            # use the vehicle class to add a new vehicle
             new_vehicle = Vehicle(vehicle_name, orientation, vehicle_row,
                                   vehicle_col, vehicle_length)
             vehicles[vehicle_name] = new_vehicle
 
-    # Use the board class to make the board
+    # use the board class to make the board
     board = Board(vehicles, board_size)
 
     return board

@@ -9,13 +9,11 @@
 
 def play(board):
     """Function to play the Rush Hour game yourself with your keyboard"""
-
     print(board.load_board())
     counter = 0
     max_moves = 50
 
     while not board.win() and counter < max_moves:
-
         board.pos_moves()
 
         # user input for move
@@ -32,7 +30,6 @@ def play(board):
     if board.win():
         print("game won")
         winning_board = board
-
     elif counter == max_moves:
         print("maximum moves reached")
 

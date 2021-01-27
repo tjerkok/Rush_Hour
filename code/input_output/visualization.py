@@ -13,11 +13,12 @@ import numpy as np
 
 
 def visualize(board, state):
-    """Creates a visualisation of the gameboard using matplotlib"""
+    """Creates a visualisation of the gameboard using matplotlib."""
     # checks if the board is a numpy array
     if not isinstance(board, np.ndarray):
         return False
 
+    # closes startboard
     if state == "end":
         plt.close()
 
@@ -30,7 +31,7 @@ def visualize(board, state):
         if len(board[0]) >= 10:
             letter = letter + ' '
 
-        if letter == 'X' or letter == 'X ':
+        if letter in ('X', 'X '):
             legend['X'] = -1
         else:
             legend[letter] = i
@@ -38,7 +39,7 @@ def visualize(board, state):
 
     # giving values to double letter names
     for letter in ascii_uppercase:
-        legend['A'+letter] = i
+        legend['A' + letter] = i
         i += 1
 
     # creates an image array with the values instead of names

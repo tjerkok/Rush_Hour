@@ -11,7 +11,7 @@ import csv
 
 
 def summary(filename, algorithm, amount_of_moves, states, time):
-    """Generates a log csv file with the algorithms done"""
+    """Generates a log csv file with the algorithms done."""
     with open('output/log.csv', 'a', newline='') as csvfile:
         newline = csv.writer(csvfile, delimiter=',')
         row = [filename, algorithm, amount_of_moves, states, time]

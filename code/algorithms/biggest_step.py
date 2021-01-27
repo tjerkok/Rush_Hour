@@ -25,24 +25,35 @@ class Step(BFS):
     and adds them to the archive.
     """
 
-   def build_children(self, board):
+    def build_children(self, board):
         """Creates all possible child-states."""
-        for vehicle, movelist in board.pos_moves().items():
-            if movelist: 
-                if len(movelist) > 1:
-                    # sort for the biggest amount of steps first
-                    movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
-                
-                for vehicle_move in movelist:
-                    child = copy.deepcopy(board)
-                    if not child.move(vehicle, vehicle_move):
-                        print("invalid move")
-                        return False
+        for i in range(0, 2):
+            for vehicle, movelist in board.pos_moves().items():
+                if movelist: 
+                    if len(movelist) > 1:
+                        # sort for the biggest amount of steps first
+                        movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
+                    
+                    # print(f"movelist: {movelist}")
+                    if i == 0 :
+                        movelist = movelist[:2]
+                        # print(movelist)
+                        # print(i)
+                    else:
+                        movelist = movelist[2:]
+                        # print(movelist)
+                        # print(i)
 
-                    if child.win() and self.lookahead:
-                        self.winning_board = child
-                        return True
+                    for vehicle_move in movelist:
+                        child = copy.deepcopy(board)
+                        if not child.move(vehicle, vehicle_move):
+                            print("invalid move")
+                            return False
 
-                    self.add_to_archive(child)
+                        if child.win() and self.lookahead:
+                            self.winning_board = child
+                            return True
+
+                        self.add_to_archive(child)
 
         return False

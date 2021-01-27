@@ -12,7 +12,6 @@
 
 def Priority(items, board_size, heuristic, beam):
     """A function that prioritizes states based on a heuristic."""
-
     # maximal number of free spaces ahead of the target car
     if heuristic == 'H1':
         items = [
@@ -61,10 +60,7 @@ def Priority(items, board_size, heuristic, beam):
                 len(moves) for moves in item.pos_moves().values()
                 )
             items_tuple.append([item, total_moves])
-
-        # sort states per depth on most possible moves
-        sorted_items = sorted(items_tuple, key=lambda x: x[1], reverse=True)
-        sorted_list = [item[0] for item in sorted_items]
+        items = items_tuple
 
     # minimum number of blocked blocking vehicles
     elif heuristic == 'H8':
@@ -80,10 +76,12 @@ def Priority(items, board_size, heuristic, beam):
         print(items[1])
 
     # sort states per depth
-    if heuristic == 'H1':
+    if heuristic in ('H1', 'H7'):
+        # sort by maximum
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
         sorted_list = [item[0] for item in sorted_items]
-    elif heuristic != 'H7':
+    else:
+        # sort by minimum
         sorted_items = sorted(items, key=lambda x: x[1], reverse=False)
         sorted_list = [item[0] for item in sorted_items]
 
