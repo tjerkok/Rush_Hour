@@ -20,11 +20,20 @@ class Board():
     boardsize: int with size of the board as stated in the name of the file
     board: empty list which get filled in other functions
     possible_moves: dict with all possible moves per vehicle
+    moves: an array which stores the moves done on the board
+    visited: an array which stores the vehicles that are already visited
 
     Methods:
     load_board: loads the boards with the vehicles
+    fill_names: used in load_board, adds the vehicle names in the array
     pos_moves: creates the possible_moves dict
+    fill_pos_moves: used in pos_moves, adds the possible moves in the dict
     X_row_free: Returns the amount of free spaces ahead of the target car
+    blocking_vehicles: find the vehicles in the way of the target car
+    goal distance: finds the distance the target car still has to travel
+    blocked_blocking_vehicles: finds the vehicles that block other vehicles
+    fill_blocking_vehicles: fills blocking vehicles array
+    MinMovesHeuristic: find the minimum required steps to solve the board
     move: moves a vehicle, if possible
     win: checks for win, using vehicle X
     """
@@ -90,11 +99,11 @@ class Board():
 
             x, y = vehicle.coordinates[0], vehicle.coordinates[1]
 
-            self.fill_possible_moves(vehicle, x, y)
+            self.fill_pos_moves(vehicle, x, y)
 
         return self.possible_moves
 
-    def fill_possible_moves(self, vehicle, x, y):
+    def fill_pos_moves(self, vehicle, x, y):
         """Fills possible moves dictionary depending on orientation."""
         # defines a string for the empty space
         if self.boardsize < 10:
@@ -192,12 +201,14 @@ class Board():
         """Fills the blocking_vehicles array depending on orientation."""
         # defines the first and second part for the if statement
         if self.vehicles[blocked_vehicle].orientation == 'V':
+            # if the blocked vehicle is vertical we first compare the columns
             orientation = 'V'
             blocking_first = col
             blocking_second = row
             vehicle_first = vehicle_col
             vehicle_second = vehicle_row
         else:
+            # if the blocked vehicle is vertical we first compare the rows
             orientation = 'H'
             blocking_first = row
             blocking_second = col
@@ -229,10 +240,6 @@ class Board():
                        vehicle_col + 2 == blocking_first):
                         blocking_vehicles.append(vehicle)
 
-    # def MinMovesHeuristic(self):
-    #     """Heuristic that makes use of the minimum required moves."""
-    #     return self.MinimumRequiredMoves()
-
     def MinMovesHeuristic(self):
         """Counts the minimum amount of moves the board has to make."""
         self.visited = ['X']
@@ -258,7 +265,7 @@ class Board():
 
     def move(self, vehicle_name, shift, undo=False):
         """Moves a vehicle, if possible."""
-        # if shift in self.possible_moves[vehicle_name]:
+        # if shift in possible moves or undo is True do the move:
         if shift in self.pos_moves()[vehicle_name] or undo:
             vehicle = self.vehicles[vehicle_name]
 
@@ -284,5 +291,5 @@ class Board():
         """Checks for win using vehicle X."""
         if self.vehicles['X'].coordinates[0] == self.boardsize - 2:
             return True
-            
+
         return False
