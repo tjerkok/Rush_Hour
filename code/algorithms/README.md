@@ -3,7 +3,7 @@
     * With archive and early solution detection (lookahead)
 * IDDFS.py: the Iterative Deepening Depth-First search, seeking all possible states. 
     * With heuristic 9 (start checking from depth of minimum number of required moves)
-* biggest_step.py: the BFS in combination with the heuristic that first the biggest step for all vehicles is performed and then the other steps in order of the size of the steps. 
+* biggest_step.py: the BFS in combination with the heuristic that only the biggest step for all vehicles is performed.
 * play_yourself.py: which gives the ability to play the game yourself, asking for inputs. 
 * Priority.py: contains Priority queue search and option for Beam search, using multiple heuristicks. 
 * randomise.py: the Random algorithm picking a random vehicle from the possible moves and then picking a random move from the possible moves for that vehicle. 

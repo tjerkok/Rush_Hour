@@ -4,7 +4,7 @@ This folder contains all the code that is used by the main.py
 ## Structure
 * /algorithms: contains all different algorithms to play the game with.
     * BFS.py: Breadth First Search.
-    * biggest_step.py: BFS with heuristic for biggest step first. 
+    * biggest_step.py: BFS with heuristic for only moving the biggest step. 
     * IDDFS.py: Iterative Deepening Depth First Search.
     * play_yourself.py: play the Rush Hour game yourself.
     * priority.py: uses Priority queue search and Beam search with multiple heuristics.
