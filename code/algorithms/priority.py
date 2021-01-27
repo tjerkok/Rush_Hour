@@ -73,7 +73,6 @@ def Priority(items, board_size, heuristic, beam):
         items = [
             [board, board.MinMovesHeuristic()] for board in items
             ]
-        print(items[1])
 
     # sort states per depth
     if heuristic in ('H1', 'H7'):

@@ -1,11 +1,11 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>440</x><y>496</y><w>190</w><h>90</h></coordinates><panel_attributes>_object: Class_Vehicle
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>440</x><y>516</y><w>190</w><h>90</h></coordinates><panel_attributes>_object: Class_Vehicle
 --
 self.name: str
 self.orientation: str (V/H)
 self.coordinates: tuple (col, row)
 self.length: int
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>376</y><w>190</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>336</y><w>310</w><h>290</h></coordinates><panel_attributes>_object: Class_Board
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>396</y><w>190</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>356</y><w>310</w><h>290</h></coordinates><panel_attributes>_object: Class_Board
 --
 self.boardsize: int
 self.vehicles: {vehicle_name:new_vehicle}
@@ -26,7 +26,7 @@ MinimumRequiredMoves(self): return value
 move(self, vehicle_name, shift): return bool 
 win(self): return bool
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>270</w><h>280</h></coordinates><panel_attributes>_object: Class_BFS
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>20</y><w>270</w><h>280</h></coordinates><panel_attributes>_object: Class_BFS
 --
 self.board = copy.deepcopy(board)
 self.boardsize = board.boardsize
@@ -46,7 +46,7 @@ build_children(self, board): return bool
 add_to_archive(self, board): 
 run(self): self.winning_board, self.state_space
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>290</y><w>260</w><h>110</h></coordinates><panel_attributes>_object: Class_IDDFS
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>310</y><w>260</w><h>110</h></coordinates><panel_attributes>_object: Class_IDDFS
 --
 self.max_depth = max_depth
 self.board = board
@@ -54,7 +54,7 @@ self.winning_board = None
 self.state_space = 0
 --
 run(self): self.winning_board, self.state_space
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>70</y><w>260</w><h>130</h></coordinates><panel_attributes>_object: Class_DFS(BFS)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>140</y><w>260</w><h>130</h></coordinates><panel_attributes>_object: Class_DFS(BFS)
 --
 self.max_depth = max_depth
 self.boards_visited = {}
@@ -63,4 +63,8 @@ self.state_space = 0
 get_next_state(self): return self.states.pop()
 add_to_archive(self, board): 
 run(self): self.winning_board, self.state_space
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>190</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;100</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>271</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;65;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>1</y><w>200</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;70</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>190</y><w>110</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;150;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>290</y><w>190</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;170;10</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>260</y><w>80</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;50</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>291</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;65;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>21</y><w>200</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;120</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>260</y><w>110</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>310</y><w>190</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;170;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>10</y><w>220</w><h>70</h></coordinates><panel_attributes>_object: Class_Step(BFS)
+--
+attributes from BFS
+--
+build_children(self, board): return bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>10</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element></diagram>
