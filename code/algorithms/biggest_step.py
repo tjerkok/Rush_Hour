@@ -5,9 +5,8 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Class with the BFS combined with the heuristic 
-# that the biggest possible move of every vehicle is checked 
-# first, then all other moves are checked for each vehicle, 
-# in order of the biggest steps first.
+# that only the biggest possible move of every vehicle is 
+# checked. 
 ###############################################################
 
 import copy
