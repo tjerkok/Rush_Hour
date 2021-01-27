@@ -94,7 +94,6 @@ class BFS:
         while self.states:
 
             new_board = self.get_next_state()
-
             # checks for moves left, beam and priority
             if self.move < len(new_board.moves) and (
                self.priority or self.beam):
