@@ -5,7 +5,8 @@
 # Tjerko Kieft, Bob Nieuwenhuize, Kika Banning
 #
 # Class with the BFS combined with the heuristic 
-# that the biggest possible move of a vehicle is checked first.
+# that the biggest possible move of every vehicle is checked 
+# first, then all other moves are checked for each vehicle.
 ###############################################################
 
 import copy
@@ -27,33 +28,29 @@ class Step(BFS):
 
     def build_children(self, board):
         """Creates all possible child-states."""
-        for i in range(0, 2):
+        for i in range(0, 1):
             for vehicle, movelist in board.pos_moves().items():
-                if movelist: 
-                    if len(movelist) > 1:
-                        # sort for the biggest amount of steps first
-                        movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
-                    
-                    # print(f"movelist: {movelist}")
-                    if i == 0 :
-                        movelist = movelist[:2]
-                        # print(movelist)
-                        # print(i)
-                    else:
-                        movelist = movelist[2:]
-                        # print(movelist)
-                        # print(i)
+                if len(movelist) > 1:
+                    # sort for the biggest amount of steps first
+                    movelist = sorted(movelist, key=lambda x: abs(0-x), reverse=True)
 
-                    for vehicle_move in movelist:
-                        child = copy.deepcopy(board)
-                        if not child.move(vehicle, vehicle_move):
-                            print("invalid move")
-                            return False
+                # first perform for every vehicle the biggest step
+                if i == 0 :
+                    movelist = movelist[:1]
+                # then perform all other steps per vehicle
+                else:
+                    movelist = movelist[1:]
 
-                        if child.win() and self.lookahead:
-                            self.winning_board = child
-                            return True
+                for vehicle_move in movelist:
+                    child = copy.deepcopy(board)
+                    if not child.move(vehicle, vehicle_move):
+                        print("invalid move")
+                        return False
 
-                        self.add_to_archive(child)
+                    if child.win() and self.lookahead:
+                        self.winning_board = child
+                        return True
+
+                    self.add_to_archive(child)
 
         return False
